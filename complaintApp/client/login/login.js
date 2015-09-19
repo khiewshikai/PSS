@@ -10,7 +10,7 @@ Template.login.events({
 				$(".login-info").html(error.reason);
 				event.target.loginPassword.value = "";
 		    } else {
-		       Router.go('/');
+		       Router.go('/dashboard');
 		    }
 		});
     }

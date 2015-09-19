@@ -18,7 +18,7 @@ Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public']});
 Router.route('/', {
     name: 'public',
     template: 'public',
-    // layoutTemplate: 'layout'
+    layoutTemplate: 'publicLayout'
 });
 
 Router.route('/login', {
@@ -36,4 +36,10 @@ Router.route('logout', {
 Router.route('/register', {
     name: 'register',
     template: 'register'
+});
+
+Router.route('/dashboard', {
+    name: 'dashboard',
+    template: 'dashboard',
+    layoutTemplate: 'dashboardLayout'
 });
