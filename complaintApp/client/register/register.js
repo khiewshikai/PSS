@@ -19,7 +19,7 @@ Template.register.events({
 				}
 			} else {
 		        // Redirect user if registration succeeds
-		        Router.go('/');
+		        Router.go('/dashboard');
 		    }
 		});
 	}
