@@ -12,12 +12,12 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public']});
 // Router.onBeforeAction(goToDashboard, {only: ['index']});
 
 Router.route('/', {
-    name: 'dashboard',
-    template: 'dashboard',
+    name: 'public',
+    template: 'public',
     // layoutTemplate: 'layout'
 });
 
