@@ -49,3 +49,9 @@ Router.route('/dashboard', {
     template: 'dashboard',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/managecomplaints', {
+    name: 'manageComplaints',
+    template: 'manageComplaints',
+    layoutTemplate: 'dashboardLayout'
+});
