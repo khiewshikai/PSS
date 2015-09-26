@@ -1,5 +1,32 @@
 <template name="dashboard">
+	test
+	<table id="table_id" class="display">
+	    <thead>
+	        <tr>
+	            <th>Name</th>
+	            <th>NRIC</th>
+	            <th>Case ID</th>
+	            <th>Contact</th>
+	            <th>Email</th>
+	            <th>Company</th>
+	            <th>Status</th>
 
-	content here
+	        </tr>
+	    </thead>
+	    <tbody>
+	    	{{#each complaints}}
+	    		
+	    	<tr>
+	            <td>{{name}}</td>
+	            <td>{{nric}}</td>
+	            <td>{{caseID}}</td>
+	            <td>{{contact}}</td>
+	            <td>{{email}}</td>
+	            <td>{{company}}</td>
+	            <td>{{status}}</td>
+	        </tr>
+	    	{{/each}}
+	    </tbody>
+	</table>
 
 </template>
