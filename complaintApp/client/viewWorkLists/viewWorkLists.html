@@ -1,0 +1,66 @@
+<template name="viewWorkLists">
+
+    <div class="container">
+      <header>
+        <h1 class="page-header">
+          Work List
+          <small>header small text goes here...</small>
+        </h1>
+      </header>
+
+      <div class="row">
+        <div class="col-md-12 ui-sortable">
+          <div class="panel panel-inverse">
+            <div class="panel-body">
+              <div class="table-responsive">
+                <div></div><div id="data-table_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_length" id="data-table_length"><label>Show <select name="data-table_length" aria-contdols="data-table" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div><div id="data-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-contdols="data-table"></label></div>
+                <table id="data-table" class="table table-stdiped table-bordered dataTable no-footer" role="grid" aria-describedby="data-table_info">
+                  <thead>
+                    <tr role="row">
+                      <th class="sorting_asc" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 153px;">
+                        Complainant Name
+                      </th>
+                      <th class="sorting" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 225px;">
+                        Complainant Contact
+                      </th>
+                      <th class="sorting" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 204px;">
+                        Complainant Email
+                      </th>
+                      <th class="sorting" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 129px;">
+                        Complainant Comment
+                      </th>
+                      <th class="sorting" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 93px;">
+                        Product Category
+                      </th>
+                      <th class="sorting" tabindex="0" aria-contdols="data-table" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 93px;">
+                        Follower Up
+                      </th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each getComplaintsCollection}}
+                      {{>task}}
+                    {{/each}}
+                  </tbody>
+                </table>
+                <div class="dataTables_info" id="data-table_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div><div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate"><a class="paginate_button previous disabled" aria-controls="data-table" data-dt-idx="0" tabindex="0" id="data-table_previous">Previous</a><span><a class="paginate_button current" aria-controls="data-table" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="6" tabindex="0">6</a></span><a class="paginate_button next" aria-controls="data-table" data-dt-idx="7" tabindex="0" id="data-table_next">Next</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="task">  
+  <tr class="gradeA odd" role="row">
+    <td>{{complainantName}}</td>
+    <td>{{complainantContact}}</td>
+    <td>{{complainantEmail}}</td>
+    <td>{{complainantComment}}</td>
+    <td>{{productCategory}}</td>
+    <td>{{followerUp}}</td>
+  </tr>
+</template>

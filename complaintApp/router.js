@@ -12,7 +12,7 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','viewComplaints']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','viewComplaints','viewWorkLists']});
 // Router.onBeforeAction(goToDashboard, {only: ['index']});
 
 Router.route('/', {
@@ -53,5 +53,11 @@ Router.route('/dashboard', {
 Router.route('/managecomplaints', {
     name: 'manageComplaints',
     template: 'manageComplaints',
+    layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/viewWorkLists', {
+    name: 'viewWorkLists',
+    template: 'viewWorkLists',
     layoutTemplate: 'dashboardLayout'
 });

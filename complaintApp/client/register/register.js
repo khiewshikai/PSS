@@ -8,7 +8,7 @@ Template.register.events({
 			password: passwordVar,
 			profile: {
 				name: "to be set",
-				role: "normal"
+				role: "manager"
 			}
 		}, function(error) {
 			if(error){
