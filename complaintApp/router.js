@@ -68,8 +68,8 @@ Router.route('/addcomplaints', {
 	layoutTemplate: 'dashboardLayout'
 });
 
-Router.route('/addcompliments', {
-    name: 'addcompliments',
-    template: 'addcompliments',
+Router.route('/addCompliments', {
+    name: 'addCompliments',
+    template: 'addCompliments',
     layoutTemplate: 'dashboardLayout'
 });
