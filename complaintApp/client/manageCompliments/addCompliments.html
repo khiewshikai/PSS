@@ -1,49 +1,81 @@
-<template name="addCompliment">
-	<h1 class="page-header">New Compliments</h1>
-	<form>
-		<input type="text" name="addComplimentName">
-		<input type="text" name="addComplimentNRIC">
-		<input type="text" name="addComplimentContact">
-		<input type="email" name="addComplimentEmail">		
-		<select name="addComplimentProdCat">
-			<option value="Air-conditioners">Air-conditioners</option>
-			<option value="Airlines">Airlines</option>
-			<option value="Bank">Bank</option>
-			<option value="Beauty">Beauty</option>
-			<option value="Clothing">Clothing</option>
-			<option value="Contractors">Contractors</option>
-			<option value="Educational">Educational</option>
-			<option value="Electrical and Electronics">Electrical and Electronics</option>
-			<option value="Electricians">Electricians</option>
-			<option value="Food and Beverage">Food and Beverage</option>
-			<option value="Furniture">Furniture</option>
-			<option value="Hair">Hair</option>
-			<option value="Handphones">Handphones</option>
-			<option value="Insurance">Insurance</option>
-			<option value="Interior Design">Interior Design</option>
-			<option value="Laundries">Laundries</option>
-			<option value="Maid Agencies">Maid Agencies</option>
-			<option value="Match-making Agencies">Match-making Agencies</option>
-			<option value="Medical">Medical</option>
-			<option value="Motorcars">Motorcars</option>
-			<option value="Motorcycles">Motorcycles</option>
-			<option value="Movers">Movers</option>
-			<option value="Non-electrical Kitchenwares">Non-electrical Kitchenwares</option>
-			<option value="Online Shopping">Online Shopping</option>
-			<option value="Optical">Optical</option>
-			<option value="Pets">Pets</option>
-			<option value="Reading Materials">Reading Materials</option>
-			<option value="Real Estate">Real Estate</option>
-			<option value="Restaurants">Restaurants</option>
-			<option value="Slimming">Slimming</option>
-			<option value="Telecommunications">Telecommunications</option>
-			<option value="Timeshare">Timeshare</option>
-			<option value="Travel">Travel</option>
-		</select>
-		<input type="text" name="addComplimentFollowUp">
-		<textarea name="addComplimentComments"></textarea>
-		<textarea name="addComplimentManagerComments"></textarea>
-		<input type="text" name="addComplimentNRIC">
-		<input type="submit" value="Add Compliment">
+<template name="addCompliments">
+	<h1 class="page-header">New Complimenant</h1>
+	<form><!-- 
+		<div class="panel panel-inverse">
+			<div class="panel-body">
+				<div class="table-responsive"> -->
+					<table>
+						<thead></thead>
+						<tbody>
+							<tr class="" role="">
+								<td class=""><label>Name:</label></td>
+								<td><input type="text" name="addComplimentName" size="50"></td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>NRIC/FIN:</label></td>
+								<td><input type="text" name="addComplimentNRIC" size="50"></td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>Contact Number:</label></td>
+								<td><input type="text" name="addComplimentContact" size="50"></td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>Email:</label></td>
+								<td><input type="text" name="addComplimentEmail" size="50"></td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>Company involved:</label></td>
+								<td><input type="text" name="addComplimentCompany" size="50"></td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>Product Category</label></td>
+								<td>
+									<select name="addComplimentProdCat">
+										<option value="Air-conditioners">Air-conditioners</option>
+										<option value="Airlines">Airlines</option>
+										<option value="Bank">Bank</option>
+										<option value="Beauty">Beauty</option>
+										<option value="Clothing">Clothing</option>
+										<option value="Contractors">Contractors</option>
+										<option value="Educational">Educational</option>
+										<option value="Electrical and Electronics">Electrical and Electronics</option>
+										<option value="Electricians">Electricians</option>
+										<option value="Food and Beverage">Food and Beverage</option>
+										<option value="Furniture">Furniture</option>
+										<option value="Hair">Hair</option>
+										<option value="Handphones">Handphones</option>
+										<option value="Insurance">Insurance</option>
+										<option value="Interior Design">Interior Design</option>
+										<option value="Laundries">Laundries</option>
+										<option value="Maid Agencies">Maid Agencies</option>
+										<option value="Match-making Agencies">Match-making Agencies</option>
+										<option value="Medical">Medical</option>
+										<option value="Motorcars">Motorcars</option>
+										<option value="Motorcycles">Motorcycles</option>
+										<option value="Movers">Movers</option>
+										<option value="Non-electrical Kitchenwares">Non-electrical Kitchenwares</option>
+										<option value="Online Shopping">Online Shopping</option>
+										<option value="Optical">Optical</option>
+										<option value="Pets">Pets</option>
+										<option value="Reading Materials">Reading Materials</option>
+										<option value="Real Estate">Real Estate</option>
+										<option value="Restaurants">Restaurants</option>
+										<option value="Slimming">Slimming</option>
+										<option value="Telecommunications">Telecommunications</option>
+										<option value="Timeshare">Timeshare</option>
+										<option value="Travel">Travel</option>
+									</select>
+								</td>
+							</tr>
+							<tr class="" role="">
+								<td class=""><label>Comments from Complimenant:</label></td>
+								<td><textarea name="addComplimentComments" cols="49"></textarea></td>
+							</tr>
+						</tbody>
+					</table>
+				<!-- </div>
+			</div>
+		</div> -->
+		<input type="submit" value="Add Complaint">		
 	</form>
 </template>

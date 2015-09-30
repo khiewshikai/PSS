@@ -61,3 +61,15 @@ Router.route('/viewWorkLists', {
     template: 'viewWorkLists',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/addcomplaints', {
+    name: 'addComplaints',
+    template: 'addComplaints',
+	layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/addcompliments', {
+    name: 'addcompliments',
+    template: 'addcompliments',
+    layoutTemplate: 'dashboardLayout'
+});
