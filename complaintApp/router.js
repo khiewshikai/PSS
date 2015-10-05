@@ -73,3 +73,9 @@ Router.route('/addCompliments', {
     template: 'addCompliments',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/viewAnalytics', {
+    name: 'viewAnalytics',
+    template: '/viewAnalytics',
+    layoutTemplate: 'dashboardLayout'
+});
