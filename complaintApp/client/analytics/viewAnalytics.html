@@ -1,5 +1,11 @@
 <template name="viewAnalytics">
-	<h1 class="page-header">Statistics (Last 7 Days)</h1>
+
+	<div class="row">
+		<div class="col-md-3 col-sm-6">
+			<h1 class="page-header">Statistics (Last 7 Days)</h1>
+		</div>
+		
+	</div>
 	<div class="row">
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-green">
@@ -66,8 +72,8 @@
 					</div>
 					<h4 class="panel-title">NO. OF COMPLAINTS</h4>
 				</div>
-				<div class="panel-body height-sm">
-					<div>
+				<div class="panel-body">
+					<div id="complaints" class="height-sm">
 						
 					</div>
 				</div>
@@ -82,8 +88,10 @@
 					</div>
 					<h4 class="panel-title">NO. OF COMPLAINTS PER CATEGORY</h4>
 				</div>
-				<div class="panel-body height-sm">
-					
+				<div class="panel-body">
+					<div id="complaints-per-cat" class="height-sm">
+						
+					</div>
 				</div>
 			</div>
 			<div class="panel panel-inverse">
@@ -96,8 +104,45 @@
 					</div>
 					<h4 class="panel-title">TOP 5 CASE MANAGERS WHO CLOSED MOST CASES</h4>
 				</div>
-				<div class="panel-body height-sm">
-					
+				<div class="panel-body">
+					<div id="top-case-managers" class="height-sm">
+						<table class="table table-valign-middle m-b-0">
+							<thead>
+								<tr>	
+									<th style="text-align:center">RANK</th>
+									<th style="text-align:center">MANAGER</th>
+									<th style="text-align:center">NO. OF CASES CLOSED</th>
+								</tr>
+							</thead>
+							<tbody style="text-align:center">
+								<tr>
+									<td><label class="badge badge-danger">1</label></td>
+									<td>John Smith</td>
+									<td>27</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-warning">2</label></td>
+									<td>Marilyn Cheong</td>
+									<td>21</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-success">3</label></td>
+									<td>Leon Markerberg</td>
+									<td>19</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-primary">4</label></td>
+									<td>Jacqueline Jordan</td>
+									<td>17</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-default">5</label></td>
+									<td>Cindy Samantha</td>
+									<td>15</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -112,8 +157,10 @@
 					</div>
 					<h4 class="panel-title">NO. OF COMPLIMENTS</h4>
 				</div>
-				<div class="panel-body height-sm">
-					
+				<div class="panel-body">
+					<div id="compliments" class="height-sm">
+						
+					</div>
 				</div>
 			</div>
 			<div class="panel panel-inverse">
@@ -126,8 +173,10 @@
 					</div>
 					<h4 class="panel-title">AVERAGE TIME TAKEN TO CLOSE PER COMPLAINT CASE</h4>
 				</div>
-				<div class="panel-body height-sm">
-					
+				<div class="panel-body">
+					<div id="avg-complaint-time" class="height-sm">
+						
+					</div>
 				</div>
 			</div>
 			<div class="panel panel-inverse">
@@ -138,13 +187,49 @@
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove" data-original-title="" title="" aria-describedby="tooltip664982"><i class="fa fa-times"></i></a>
 					</div>
-					<h4 class="panel-title">TOP 5 COMPANIES WITH HIGHEST NO. OF CASES</h4>
+					<h4 class="panel-title">TOP 5 COMPANIES WITH HIGHEST NO. OF COMPLAINT CASES</h4>
 				</div>
-				<div class="panel-body height-sm">
-					
+				<div class="panel-body">
+					<div id="top-companies" class="height-sm">
+						<table class="table table-valign-middle m-b-0">
+							<thead>
+								<tr>	
+									<th style="text-align:center">RANK</th>
+									<th style="text-align:center">NAME OF COMPANY</th>
+									<th style="text-align:center">NO. OF COMPLAINT CASES</th>
+								</tr>
+							</thead>
+							<tbody style="text-align:center">
+								<tr>
+									<td><label class="badge badge-danger">1</label></td>
+									<td>ABC Pte Ltd</td>
+									<td>25</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-warning">2</label></td>
+									<td>CDF Pte Ltd</td>
+									<td>12</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-success">3</label></td>
+									<td>FGH Pte Ltd</td>
+									<td>10</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-primary">4</label></td>
+									<td>HIJ Pte Ltd</td>
+									<td>8</td>
+								</tr>
+								<tr>
+									<td><label class="badge badge-default">5</label></td>
+									<td>JKL Pte Ltd</td>
+									<td>5</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </template>
