@@ -12,7 +12,7 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','viewComplaints','viewWorkLists']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','viewComplaint','viewWorkLists']});
 // Router.onBeforeAction(goToDashboard, {only: ['index']});
 
 Router.route('/', {
@@ -21,9 +21,15 @@ Router.route('/', {
     layoutTemplate: 'publicLayout'
 });
 
-Router.route('/viewComplaints', {
-    name: 'viewComplaints',
-    template: 'viewComplaints',
+Router.route('/complaint', {
+    name: 'complaint',
+    template: 'complaint',
+    layoutTemplate: 'publicLayout'
+});
+
+Router.route('/viewComplaint', {
+    name: 'viewComplaint',
+    template: 'viewComplaint',
     layoutTemplate: 'publicLayout'
 });
 
@@ -44,6 +50,8 @@ Router.route('/register', {
     template: 'register'
 });
 
+
+// pages that requires login
 Router.route('/dashboard', {
     name: 'dashboard',
     template: 'dashboard',
