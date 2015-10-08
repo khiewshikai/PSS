@@ -12,6 +12,8 @@ Template.viewComplaint.events({
 		// reset form
 		template.$(".caseId").val("");
 		template.$(".caseNRIC").val("");
+		template.$(".caseId").blur();
+		template.$(".caseNRIC").blur();
 
 		template.$(".searchResult").removeClass("hide");
 	}

@@ -12,7 +12,7 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','viewComplaint','viewWorkLists']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists']});
 // Router.onBeforeAction(goToDashboard, {only: ['index']});
 
 Router.route('/', {
@@ -24,6 +24,12 @@ Router.route('/', {
 Router.route('/complaint', {
     name: 'complaint',
     template: 'complaint',
+    layoutTemplate: 'publicLayout'
+});
+
+Router.route('/compliment', {
+    name: 'compliment',
+    template: 'compliment',
     layoutTemplate: 'publicLayout'
 });
 
