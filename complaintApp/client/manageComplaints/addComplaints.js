@@ -18,44 +18,37 @@ if (Meteor.isClient) {
             	template.$('[name=addComplaintName]').addClass('error-desc');
             	template.$('[name=addComplaintName]').attr('placeholder', 'Please fill in the Complainant Name');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintNRICVar || complaintNRICVar === '') {
             	template.$('[name=addComplaintNRIC]').addClass('has-error');
             	template.$('[name=addComplaintNRIC]').attr('placeholder', 'Please fill in the Complainant NRIC');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintContactVar || complaintContactVar === '') {
             	template.$('[name=addComplaintContact]').addClass('has-error');
             	template.$('[name=addComplaintContact]').attr('placeholder', 'Please fill in the Complainant Contact');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintEmailVar || complaintEmailVar === '') {
             	template.$('[name=addComplaintEmail]').addClass('has-error');
             	template.$('[name=addComplaintEmail]').attr('placeholder', 'Please fill in the Complainant Email');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintCompanyVar || complaintCompanyVar === '') {
             	template.$('[name=addComplaintCompany]').addClass('has-error');
             	template.$('[name=addComplaintCompany]').attr('placeholder', 'Please fill in the Complainant Company');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintCommentsVar || complaintCommentsVar === '') {
             	template.$('[name=addComplaintComments]').addClass('has-error');
             	template.$('[name=addComplaintComments]').attr('placeholder', 'Please fill in the Complainant Comments');
                 var isEmpty = true;
-            	//return;
         	}
         	if (!complaintFollowUpVar || complaintFollowUpVar === '') {
             	template.$('[name=addComplaintFollowUp]').addClass('has-error');
             	template.$('[name=addComplaintFollowUp]').attr('placeholder', 'Please fill in the Follow Up');
-                var isEmpty = true;
-            	//return;
-        	}
+                var isEmpty = true;        	
+            }
             if (isEmpty) {
                 return;
             };
@@ -81,10 +74,22 @@ if (Meteor.isClient) {
             dateTimeClose: "" // current time
             });
 
+           var listOfManager = users.find({"profile.role":"manager"});
+           var minTask = 0;
+           var trackManager = "";
+           while(listOfManager.hasNext()){
+                var tempManager = listOfManager.next();
+                var tempCountTask = tasksCollection.find({"managerID":tempManager._id}).count;
+                if(tempCountTask <= minTask){
+                    trackManager = tempManager._id;
+                    minTask = tempCountTask;
+                }
+           }
+
            tasksCollection.insert({
             complaintID: complaintID,
-            managerID: "EqyKJNXXQ9TEjxqEh",
-            creatorID: Meteor.userId().,
+            managerID: trackManager,
+            creatorID: Meteor.userId(),
             isViewed: "true"
             })
 
