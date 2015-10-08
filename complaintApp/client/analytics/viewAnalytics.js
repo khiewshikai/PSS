@@ -1,5 +1,13 @@
 if (Meteor.isClient) {
 	Template.viewAnalytics.onRendered(function(){
+
+        $(".ui-sortable").sortable({
+            placeholder: "sort-highlight",
+            connectWith: ".ui-sortable",
+            forcePlaceholderSize: true,
+            zIndex: 999999
+        }).disableSelection();
+
         var chart1 = c3.generate({
             bindto: '#complaints',
             data: {
