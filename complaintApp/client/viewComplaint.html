@@ -6,7 +6,6 @@
 
             <!-- end panel -->
             <div class="panel">
-
                 <div class="panel-body p-t-40">
                     <form class="form-horizontal col-md-7 col-md-offset-2">
                         <div class="form-group">
@@ -24,26 +23,96 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-9">
-                                <div class="btn btn-sm btn-success pull-right">Submit</div>
+                                <div class="btn btn-sm btn-success pull-right viewComplaintBtn">Submit</div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-        <!-- end col-12 -->
-    </div>
-
-    <div class="row">
-        <!-- begin col-12 -->
-        <div class="col-md-12">
-            <!-- begin panel -->
-
             <!-- end panel -->
-            <div class="panel" data-sortable-id="form-stuff-1">
+
+
+            <div class="panel searchResult hide">
 
                 <div class="panel-body">
-                    Result show here...
+
+                    <div class="col-md-7 col-md-offset-2">
+                        {{#if complaint}}
+                        <div class="complaintDisplay m-t-25">
+                            <label class="col-md-3 control-label">Complaint ID</label>
+                            <div class="col-md-9 complaintIDPrint">
+                                123
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Submit Time</label>
+                            <div class="col-md-9 complaintTimePrint">
+                                dqwdwq
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Status</label>
+                            <div class="col-md-9 complaintCommentPrint">
+                                open
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Name</label>
+                            <div class="col-md-9 complaintNamePrint">
+                                dwqdw
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">NRIC</label>
+                            <div class="col-md-9 complaintNRICPrint">
+                                qwdwqdqw
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Contact Number</label>
+                            <div class="col-md-9 complaintContactPrint">
+                                dqwdqw
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9 complaintEmailPrint">
+                                wdw
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Product Category</label>
+                            <div class="col-md-9 complaintCategoryPrint">
+                                dqwdqwd
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Company to Complaint</label>
+                            <div class="col-md-9 complaintCompanyPrint">
+                                dqwdqwd
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="complaintDisplay">
+                            <label class="col-md-3 control-label">Comment</label>
+                            <div class="col-md-9 complaintCommentPrint">
+                                dqwdwqdq
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        {{else}}
+                        <div class="noRecord">No records found.</div>
+                        {{/if}}
+                    </div>
+                    
                 </div>
             </div>
         </div>
