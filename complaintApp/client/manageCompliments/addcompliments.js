@@ -50,10 +50,9 @@ if (Meteor.isClient) {
 				ComplimenantNRIC: complimentNRICVar,
 				ComplimenantContact: complimentContactVar,
 				ComplimenantEmail: complimentEmailVar,
-				companyToComplain:complimentCompanyVar,
+				companyToCompliment:complimentCompanyVar,
 				productCategory: complimentProdCatVar,
-				ComplimenantComment: complimentCommentsVar,     	
-				managerInstruction: complimentManagerCommentsVar,    	
+				ComplimenantComment: complimentCommentsVar, 	
 				complimentCreatedBy: currentUser,
 				complimentTimeCreated: new Date(),
         });
