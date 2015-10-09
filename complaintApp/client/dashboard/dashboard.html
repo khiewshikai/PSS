@@ -1,6 +1,6 @@
 <template name="dashboard">
-	test
-	<table id="table_id" class="display">
+	
+	<table id="table_id" class="display dt-head-center dt-body-center hide">
 	    <thead>
 	        <tr>
 	            <th>Name</th>
@@ -17,12 +17,12 @@
 	    	{{#each complaints}}
 	    		
 	    	<tr>
-	            <td>{{name}}</td>
-	            <td>{{nric}}</td>
-	            <td>{{caseID}}</td>
-	            <td>{{contact}}</td>
-	            <td>{{email}}</td>
-	            <td>{{company}}</td>
+	            <td>{{complainantName}}</td>
+	            <td>{{complainantNRIC}}</td>
+	            <td>{{complaintID}}</td>
+	            <td>{{complainantContact}}</td>
+	            <td>{{complainantEmail}}</td>
+	            <td>{{companyToComplain}}</td>
 	            <td>{{status}}</td>
 	        </tr>
 	    	{{/each}}
