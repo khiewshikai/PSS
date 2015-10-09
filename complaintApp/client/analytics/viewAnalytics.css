@@ -1,0 +1,8 @@
+#analytics-space{
+	border: dashed 2px;
+	border-color: rgb(173, 173, 173);
+	min-height: 70vh; 
+}
+.top-space{
+	min-height: 20px;
+}

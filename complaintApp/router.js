@@ -87,3 +87,9 @@ Router.route('/viewAnalytics', {
     template: '/viewAnalytics',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/detailedAnalytics', {
+    name: 'detailedAnalytics',
+    template: '/detailedAnalytics',
+    layoutTemplate: 'dashboardLayout'
+});
