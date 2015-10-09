@@ -30,11 +30,13 @@ Template.complaint.events({
 			dateTimeClose: "N/A"
 		});
 
+		var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
+
 		Meteor.call('sendEmail',
 			complaintEmail,
 			'ccms@case.com',
 			'Dear ' + complaintName,
-			'This is a test of Email.send.');
+			emailMsg);
 
 
 		// add to print
