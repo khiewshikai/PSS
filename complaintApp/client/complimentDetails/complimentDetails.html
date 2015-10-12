@@ -1,0 +1,65 @@
+
+<template name="complimentDetails">
+	<!-- form -->
+	<div class="panel complimentForm">
+		<div class="panel-body">
+			<form class="form-horizontal col-md-7 col-md-offset-2">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Case ID</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control ComplimentID cd-disabled" value="{{compliment.ComplimenantID}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Name</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control ComplimenantName cd-disabled" value="{{compliment.ComplimenantName}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">NRIC</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control ComplimenantNRIC cd-disabled" value="{{compliment.ComplimenantNRIC}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Contact Number</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control ComplimenantContact cd-disabled" value="{{compliment.ComplimenantContact}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Email</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control ComplimenantEmail cd-disabled" value="{{compliment.ComplimenantEmail}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Product Category</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control productCategory cd-disabled" value="{{compliment.productCategory}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Company to Compliment</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control companyToCompliment cd-disabled" value="{{compliment.companyToCompliment}}" disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Comment</label>
+					<div class="col-md-9">
+						<textarea class="form-control ComplimenantComment cd-disabled" value="{{compliment.ComplimenantComment}}" rows="5" disabled></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label"></label>
+					<div class="col-md-9">
+						<div class="btn btn-sm btn-default cmd-backButton">Back</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- END form -->
+</template>

@@ -29,9 +29,37 @@ Meteor.startup(function() {
 		});
 	}
 
+	if(complimentsCollection.find().count() === 0) {
+		complimentsCollection.insert({
+			ComplimenantID: 1,
+			ComplimenantName: "Ali baba",
+			ComplimenantNRIC: "Ali NRIC",
+			ComplimenantContact: "contact",
+			ComplimenantEmail: "email",
+			companyToCompliment:"ali baba",
+			productCategory: "some cat",
+			ComplimenantComment: "good good good",     	 	
+			complimentCreatedBy: "public",
+			complimentTimeCreated: new Date(),
+		});
+
+		complimentsCollection.insert({
+			ComplimenantID: 2,
+			ComplimenantName: "Ali baba 2",
+			ComplimenantNRIC: "Ali NRIC 2",
+			ComplimenantContact: "contact 2",
+			ComplimenantEmail: "email 2",
+			companyToCompliment:"ali baba 2",
+			productCategory: "some cat 2",
+			ComplimenantComment: "good good good 2",     	 	
+			complimentCreatedBy: "public",
+			complimentTimeCreated: new Date(),
+		});
+	}
+
 	if(complaintsCollection.find().count() === 0) {
 		complaintsCollection.insert({
-			complaintID: "1",
+			complaintID: 1,
 			complainantName: "customer 01",
 			complainantNRIC: "S12345678N",			
 			complainantContact: "84051234",
@@ -47,7 +75,7 @@ Meteor.startup(function() {
 		});
 
 		complaintsCollection.insert({
-			complaintID: "2",
+			complaintID: 2,
 			complainantName: "customer 02",
 			complainantNRIC: "S22345678N",
 			complainantContact: "84052234",
@@ -63,7 +91,7 @@ Meteor.startup(function() {
 		});
 
 		complaintsCollection.insert({
-			complaintID: "3",
+			complaintID: 3,
 			complainantName: "customer 03",
 			complainantNRIC: "S32345678N",			
 			complainantContact: "84053234",
@@ -79,7 +107,7 @@ Meteor.startup(function() {
 		});
 
 		complaintsCollection.insert({
-			complaintID: "4",
+			complaintID: 4,
 			complainantName: "customer 04",
 			complainantNRIC: "S42345678N",			
 			complainantContact: "84054234",

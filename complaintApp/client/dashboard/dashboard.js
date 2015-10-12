@@ -1,21 +1,18 @@
 
+// Template.dashboard.helpers({
+//     "userID": function(){
+//         console.log(Meteor.userId());
+//         return Meteor.users.findOne(Meteor.userId()).profile.role;
+//     }
+// });
 
-Template.dashboard.rendered = function() {
-    this.autorun(function(){
-        setTimeout(function(){
-           $('#table_id').DataTable({}); 
-           $('#table_id').removeClass("hide");
-        },500);
-        console.log("TESTTTTTTTT");
-    })
-}
+Template.dashboard.events({
+    "click #fullTable tbody tr": function(e, template){
+        //getting case ID of selected row
+        var caseIdSelected = e.currentTarget.cells[2].textContent;
+        Session.set("selectedComplaintID", caseIdSelected);
+        //console.log(Session.get("selectedComplaintID"));
+        Router.go('/complaintDetails');
+    }       
+});
 
-if(Meteor.isClient){
-    Template.dashboard.helpers({
-        "complaints": function(){
-            return complaintsCollection.find();
-        }
-    })
-
-
-}

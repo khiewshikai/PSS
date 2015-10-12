@@ -94,8 +94,20 @@ Router.route('/viewAnalytics', {
     layoutTemplate: 'dashboardLayout'
 });
 
-Router.route('/detailedAnalytics', {
-    name: 'detailedAnalytics',
-    template: '/detailedAnalytics',
+Router.route('/complaintDetails', {
+    name: 'complaintDetails',
+    template: '/complaintDetails',
+    layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/complimentsDashboard', {
+    name: 'complimentsDashboard',
+    template: '/complimentsDashboard',
+    layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/complimentDetails', {
+    name: 'complimentDetails',
+    template: '/complimentDetails',
     layoutTemplate: 'dashboardLayout'
 });
