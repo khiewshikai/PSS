@@ -15,13 +15,30 @@
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				{{#if equals userRole 'Clerk'}}
 				<ul class="nav navbar-nav">
-					<li class="{{active 'dashboard'}}"><a href="/dashboard">Home</a></li>
-					<li class="{{active 'viewWorkLists'}}"><a href="/viewWorkLists">Worklist</a></li>
-					<li class="{{active 'manageComplaints'}}"><a href="/managecomplaints">Complaints</a></li>
-					<li class="{{active 'compliment'}}"><a href="/complimentsDashboard">Compliments</a></li>
+					<li class="{{active 'dashboard'}}"><a href="/dashboard">Complaints List</a></li>
+					<li class="{{active 'compliment'}}"><a href="/complimentsDashboard">Compliments List</a></li>
 					<li class="{{active 'viewAnalytics'}}"><a href="/viewAnalytics">Analytics</a></li>
 				</ul>
+				{{/if}}
+
+				{{#if equals userRole 'Manager'}}
+				<ul class="nav navbar-nav">
+					<li class="{{active 'viewWorkLists'}}"><a href="/viewWorkLists">Worklist</a></li>
+					<li class="{{active 'dashboard'}}"><a href="/dashboard">Complaints List</a></li>
+					<li class="{{active 'compliment'}}"><a href="/complimentsDashboard">Compliments List</a></li>
+					<li class="{{active 'viewAnalytics'}}"><a href="/viewAnalytics">Analytics</a></li>
+				</ul>
+				{{/if}}
+
+				{{#if equals userRole 'Admin staff'}}
+				<ul class="nav navbar-nav">
+					<li class="{{active 'dashboard'}}"><a href="/dashboard">Complaints List</a></li>
+					<li class="{{active 'compliment'}}"><a href="/complimentsDashboard">Compliments List</a></li>
+					<li class="{{active 'viewAnalytics'}}"><a href="/viewAnalytics">Analytics</a></li>
+				</ul>
+				{{/if}}
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">

@@ -7,13 +7,14 @@ var mustBeSignedIn = function(pause) {
 
 var goToDashboard = function(pause) {
   if (Meteor.user()) {
+    console.log("WHATTT");
     Router.go('dashboard');
     this.next();
   }
 };
 
 Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists','/editTask/:_id']});
-// Router.onBeforeAction(goToDashboard, {only: ['index']});
+Router.onBeforeAction(goToDashboard, {only: ['/dashboard']});
 
 Router.route('/', {
     name: 'public',
