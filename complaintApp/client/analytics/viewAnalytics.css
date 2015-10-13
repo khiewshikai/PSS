@@ -3,6 +3,14 @@
 	border-color: rgb(173, 173, 173);
 	min-height: 70vh; 
 }
+
+#advance-daterange{
+	width: 100%;
+	border-color: #ccd0d4;
+	text-align: left;
+	font-size: 12px;
+}
+
 .top-space{
 	min-height: 20px;
 }

@@ -1,31 +1,31 @@
 Meteor.startup(function() {
 	if(tasksCollection.find().count() === 0) {
 		tasksCollection.insert({
-			complaintID: "1",
-			managerID: "EqyKJNXXQ9TEjxqEh",
+			complaintID: 1,
+			managerID: "gtyF55h3CpqZCeFKz",
 			creatorID: "3",
-			isViewed: "true"
+			isViewed: false
 		});
 
 		tasksCollection.insert({
-			complaintID: "2",
-			managerID: "EqyKJNXXQ9TEjxqEh",
+			complaintID: 2,
+			managerID: "gtyF55h3CpqZCeFKz",
 			creatorID: "4",
-			isViewed: "true"
+			isViewed: false
 		});
 
 		tasksCollection.insert({
-			complaintID: "3",
+			complaintID: 3,
 			managerID: "2",
 			creatorID: "3",
-			isViewed: "true"
+			isViewed: false
 		});
 
 		tasksCollection.insert({
-			complaintID: "4",
+			complaintID: 4,
 			managerID: "2",
 			creatorID: "4",
-			isViewed: "true"
+			isViewed: false
 		});
 	}
 
