@@ -36,18 +36,58 @@
 					    </div>
 					    <div class="form-group">
 					        <label for="inputPassword">Time Interval</label>
-					        <select class="form-control">
+					        <select id="time-interval" class="form-control">
                                 <option>Daily</option>
                                 <option>Monthly</option>
                                 <option>Yearly</option>
                             </select>
 					    </div>
-					    <div class="form-group">
+
+					    <div id="date-range" class="form-group">
 					        <label for="inputPassword">Time Period</label>
-					        <div id="advance-daterange" class="btn btn-white">
+					        <div id="advance-daterange" class="btn btn-white date-style">
                                 <span>Click to Choose Date</span>
                             </div>
 					    </div>
+					    
+					    <div id="month-range" class="form-group">
+					    	<table id="month-picker">
+	                            <tr><label>Time Period</label></tr>
+	                            <tr>
+	                                <td style="width: 40%">
+	                                    <div>
+	                                    	<input id="month-start" type="text" class="form-control btn btn-white date-style" placeholder="Click to Choose Month"/>
+			                            </div>
+	                                </td>
+	                                <td style="text-align:center">To</td>
+	                                <td style="width: 40%">
+	                                    <div>
+	                                    	<input id="month-end" type="text" class="form-control btn btn-white date-style" placeholder="Click to Choose Month"/>
+			                            </div>
+	                                </td>
+	                            </tr>
+	                        </table>
+						</div>
+
+						<div id="year-range" class="form-group">
+					    	<table id="year-picker">
+	                            <tr><label>Time Period</label></tr>
+	                            <tr>
+	                                <td style="width: 40%">
+	                                    <div>
+	                                    	<input id="year-start" type="text" class="form-control btn btn-white date-style" placeholder="Click to Choose Year"/>
+			                            </div>
+	                                </td>
+	                                <td style="text-align:center">To</td>
+	                                <td style="width: 40%">
+	                                    <div>
+	                                    	<input id="year-end" type="text" class="form-control btn btn-white date-style" placeholder="Click to Choose Month"/>
+			                            </div>
+	                                </td>
+	                            </tr>
+	                        </table>
+						</div>
+						    
 					    <div class="form-group">
 					        <label for="inputPassword">Graph Type</label>
 					        <select class="form-control">

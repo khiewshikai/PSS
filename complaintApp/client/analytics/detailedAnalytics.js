@@ -23,6 +23,30 @@ if (Meteor.isClient) {
             },
         });
 
+        $("#month-start").datepicker({
+            format: "yyyy-mm",
+            viewMode: "months",
+            minViewMode: "months"
+        });
+
+        $("#month-end").datepicker({
+            format: "yyyy-mm",
+            viewMode: "months",
+            minViewMode: "months"
+        });
+
+        $("#year-start").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
+        $("#year-end").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
         /*$("#advance-daterange span").html(moment().subtract("days", 29).format("MMMM D, YYYY") + " - " + moment().format("MMMM D, YYYY")), */
         $("#advance-daterange").daterangepicker({
             format: "MM/DD/YYYY",
@@ -65,5 +89,13 @@ if (Meteor.isClient) {
         }, function(a, t) {
             $("#advance-daterange span").html(a.format("MMMM D, YYYY") + " - " + t.format("MMMM D, YYYY"))
         });
+
+        $("#date-range").hide();
+        $("#month-range").hide();
+        $("#year-range").hide();
+
+        var time = $("#time-interval").val();
+        console.log(time);
+
     });
 }
