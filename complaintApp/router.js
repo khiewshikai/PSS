@@ -14,7 +14,7 @@ var goToDashboard = function(pause) {
 };
 
 Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists','/editTask/:_id']});
-Router.onBeforeAction(goToDashboard, {only: ['/dashboard']});
+// Router.onBeforeAction(goToDashboard, {only: ['/dashboard']});
 
 Router.route('/', {
     name: 'public',

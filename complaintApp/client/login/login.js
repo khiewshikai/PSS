@@ -10,7 +10,12 @@ Template.login.events({
 				$(".login-info").html(error.reason);
 				event.target.loginPassword.value = "";
 		    } else {
-		       Router.go('/dashboard');
+		    	if (Meteor.user().profile.role == "Manager") {
+		    		Router.go('/viewWorkLists');
+		    	} else {
+		    		Router.go('/dashboard');
+		    	}
+		       
 		    }
 		});
     }
