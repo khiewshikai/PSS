@@ -22,6 +22,40 @@
 		        	<h4 class="modal-title" id="myModalLabel">View Analytics Data</h4>
 		      	</div>
 		      	<div class="modal-body">
+		      		<form>
+					    <div class="form-group">
+					        <label for="inputEmail">Analytics Type</label>
+					        <select class="form-control">
+                                <option>Number of Complaints</option>
+                                <option>Number of Compliments</option>
+                                <option>Number of Complaints Case Closed</option>
+                                <option>Average Time Taken to Close Each Complaint Case</option>
+                                <option>Number of Cases closed by Managers</option>
+                                <option>Number of Complaints per Company</option>
+                            </select>
+					    </div>
+					    <div class="form-group">
+					        <label for="inputPassword">Time Interval</label>
+					        <select class="form-control">
+                                <option>Daily</option>
+                                <option>Monthly</option>
+                                <option>Yearly</option>
+                            </select>
+					    </div>
+					    <div class="form-group">
+					        <label for="inputPassword">Time Period</label>
+					        <div id="advance-daterange" class="btn btn-white">
+                                <span>Click to Choose Date</span>
+                            </div>
+					    </div>
+					    <div class="form-group">
+					        <label for="inputPassword">Graph Type</label>
+					        <select class="form-control">
+                                <option>Bar</option>
+                                <option>Line</option>
+                            </select>
+					    </div>
+					</form>
 		      	</div>
 		      	<div class="modal-footer">
 		        	<button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
