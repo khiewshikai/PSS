@@ -69,7 +69,7 @@ Meteor.startup(function() {
 			followerUp: "N/A",
 			complainantComment: "The store requires me to purchase extra warranty that costs me $1000+. When I refuse to pay, the boss forced me to pay for consultation fee.",
 			managerInstruction: "Case will be investigated",
-			status: "open",
+			status: "Open",
 			dateTimeOpen: "26-09-2015 03:03PM",
 			dateTimeClose: "N/A"
 		});
@@ -85,7 +85,7 @@ Meteor.startup(function() {
 			followerUp: "N/A",
 			complainantComment: "The store requires me to purchase extra warranty that costs me $1000+. When I refuse to pay, the boss forced me to pay for consultation fee.",
 			managerInstruction: "Case will be investigated",
-			status: "open",
+			status: "Open",
 			dateTimeOpen: "26-09-2015 03:13PM",
 			dateTimeClose: "N/A"
 		});
@@ -101,7 +101,7 @@ Meteor.startup(function() {
 			followerUp: "N/A",
 			complainantComment: "The store requires me to purchase extra warranty that costs me $1000+. When I refuse to pay, the boss forced me to pay for consultation fee.",
 			managerInstruction: "Case will be investigated",
-			status: "open",
+			status: "Open",
 			dateTimeOpen: "26-09-2015 03:23PM",
 			dateTimeClose: "N/A"
 		});
@@ -117,7 +117,7 @@ Meteor.startup(function() {
 			followerUp: "N/A",
 			complainantComment: "The store requires me to purchase extra warranty that costs me $1000+. When I refuse to pay, the boss forced me to pay for consultation fee.",
 			managerInstruction: "Case will be investigated",
-			status: "open",
+			status: "Open",
 			dateTimeOpen: "26-09-2015 03:33PM",
 			dateTimeClose: "N/A"
 		});
