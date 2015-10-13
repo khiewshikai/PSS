@@ -2,26 +2,26 @@ Template.compliment.events({
 	'click .submitComplimentBtn':function(event, template){
 		event.preventDefault();
 
-		var complimentNameVar = template.$(".complimentName").val();
-		var complimentNRICVar = template.$(".complimentNRIC").val();
-		var complimentContactVar = template.$(".complimentContact").val();
-		var complimentEmailVar = template.$(".complimentEmail").val();
-		var complimentProdCatVar = template.$(".complimentCategory :selected").text();
-		var complimentCompanyVar = template.$(".complimentCompany").val();
-		var complimentCommentsVar = template.$(".complimentComment").val();
+		var complimentNameVar = template.$(".complimenantName").val();
+		var complimentNRICVar = template.$(".complimenantNRIC").val();
+		var complimentContactVar = template.$(".complimenantContact").val();
+		var complimentEmailVar = template.$(".complimenantEmail").val();
+		var complimentProdCatVar = template.$(".productCategory :selected").text();
+		var complimentCompanyVar = template.$(".companyToCompliment").val();
+		var complimentCommentsVar = template.$(".complimenantComment").val();
 
 		var complimentId = complimentsCollection.find().count() + 1;
 		var timeSubmitted = new Date();
 
 		complimentsCollection.insert({
-			ComplimenantID: complimentId,
-			ComplimenantName: complimentNameVar,
-			ComplimenantNRIC: complimentNRICVar,
-			ComplimenantContact: complimentContactVar,
-			ComplimenantEmail: complimentEmailVar,
+			complimenantID: complimentId,
+			complimenantName: complimentNameVar,
+			complimenantNRIC: complimentNRICVar,
+			complimenantContact: complimentContactVar,
+			complimenantEmail: complimentEmailVar,
 			companyToCompliment:complimentCompanyVar,
 			productCategory: complimentProdCatVar,
-			ComplimenantComment: complimentCommentsVar,
+			complimenantComment: complimentCommentsVar,
 			complimentCreatedBy: "public",
 			complimentTimeCreated: timeSubmitted,
 		});
@@ -46,15 +46,39 @@ Template.compliment.events({
 		template.$(".complimentCommentPrint").html(complimentCommentsVar);
 
 		// reset form
-		template.$(".complimentName").val("");
-		template.$(".complimentNRIC").val("");
-		template.$(".complimentContact").val("");
-		template.$(".complimentEmail").val("");
-		template.$(".complimentCategory").prop('selectedIndex',0);
-		template.$(".complimentCompany").val("");
-		template.$(".complimentComment").val("");
+		template.$(".complimenantName").val("");
+		template.$(".complimenantNRIC").val("");
+		template.$(".complimenantContact").val("");
+		template.$(".complimenantEmail").val("");
+		template.$(".productCategory").prop('selectedIndex',0);
+		template.$(".companyToCompliment").val("");
+		template.$(".complimenantComment").val("");
 
 		template.$(".complimentForm").addClass("hide");
 		template.$(".complimentSubmitted").removeClass("hide");
 	},
+
+	'click .resetComplimentBtn':function(event, template){
+		
+		template.$(".complimenantName").val("");
+		template.$(".complimenantNRIC").val("");
+		template.$(".complimenantContact").val("");
+		template.$(".complimenantEmail").val("");
+		template.$(".productCategory").prop('selectedIndex',0);
+		template.$(".companyToCompliment").val("");
+		template.$(".complimenantComment").val("");
+
+		event.preventDefault();
+	},
+
+	'click .newComplimentBtn':function(event, template){            
+		event.preventDefault();            
+		template.$(".complimentSubmitted").addClass("hide");
+		template.$(".complimentForm").removeClass("hide");
+	},
+
+	'click .backToHomeBtn':function(event, template){            
+		event.preventDefault();
+		Router.go('dashboard');
+	}
 });
