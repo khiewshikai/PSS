@@ -77,20 +77,21 @@ Router.route('/viewWorkLists', {
     layoutTemplate: 'dashboardLayout'
 });
 
-Router.route('/editTask/:_id', {
+Router.route('/editTask/:_complaintID', {
     name: 'editTask',
     template: 'editTask',
     layoutTemplate: 'dashboardLayout',
     data: function(){
-        var complaintOriginalID = this.params._id;
+        var complaintOriginalID = this.params._complaintID;
+        console.log(complaintOriginalID);
         complaintsCollection.update(
-            {_id: this.params._id},
+            {_id: complaintOriginalID},
             {
                 $set:{isViewed: true}
             }
         )
-        console.log(complaintOriginalID);
-        return complaintsCollection.findOne({ complaintID: complaintOriginalID });
+        console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
+        return complaintsCollection.findOne({ _id: complaintOriginalID });
     }
 });
 

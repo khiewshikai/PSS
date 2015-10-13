@@ -5,7 +5,7 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
 
   function getTasksCollectionOfCurrentUser(){
-    console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
+    // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
     return tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"});
   }
 
@@ -26,9 +26,8 @@ if (Meteor.isClient) {
 
   Template.viewWorkLists.events({
       "click #workListsTable tbody tr": function(e, template){        //getting case ID of selected row
-      var _complaintID = e.currentTarget.cells[2].textContent;
-      var complaintOriginalID = complaintsCollection.findOne({complaintID: _complaintID})
-      console.log(complaintOriginalID);
+      var _complaintID = parseInt(e.currentTarget.cells[2].textContent);
+      var complaintOriginalID = complaintsCollection.findOne({complaintID: _complaintID})._id
       Router.go('/editTask/'+ complaintOriginalID);
     }
   })
