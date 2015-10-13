@@ -111,6 +111,12 @@ Router.route('/viewAnalytics', {
     layoutTemplate: 'dashboardLayout'
 });
 
+Router.route('/detailedAnalytics', {
+    name: 'detailedAnalytics',
+    template: '/detailedAnalytics',
+    layoutTemplate: 'dashboardLayout'
+});
+
 Router.route('/complaintDetails', {
     name: 'complaintDetails',
     template: '/complaintDetails',
