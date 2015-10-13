@@ -22,11 +22,11 @@ TabularTables.complimentsCollection = new Tabular.Table({
 	name: "complimentsCollection",
 	collection: complimentsCollection,
 	columns: [
-		{data: "ComplimenantName", title: "Name", className: "dt-center"},
-	    {data: "ComplimenantNRIC", title: "NRIC", className: "dt-center"},
-	    {data: "ComplimenantID", title: "Case ID", className: "dt-center"},
-	    {data: "ComplimenantContact", title: "Contact", className: "dt-center"},
-	    {data: "ComplimenantEmail", title: "Email", className: "dt-center"},
+		{data: "complimenantName", title: "Name", className: "dt-center"},
+	    {data: "complimenantNRIC", title: "NRIC", className: "dt-center"},
+	    {data: "complimenantID", title: "Case ID", className: "dt-center"},
+	    {data: "complimenantContact", title: "Contact", className: "dt-center"},
+	    {data: "complimenantEmail", title: "Email", className: "dt-center"},
 	    {data: "companyToCompliment", title: "Company", className: "dt-center"}
 	]
 });

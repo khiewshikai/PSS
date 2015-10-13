@@ -30,7 +30,7 @@ Template.complaintDetails.events({
             "closeButton": true
         } 
 
-        console.log(newStatus);
+        console.log(managerInstruction);
         console.log(orignialStatus);
         
         if(originalManagerInstructions === managerInstruction && newStatus === orignialStatus){
@@ -38,7 +38,7 @@ Template.complaintDetails.events({
         }else{
             complaintsCollection.update(
                 {_id: complaintMongoID._id},
-                {$set: {managerInstruction: managerInstruction}, $set: {status: newStatus}} //need to update timestamp of last edit, but first need to have these attributes at the start when complaints are added. attributes needed: last edited timestamp, last edited user, logging of edits?
+                {$set: {managerInstruction: managerInstruction, status: newStatus}} //need to update timestamp of last edit, but first need to have these attributes at the start when complaints are added. attributes needed: last edited timestamp, last edited user, logging of edits?
             );
             toastr.info("Record with case ID: " + caseID + " updated.");
             Router.go("/dashboard");

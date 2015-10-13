@@ -31,27 +31,27 @@ Meteor.startup(function() {
 
 	if(complimentsCollection.find().count() === 0) {
 		complimentsCollection.insert({
-			ComplimenantID: 1,
-			ComplimenantName: "Ali baba",
-			ComplimenantNRIC: "Ali NRIC",
-			ComplimenantContact: "contact",
-			ComplimenantEmail: "email",
+			complimenantID: 1,
+			complimenantName: "Ali baba",
+			complimenantNRIC: "Ali NRIC",
+			complimenantContact: "contact",
+			complimenantEmail: "email",
 			companyToCompliment:"ali baba",
 			productCategory: "some cat",
-			ComplimenantComment: "good good good",     	 	
+			complimenantComment: "good good good",     	 	
 			complimentCreatedBy: "public",
 			complimentTimeCreated: new Date(),
 		});
 
 		complimentsCollection.insert({
-			ComplimenantID: 2,
-			ComplimenantName: "Ali baba 2",
-			ComplimenantNRIC: "Ali NRIC 2",
-			ComplimenantContact: "contact 2",
-			ComplimenantEmail: "email 2",
+			complimenantID: 2,
+			complimenantName: "Ali baba 2",
+			complimenantNRIC: "Ali NRIC 2",
+			complimenantContact: "contact 2",
+			complimenantEmail: "email 2",
 			companyToCompliment:"ali baba 2",
 			productCategory: "some cat 2",
-			ComplimenantComment: "good good good 2",     	 	
+			complimenantComment: "good good good 2",     	 	
 			complimentCreatedBy: "public",
 			complimentTimeCreated: new Date(),
 		});
