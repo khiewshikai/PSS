@@ -12,7 +12,7 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists','/editTask/:_id']});
 // Router.onBeforeAction(goToDashboard, {only: ['index']});
 
 Router.route('/', {
@@ -74,6 +74,23 @@ Router.route('/viewWorkLists', {
     name: 'viewWorkLists',
     template: 'viewWorkLists',
     layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/editTask/:_id', {
+    name: 'editTask',
+    template: 'editTask',
+    layoutTemplate: 'dashboardLayout',
+    data: function(){
+        var complaintOriginalID = this.params._id;
+        complaintsCollection.update(
+            {_id: this.params._id},
+            {
+                $set:{isViewed: true}
+            }
+        )
+        console.log(complaintOriginalID);
+        return complaintsCollection.findOne({ complaintID: complaintOriginalID });
+    }
 });
 
 Router.route('/addcomplaints', {

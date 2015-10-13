@@ -1,0 +1,45 @@
+<template name="editTask">
+
+	<div class="container">
+		<header>
+			
+		</header>
+		<div class="panel editTaskForm">
+
+			<div class="panel-body">
+				<h1 class="page-header">Edit Task</h1>
+				<form class="editTask form-horizontal col-md-7 col-md-offset-2">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Follow up </label>
+						<div class="col-md-9">
+							<input type="text" name="followUp" placeholder="" class="form-control"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Manager Instruction </label>
+						<div class="col-md-9">
+							<textarea rows="3" cols="50" name="managerInstruction" class="form-control">
+							</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Complaint status: </label>
+						<div class="col-md-9">
+							<select name="complaintStatus" class="form-control">
+								<option value="open">open</option>
+								<option value="3rd-Party">3rd-Party</option>
+								<option value="closed">closed</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label"></label>
+						<div class="col-md-9">
+							<input type="submit" class="btn btn-sm btn-success m-r-5 submitComplaintBtn">
+						</div>
+					</div>					
+				</form> 
+			</div>
+		</div>     
+	</div>
+</template>
