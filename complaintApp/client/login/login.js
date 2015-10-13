@@ -15,7 +15,6 @@ Template.login.events({
 		    	} else {
 		    		Router.go('/dashboard');
 		    	}
-		       
 		    }
 		});
     }
