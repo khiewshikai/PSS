@@ -1,0 +1,8 @@
+.cd-disabled.form-control[disabled]{
+	opacity: 1;
+	background-color:white;
+}
+
+.panel.complaintForm{
+	background-color:inherit;
+}

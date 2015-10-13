@@ -1,0 +1,75 @@
+<template name="complaintDetails">
+	<!-- form -->
+	<div class="panel complaintForm">
+		<div class="panel-body">
+			<form class="form-horizontal col-md-7 col-md-offset-2">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Case ID</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintCaseID cd-disabled" value={{complaints.complaintID}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Name</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintName cd-disabled" value={{complaints.complainantName}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">NRIC</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintNRIC cd-disabled" value={{complaints.complainantNRIC}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Contact Number</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintContact cd-disabled" value={{complaints.complainantContact}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Email</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintEmail cd-disabled" value={{complaints.complainantEmail}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Product Category</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintCategory cd-disabled" value={{complaints.productCategory}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Company to Complaint</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintCompany cd-disabled" value={{complaints.companyToComplain}} disabled>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Comment</label>
+					<div class="col-md-9">
+						<textarea class="form-control complaintComment" value={{complaints.managerInstruction}} rows="5"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+							<label class="col-md-3 control-label">Status</label>
+							<div class="col-md-9">
+								<select class="form-control complaintStatus" value={{complaints.status}}>
+									<option>Open</option>
+									<option>Close</option>
+									<option>Pending</option>
+								</select>
+							</div>
+						</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label"></label>
+					<div class="col-md-9">
+						<div class="btn btn-sm btn-success m-r-5 cd-updateBtn">Update</div>
+						<div class="btn btn-sm btn-default cd-backButton">Back</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- END form -->
+</template>
