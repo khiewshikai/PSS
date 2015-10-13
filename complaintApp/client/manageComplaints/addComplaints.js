@@ -73,19 +73,21 @@ if (Meteor.isClient) {
             dateTimeOpen: dateTimeOpen,
             dateTimeClose: "" // current time
             });
-
-           var listOfManager = users.find({"profile.role":"manager"});
+			
            var minTask = 0;
-           var trackManager = "";
-           while(listOfManager.hasNext()){
-                var tempManager = listOfManager.next();
-                var tempCountTask = tasksCollection.find({"managerID":tempManager._id}).count;
+           var trackManager = "";		  
+		   var listOfManager = Meteor.users.find({'profile.role':'manager'}).fetch();
+		   console.log(listOfManager);
+		   for(index = 0; index <listOfManager.length; ++index){
+				console.log(listOfManager[index]._id);
+                var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
+				console.log(tempCountTask);
+				trackManager = listOfManager[index]._id;
                 if(tempCountTask <= minTask){
-                    trackManager = tempManager._id;
+                    trackManager = listOfManager[index]._id;
                     minTask = tempCountTask;
                 }
-           }
-
+		   }
            tasksCollection.insert({
             complaintID: complaintID,
             managerID: trackManager,

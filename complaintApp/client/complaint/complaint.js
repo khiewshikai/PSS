@@ -10,12 +10,12 @@ Template.complaint.events({
 		var complaintCompany = template.$(".complaintCompany").val();
 		var complaintComment = template.$(".complaintComment").val();
 
-		var complaintId = complaintsCollection.find().count();
+		var complaintId = complaintsCollection.find().count() + 1;
 		var timeSubmitted = new Date();
 
 		// insert into collection
 		complaintsCollection.insert({
-			complaintID: complaintId + 1,
+			complaintID: complaintId,
 			complainantName: complaintName,
 			complainantNRIC: complaintNRIC,			
 			complainantContact: complaintContact,
@@ -40,7 +40,7 @@ Template.complaint.events({
 
 
 		// add to print
-		template.$(".complaintIDPrint").html(complaintId + 1);
+		template.$(".complaintIDPrint").html(complaintId);
 		template.$(".complaintTimePrint").html(timeSubmitted);
 		template.$(".complaintNamePrint").html(complaintName);
 		template.$(".complaintNRICPrint").html(complaintNRIC);

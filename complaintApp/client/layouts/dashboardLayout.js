@@ -1,6 +1,10 @@
 Template.dashboardLayout.helpers({
 	userName: function() {
-		return Meteor.user().profile.name;
+		return Meteor.user().username;
+	},
+
+	userRole: function() {
+		return Meteor.user().profile.role;
 	},
 
 	active: function(routeName) {

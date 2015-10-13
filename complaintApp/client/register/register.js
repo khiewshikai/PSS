@@ -1,14 +1,16 @@
 Template.register.events({
-	'submit form': function(event) {
+	'submit form': function(event, template) {
 		event.preventDefault();
 		var usernameVar = event.target.registerUsername.value;
 		var passwordVar = event.target.registerPassword.value;
+		var roleVar = template.$(".registerRole :selected").text();
+
 		Accounts.createUser({
 			username: usernameVar,
 			password: passwordVar,
 			profile: {
 				name: "to be set",
-				role: "manager"
+				role: roleVar
 			}
 		}, function(error) {
 			if(error){
