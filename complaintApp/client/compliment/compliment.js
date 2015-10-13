@@ -1,4 +1,4 @@
-Template.complaint.events({
+Template.compliment.events({
 	'click .submitComplimentBtn':function(event, template){
 		event.preventDefault();
 
@@ -35,14 +35,26 @@ Template.complaint.events({
 			emailMsg);
 
 		// add to print
-		template.$(".complaintIDPrint").html(complaintId);
-		template.$(".complaintTimePrint").html(timeSubmitted);
-		template.$(".complaintNamePrint").html(complaintName);
-		template.$(".complaintNRICPrint").html(complaintNRIC);
-		template.$(".complaintContactPrint").html(complaintContact);
-		template.$(".complaintEmailPrint").html(complaintEmail);
-		template.$(".complaintCategoryPrint").html(complaintCategory);
-		template.$(".complaintCompanyPrint").html(complaintCompany);
-		template.$(".complaintCommentPrint").html(complaintComment);
+		template.$(".complimentIDPrint").html(complimentId);
+		template.$(".complimentTimePrint").html(timeSubmitted);
+		template.$(".complimentNamePrint").html(complimentNameVar);
+		template.$(".complimentNRICPrint").html(complimentNRICVar);
+		template.$(".complimentContactPrint").html(complimentContactVar);
+		template.$(".complimentEmailPrint").html(complimentEmailVar);
+		template.$(".complimentCategoryPrint").html(complimentProdCatVar);
+		template.$(".complimentCompanyPrint").html(complimentCompanyVar);
+		template.$(".complimentCommentPrint").html(complimentCommentsVar);
+
+		// reset form
+		template.$(".complimentName").val("");
+		template.$(".complimentNRIC").val("");
+		template.$(".complimentContact").val("");
+		template.$(".complimentEmail").val("");
+		template.$(".complimentCategory").prop('selectedIndex',0);
+		template.$(".complimentCompany").val("");
+		template.$(".complimentComment").val("");
+
+		template.$(".complimentForm").addClass("hide");
+		template.$(".complimentSubmitted").removeClass("hide");
 	},
 });

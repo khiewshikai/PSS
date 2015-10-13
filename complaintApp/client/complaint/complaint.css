@@ -7,3 +7,7 @@
 .complaintDisplay > label {
 	text-align: right;
 }
+
+.complaintForm {
+	background-color: #fff;
+}
