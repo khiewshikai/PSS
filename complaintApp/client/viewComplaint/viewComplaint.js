@@ -5,18 +5,25 @@ Template.viewComplaint.events({
 		var caseID = template.$(".caseId").val();
 		var caseNRIC = template.$(".caseNRIC").val();
 
-		var complaint = complaintsCollection.findOne({complaintID: parseInt(caseID), complainantNRIC: caseNRIC});
+		console.log(caseID);
+		console.log(caseNRIC);
 
-		template.one.set(complaint.complaintID);
-		template.two.set(complaint.dateTimeOpen);
-		template.three.set(complaint.status);
-		template.four.set(complaint.complainantName);
-		template.five.set(complaint.complainantNRIC);
-		template.six.set(complaint.complainantContact);
-		template.seven.set(complaint.complainantEmail);
-		template.eight.set(complaint.productCategory);
-		template.nine.set(complaint.companyToComplain);
-		template.ten.set(complaint.complainantComment);
+		var complaint = complaintsCollection.findOne({complaintID: parseInt(caseID), complainantNRIC: caseNRIC});
+		console.log(complaint);
+
+		if (complaint) {
+			template.one.set(complaint.complaintID);
+			template.two.set(complaint.dateTimeOpen);
+			template.three.set(complaint.status);
+			template.four.set(complaint.complainantName);
+			template.five.set(complaint.complainantNRIC);
+			template.six.set(complaint.complainantContact);
+			template.seven.set(complaint.complainantEmail);
+			template.eight.set(complaint.productCategory);
+			template.nine.set(complaint.companyToComplain);
+			template.ten.set(complaint.complainantComment);
+		}
+		
 
 		// reset form
 		template.$(".caseId").val("");
