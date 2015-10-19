@@ -83,14 +83,14 @@ Router.route('/editTask/:_complaintID', {
     layoutTemplate: 'dashboardLayout',
     data: function(){
         var complaintOriginalID = this.params._complaintID;
-        console.log(complaintOriginalID);
+        // console.log(complaintOriginalID);
         complaintsCollection.update(
             {_id: complaintOriginalID},
             {
                 $set:{isViewed: true}
             }
         )
-        console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
+        // console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
         return complaintsCollection.findOne({ _id: complaintOriginalID });
     }
 });
