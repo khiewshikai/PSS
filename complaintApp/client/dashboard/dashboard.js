@@ -19,8 +19,9 @@ Template.dashboard.events({
         //console.log(Session.get("selectedComplaintID"));
         Router.go('/complaintDetails');
     },
-		'click .newComplaintBtn':function(event, template){
-			Router.go('/addComplaints');
-		}
+
+	'click .newComplaintBtn':function(event, template){
+		Router.go('/addComplaints');
+	}    
 });
 

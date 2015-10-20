@@ -83,14 +83,23 @@ Router.route('/editTask/:_complaintID', {
     layoutTemplate: 'dashboardLayout',
     data: function(){
         var complaintOriginalID = this.params._complaintID;
-        console.log(complaintOriginalID);
+        var complaintGivenID = complaintsCollection.findOne({_id:complaintOriginalID}).complaintID;
+        var taskID = tasksCollection.findOne({complaintID:complaintGivenID})._id;
+
+        // console.log(complaintOriginalID);
         complaintsCollection.update(
             {_id: complaintOriginalID},
             {
                 $set:{isViewed: true}
             }
+        ),
+        tasksCollection.update(
+            {_id: taskID},
+            {
+                $set:{isViewed: true}
+            }
         )
-        console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
+        // console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
         return complaintsCollection.findOne({ _id: complaintOriginalID });
     }
 });
