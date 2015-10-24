@@ -3,15 +3,17 @@ Template.complaintDetails.rendered = function(){
     //console.log("STATUS: " + complaintsCollection.findOne({complaintID: complaintID}).status)
     $(".complaintStatus").val(complaintsCollection.findOne({complaintID: complaintID}).status);
     var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
+    //console.log(listOfManager);
     listOfManager.forEach(function(mgr) {
         //console.log(mgr);
         $('.complaintManager').append('<option>'+mgr.username+'</option>')
-        var managerID = tasksCollection.findOne({complaintID: complaintID}).managerID;
-        var currentMgr = Meteor.users.findOne({_id: managerID}).username;
-        //console.log(currentMgr);
-        $('.complaintManager').val(currentMgr);
     })
-    
+
+    var managerIDD = tasksCollection.findOne({complaintID: complaintID}).managerID;
+    console.log(managerIDD);
+    var currentMgr = Meteor.users.findOne({_id: managerIDD}).username;
+    console.log(currentMgr);
+    $('.complaintManager').val(currentMgr);
 }
 
 Template.complaintDetails.helpers({
@@ -37,6 +39,7 @@ Template.complaintDetails.events({
         var orignialStatus = complaintMongoID.status;
         var taskMongoID = tasksCollection.findOne({complaintID: caseID});
         var managerID = template.$(".complaintManager").val();
+        var managerID2 = Meteor.users.findOne({username: managerID })._id
         var originalManagerID = taskMongoID.managerID;
         //toastr options 
         toastr.options ={
@@ -46,7 +49,7 @@ Template.complaintDetails.events({
         console.log(managerInstruction);
         console.log(orignialStatus);
         
-        if(originalManagerInstructions === managerInstruction && newStatus === orignialStatus && originalManagerID === managerID){
+        if(originalManagerInstructions === managerInstruction && newStatus === orignialStatus && originalManagerID === managerID2){
             toastr.warning("Please make a change first.");
         }else{
             complaintsCollection.update(
@@ -55,7 +58,7 @@ Template.complaintDetails.events({
             );
             tasksCollection.update(
                 {_id: taskMongoID._id },
-                {$set: {managerID: managerID}}
+                {$set: {managerID: managerID2}}
             );
             toastr.info("Record with case ID: " + caseID + " updated.");
             Router.go("/dashboard");
