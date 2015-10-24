@@ -76,7 +76,7 @@ if (Meteor.isClient) {
 			
            var minTask = 0;
            var trackManager = "";		  
-		   var listOfManager = Meteor.users.find({'profile.role':'manager'}).fetch();
+		   var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
 		   console.log(listOfManager);
 		   for(index = 0; index <listOfManager.length; ++index){
 				console.log(listOfManager[index]._id);
