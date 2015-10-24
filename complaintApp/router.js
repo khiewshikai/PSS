@@ -151,3 +151,9 @@ Router.route('/complimentDetails', {
     template: '/complimentDetails',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/terminateManager', {
+    name: 'terminateManager',
+    template: '/terminateManager',
+    layoutTemplate: 'dashboardLayout'
+});

@@ -31,6 +31,13 @@ TabularTables.complimentsCollection = new Tabular.Table({
 	]
 });
 
+Meteor.users.allow({
+ remove: function(userid){
+   return true;
+  }
+})
+
+
 
 //for viewCompanyComplaint page
 TabularTables.complaintsCountCollection = new Tabular.Table({
@@ -98,3 +105,4 @@ TabularTables.complaintsCountCollectionPublic = new Tabular.Table({
   ],
   order: [[ 1, "desc" ]]
 });
+

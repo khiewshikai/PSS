@@ -10,9 +10,9 @@ Template.complaintDetails.rendered = function(){
     })
 
     var managerIDD = tasksCollection.findOne({complaintID: complaintID}).managerID;
-    console.log(managerIDD);
+    //console.log(managerIDD);
     var currentMgr = Meteor.users.findOne({_id: managerIDD}).username;
-    console.log(currentMgr);
+    //console.log(currentMgr);
     $('.complaintManager').val(currentMgr);
 }
 
@@ -58,7 +58,7 @@ Template.complaintDetails.events({
             );
             tasksCollection.update(
                 {_id: taskMongoID._id },
-                {$set: {managerID: managerID2}}
+                {$set: {managerID: managerID2}} //needs to update worklist of manager
             );
             toastr.info("Record with case ID: " + caseID + " updated.");
             Router.go("/dashboard");
