@@ -3,8 +3,6 @@ if (Meteor.isServer) {
 }
 
 if (Meteor.isClient) {
-	
-
 	function getTasksCollectionOfCurrentUser(){
 		return tasksCollection.find({managerID:Meteor.userId()});
 	}
@@ -18,7 +16,6 @@ if (Meteor.isClient) {
       var arr = ["open", "3rd-party","closed"];
       var selected = arr.pop(this.status.toLowerCase());
       arr.push(selected);
-      console.log(arr);
       return arr;
     }
 
@@ -43,11 +40,7 @@ if (Meteor.isClient) {
       //toastr options 
       toastr.options ={
           "closeButton": true
-      }
-
-      console.log("folUP: " + followUp +": " + originalFollowUp);
-      console.log("inst: " + managerInstruction +": " + originalManagerInstruction);
-      console.log("status: " +complaintStatus + ": " + originalComplaintStatus);
+      }      
 
       if(followUp === originalFollowUp && managerInstruction === originalManagerInstruction && complaintStatus === originalComplaintStatus){
         toastr.warning("Please make a change first.");          
@@ -68,7 +61,6 @@ if (Meteor.isClient) {
         Router.go("/viewWorkLists");
       }
       
-
   	  if(complaintStatus=="closed") {
   	  	complaintsCollection.update(
   	  		{ _id : this._id },
