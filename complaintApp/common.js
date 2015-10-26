@@ -23,10 +23,86 @@ TabularTables.complimentsCollection = new Tabular.Table({
 	collection: complimentsCollection,
 	columns: [
 		{data: "complimenantName", title: "Name", className: "dt-center"},
-	    {data: "complimenantNRIC", title: "NRIC", className: "dt-center"},
-	    {data: "complimenantID", title: "Case ID", className: "dt-center"},
-	    {data: "complimenantContact", title: "Contact", className: "dt-center"},
-	    {data: "complimenantEmail", title: "Email", className: "dt-center"},
-	    {data: "companyToCompliment", title: "Company", className: "dt-center"}
+    {data: "complimenantNRIC", title: "NRIC", className: "dt-center"},
+    {data: "complimenantID", title: "Case ID", className: "dt-center"},
+    {data: "complimenantContact", title: "Contact", className: "dt-center"},
+    {data: "complimenantEmail", title: "Email", className: "dt-center"},
+    {data: "companyToCompliment", title: "Company", className: "dt-center"}
 	]
 });
+
+Meteor.users.allow({
+ remove: function(userid){
+   return true;
+  }
+})
+
+
+
+//for viewCompanyComplaint page
+TabularTables.complaintsCountCollection = new Tabular.Table({
+  name: "complaintsCountCollection",
+  collection: complaintsCountCollection,
+  columns: [
+    {data: "_id", title: "Company", className: "dt-center"},
+    {data: "count", title: "No. of Complaint", className: "dt-center"},
+    {data: "isEnabled", title: "Publish", className: "dt-center"}
+  ],
+  order: [[ 1, "desc" ]],
+  createdRow: function( row, data, dataIndex ) {
+    // set row class based on row data
+    var companyName = $('td:eq(0)',row).text();
+    var complaintCountObj = complaintsCountCollection.find({_id: companyName}).fetch();
+    if(complaintCountObj[0].isEnabled == true){
+      $('td:eq(2)', row).html('<input id="toggle-one" checked type="checkbox" data-size="small">');
+    }
+    else{
+      $('td:eq(2)', row).html('<input id="toggle-one" type="checkbox" data-size="small">');
+    }
+    
+    $('#toggle-one',row).bootstrapToggle({
+        on: 'Yes',
+        off: 'No'
+    });
+    
+    $('.toggle',row).click(function(){      
+      var companyName = $(this).parent().parent().children().eq(0).text();
+      var classList = $(this).attr('class').split(/\s+/);
+      var gonnaPublish = classList.indexOf("off") != -1;
+
+      if(gonnaPublish == true){
+        complaintsCountCollection.update(
+            {_id: companyName},
+            {
+                $set:{                
+                  isEnabled: true
+                }
+            },
+            {upsert: true}
+        )        
+      }
+      else{
+        complaintsCountCollection.update(
+            {_id: companyName},
+            {
+                $set:{                
+                  isEnabled: false
+                }
+            },
+            {upsert: true}
+        )
+      }
+    })
+  }
+});
+
+TabularTables.complaintsCountCollectionPublic = new Tabular.Table({
+  name: "complaintsCountCollectionPublic",
+  collection: complaintsCountCollection,
+  columns: [
+    {data: "_id", title: "Company", className: "dt-center"},
+    {data: "count", title: "No. of Complaint", className: "dt-center"}
+  ],
+  order: [[ 1, "desc" ]]
+});
+
