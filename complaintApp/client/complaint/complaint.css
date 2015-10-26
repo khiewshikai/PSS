@@ -12,6 +12,13 @@
 	background-size: cover;
 }
 
+.viewBanner {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/viewbanner.jpg') no-repeat center #eee;
+	background-size: cover;
+}
+
 .complaintDisplay {
 	margin-bottom: 15px;
 	margin-right: -15px;

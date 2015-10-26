@@ -32,3 +32,4 @@ monbro:mongodb-mapreduce-aggregation
 ctjp:meteor-bootstrap-switch
 ctjp:meteor-bootstrap-switch-assets
 jiku:bootstrap-toggle
+okgrow:router-autoscroll

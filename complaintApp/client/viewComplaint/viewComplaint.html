@@ -1,6 +1,6 @@
 <template name="viewComplaint">
 
-    <div class="complimentBanner"></div>
+    <div class="viewBanner"></div>
 
 
     <div class="pageContainer">
@@ -43,7 +43,9 @@
                     <div class="panel-body">
 
                         <div class="col-md-7 col-md-offset-2">
-                            {{#if complaint}}
+                            {{#if equals one 'empty'}}
+                            <div class="noRecord" style="text-align:center;">No matching records found.</div>
+                            {{else}}
                             <div class="complaintDisplay m-t-25">
                                 <label class="col-md-3 control-label">Complaint ID</label>
                                 <div class="col-md-9 complaintIDPrint">
@@ -114,8 +116,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            {{else}}
-                            <div class="noRecord">No records found.</div>
+                            
                             {{/if}}
                         </div>
 

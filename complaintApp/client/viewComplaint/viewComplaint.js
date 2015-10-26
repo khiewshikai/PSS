@@ -33,7 +33,7 @@ Template.viewComplaint.events({
 
 Template.viewComplaint.created = function() {
 	this.complaint = new ReactiveVar({});
-	this.one = new ReactiveVar("");
+	this.one = new ReactiveVar("empty");
 	this.two = new ReactiveVar("");
 	this.three = new ReactiveVar("");
 	this.four = new ReactiveVar("");
