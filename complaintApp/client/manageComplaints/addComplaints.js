@@ -59,8 +59,8 @@ if (Meteor.isClient) {
 					var isEmpty = true;        	
 				}
 				if (!complaintCompanyPostalCodeVar || complaintCompanyPostalCodeVar === '') {
-					template.$('[name=addComplaintCompanyAddress]').addClass('has-error');
-					template.$('[name=addComplaintCompanyAddress]').attr('placeholder', 'Please fill in the Company Postal Code');
+					template.$('[name=addComplaintCompanyPostalCode]').addClass('has-error');
+					template.$('[name=addComplaintCompanyPostalCode]').attr('placeholder', 'Please fill in the Company Postal Code');
 					var isEmpty = true;        	
 				}
 			}
