@@ -85,9 +85,7 @@ Template.complaint.events({
 	'click .backToHomeBtn':function(event, template){            
 		event.preventDefault();
 		Router.go('/');
-	}
-
-	,
+	},
 
 	'click .onlineBtn':function(event, template){            
 		event.preventDefault();
