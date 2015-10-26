@@ -1,4 +1,4 @@
-Template.complaint.events({
+Template.complaintForm.events({
 	'click .submitComplaintBtn':function(event, template){
 		event.preventDefault();
 
@@ -85,12 +85,5 @@ Template.complaint.events({
 	'click .backToHomeBtn':function(event, template){            
 		event.preventDefault();
 		Router.go('/');
-	}
-
-	,
-
-	'click .onlineBtn':function(event, template){            
-		event.preventDefault();
-		Router.go('/complaintForm');
 	}
 });

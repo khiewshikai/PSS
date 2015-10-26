@@ -11,3 +11,37 @@
 .complaintForm {
 	background-color: #fff;
 }
+
+.hotlinks {
+	width: 100%;
+	padding: 15px;
+	color: #fff;
+	margin-bottom: 15px;
+	border-radius: 3px;
+}
+
+.hotlinks.green {
+	background-color: #25c5c3;
+}
+
+.hotlinks.blue {
+	background-color: #29abe2;
+}
+
+.hotlinks .title {
+	font-weight: 600;
+}
+
+.hotlinks .text {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.hotlinks i {
+	opacity: 0.5;
+	font-size: 30px;
+}
+
+.onlineBtn {
+	cursor: pointer;
+}
