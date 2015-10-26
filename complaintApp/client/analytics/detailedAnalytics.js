@@ -90,12 +90,27 @@ if (Meteor.isClient) {
             $("#advance-daterange span").html(a.format("MMMM D, YYYY") + " - " + t.format("MMMM D, YYYY"))
         });
 
-        $("#date-range").hide();
+        /*$("#date-range").hide();*/
         $("#month-range").hide();
         $("#year-range").hide();
 
         var time = $("#time-interval").val();
-        console.log(time);
 
+        $("#time-interval").change(function() {
+            time = $("#time-interval").val();
+            if(time === "day"){
+                $("#date-range").show();
+                $("#month-range").hide();
+                $("#year-range").hide()
+            } else if(time === "month"){
+                $("#date-range").hide();
+                $("#month-range").show();
+                $("#year-range").hide()
+            } else if(time === "year"){
+                $("#date-range").hide();
+                $("#month-range").hide();
+                $("#year-range").show();
+            }
+        });
     });
 }
