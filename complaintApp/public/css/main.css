@@ -2,7 +2,8 @@ body {
     background: #f3f4f5;
     font-size: 13px;
     font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #707478
+    color: #707478;
+    overflow-x: hidden;
 }
 .ie8 body {
     font-family: Arial, sans-serif
@@ -6258,4 +6259,13 @@ body.flat-black {
 }
 .profile-section .title small {
     font-weight: 400
+}
+.publicContainer {
+    width: 100%;
+    margin: 50px auto 0;
+}
+
+.navbar-default .navbar-nav>.active.open>a, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #fff !important;
+    background-color: #3b99d8 !important;
 }
