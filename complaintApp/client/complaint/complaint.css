@@ -1,7 +1,14 @@
+.complaintBanner {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/complaintbanner1.jpg') no-repeat center #eee;
+	background-size: cover;
+}
+
 .complaintDisplay {
 	margin-bottom: 15px;
 	margin-right: -15px;
-    margin-left: -15px;
+	margin-left: -15px;
 }
 
 .complaintDisplay > label {
@@ -25,7 +32,11 @@
 }
 
 .hotlinks.blue {
-	background-color: #29abe2;
+	background-color: #3b99d8;
+}
+
+.hotlinks.navy {
+	background-color: #1d70a6;
 }
 
 .hotlinks .title {
@@ -48,4 +59,12 @@
 
 .hotlinksPullRight {
 	float: right;
+}
+
+
+@media only screen and (min-width: 600px) {
+	.complaintBanner {
+		background: url('../css/images/complaintbanner.jpg') no-repeat center #eee;
+		background-size: cover;
+	}
 }

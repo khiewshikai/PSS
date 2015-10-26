@@ -148,6 +148,10 @@
 	cursor: pointer;
 }
 
+.pageContainer {
+	padding: 20px 20px;
+}
+
 @media only screen and (min-width: 600px) {
 	.banner {
 		padding-top: 180px;
@@ -172,5 +176,9 @@
 
 	.homeFooter {
 		padding: 30px 30px 30px 30px;
+	}
+
+	.pageContainer {
+		padding: 20px 75px;
 	}
 }
