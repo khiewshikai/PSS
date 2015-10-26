@@ -9,9 +9,68 @@ Template.complaintForm.events({
 		var complaintCategory = template.$(".complaintCategory :selected").text();
 		var complaintCompany = template.$(".complaintCompany").val();
 		var complaintComment = template.$(".complaintComment").val();
+		var complaintCompanyAddressOrWebsite = template.$(".complaintCompanyAddressOrWebsite :selected").text();
+		var complaintCompanyAddress = template.$(".complaintCompanyAddress").val();
+		var complaintCompanyPostalCode = template.$(".complaintCompanyPostalCode").val();
+		var complaintCompanyWebsite = template.$(".complaintCompanyWebsite").val();
 
 		var complaintId = complaintsCollection.find().count() + 1;
 		var timeSubmitted = new Date();
+		
+		var isEmpty = false;
+
+		if (!complaintName || complaintName === '') {
+			template.$('.complaintName').addClass('error-desc');
+			template.$('.complaintName').attr('placeholder', 'Please fill in the Complainant Name');
+			var isEmpty = true;
+		}
+		if (!complaintNRIC || complaintNRIC === '') {
+			template.$('.complaintNRIC').addClass('has-error');
+			template.$('.complaintNRIC').attr('placeholder', 'Please fill in the Complainant NRIC');
+			var isEmpty = true;
+		}
+		if (!complaintContact || complaintContact === '') {
+			template.$('.complaintContact').addClass('has-error');
+			template.$('.complaintContact').attr('placeholder', 'Please fill in the Complainant Contact');
+			var isEmpty = true;
+		}
+		if (!complaintEmail || complaintEmail === '') {
+			template.$('.complaintEmail').addClass('has-error');
+			template.$('.complaintEmail').attr('placeholder', 'Please fill in the Complainant Email');
+			var isEmpty = true;
+		}
+		if (!complaintCompany || complaintCompany === '') {
+			template.$('.complaintCompany').addClass('has-error');
+			template.$('.complaintCompany').attr('placeholder', 'Please fill in the Complainant Company');
+			var isEmpty = true;
+		}
+		if (!complaintComment || complaintComment === '') {
+			template.$('.complaintComment').addClass('has-error');
+			template.$('.complaintComment').attr('placeholder', 'Please fill in the Complainant Comments');
+			var isEmpty = true;
+		}
+		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
+			if (!complaintCompanyAddress || complaintCompanyAddress === '') {
+				template.$('.complaintCompanyAddress').addClass('has-error');
+				template.$('.complaintCompanyAddress').attr('placeholder', 'Please fill in the Company Address');
+				var isEmpty = true;        	
+			}
+			if (!complaintCompanyPostalCode || complaintCompanyPostalCode === '') {
+				template.$('.complaintCompanyPostalCode').addClass('has-error');
+				template.$('.complaintCompanyPostalCode').attr('placeholder', 'Please fill in the Company Postal Code');
+				var isEmpty = true;        	
+			}
+		}
+		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Website'){
+			if (!complaintCompanyWebsite || complaintCompanyWebsite === '') {
+				template.$('.complaintCompanyWebsite').addClass('has-error');
+				template.$('.complaintCompanyWebsite').attr('placeholder', 'Please fill in the Company Website');
+				var isEmpty = true;        	
+			}
+		}
+		if (isEmpty) {
+			return;
+		};
 
 		// insert into collection
 		complaintsCollection.insert({
@@ -21,6 +80,9 @@ Template.complaintForm.events({
 			complainantContact: complaintContact,
 			complainantEmail: complaintEmail,
 			companyToComplain: complaintCompany,
+			companyAddress: complaintCompanyAddress,
+			companyPostalCode: complaintCompanyPostalCode,
+			companyWebsite: complaintCompanyWebsite,
 			productCategory: complaintCategory,
 			followerUp: "N/A",
 			complainantComment: complaintComment,
@@ -49,6 +111,17 @@ Template.complaintForm.events({
 		template.$(".complaintCategoryPrint").html(complaintCategory);
 		template.$(".complaintCompanyPrint").html(complaintCompany);
 		template.$(".complaintCommentPrint").html(complaintComment);
+		
+		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
+			template.$(".complaintCompanyAddressDetailsDisplay").removeClass("hide");
+			template.$(".complaintCompanyWebsiteDetailsDisplay").addClass("hide");
+			template.$(".complaintCompanyAddressPrint").html(complaintCompanyAddress);
+			template.$(".complaintCompanyPostalCodePrint").html(complaintCompanyPostalCode);
+		}else{
+			template.$(".complaintCompanyAddressDetailsDisplay").addClass("hide");
+			template.$(".complaintCompanyWebsiteDetailsDisplay").removeClass("hide");
+			template.$(".complaintCompanyWebsitePrint").html(complaintCompanyWebsite);
+		}
 
 		// reset form
 		template.$(".complaintName").val("");
@@ -58,6 +131,10 @@ Template.complaintForm.events({
 		template.$(".complaintCategory").prop('selectedIndex',0);
 		template.$(".complaintCompany").val("");
 		template.$(".complaintComment").val("");
+		template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
+		template.$(".complaintCompanyAddress").val("");
+		template.$(".complaintCompanyPostalCode").val("");
+		template.$(".complaintCompanyWebsite").val("");
 
 		template.$(".complaintForm").addClass("hide");
 		template.$(".complaintSubmitted").removeClass("hide");
@@ -71,7 +148,11 @@ Template.complaintForm.events({
 		template.$(".complaintEmail").val("");
 		template.$(".complaintCategory").prop('selectedIndex',0);
 		template.$(".complaintCompany").val("");
-		template.$(".complaintComment").val("");
+		template.$(".complaintComment").val("");		
+		template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
+		template.$(".complaintCompanyAddress").val("");
+		template.$(".complaintCompanyPostalCode").val("");
+		template.$(".complaintCompanyWebsite").val("");
 
 		event.preventDefault();
 	},
@@ -85,5 +166,15 @@ Template.complaintForm.events({
 	'click .backToHomeBtn':function(event, template){            
 		event.preventDefault();
 		Router.go('/');
+	},
+		
+	'change .complaintCompanyAddressOrWebsite':function(event, template){            
+		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
+			template.$(".complaintCompanyAddressDetails").removeClass("hide");
+			template.$(".complaintCompanyWebsiteDetails").addClass("hide");
+		}else{
+			template.$(".complaintCompanyAddressDetails").addClass("hide");
+			template.$(".complaintCompanyWebsiteDetails").removeClass("hide");
+		}
 	}
 });
