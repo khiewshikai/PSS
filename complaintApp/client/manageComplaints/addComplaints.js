@@ -11,6 +11,9 @@ if (Meteor.isClient) {
            var complaintCommentsVar = template.$('[name=addComplaintComments]').val();
            var complaintFollowUpVar = template.$('[name=addComplaintFollowUp]').val();
            var complaintManagerCommentsVar = template.$('[name=addComplaintManagerComments]').val();
+		   var complaintCompanyAddressVar = template.$('[name=addComplaintCompanyAddress]').val();
+           var complaintCompanyPostalCodeVar = template.$('[name=addComplaintCompanyPostalCode]').val();
+		   var complaintCompanyWebsiteVar = template.$('[name=addComplaintCompanyWebsite]').val();           
 
            var isEmpty = false;
 
@@ -49,6 +52,25 @@ if (Meteor.isClient) {
             	template.$('[name=addComplaintFollowUp]').attr('placeholder', 'Please fill in the Follow Up');
                 var isEmpty = true;        	
             }
+			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Company Address'){
+				if (!complaintCompanyAddressVar || complaintCompanyAddressVar === '') {
+					template.$('[name=addComplaintCompanyAddress]').addClass('has-error');
+					template.$('[name=addComplaintCompanyAddress]').attr('placeholder', 'Please fill in the Company Address');
+					var isEmpty = true;        	
+				}
+				if (!complaintCompanyPostalCodeVar || complaintCompanyPostalCodeVar === '') {
+					template.$('[name=addComplaintCompanyPostalCode]').addClass('has-error');
+					template.$('[name=addComplaintCompanyPostalCode]').attr('placeholder', 'Please fill in the Company Postal Code');
+					var isEmpty = true;        	
+				}
+			}
+			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Website'){
+				if (!complaintCompanyWebsiteVar || complaintCompanyWebsiteVar === '') {
+					template.$('[name=addComplaintCompanyWebsite]').addClass('has-error');
+					template.$('[name=addComplaintCompanyWebsite]').attr('placeholder', 'Please fill in the Company Website');
+					var isEmpty = true;        	
+				}
+			}
             if (isEmpty) {
                 return;
             };
@@ -63,7 +85,10 @@ if (Meteor.isClient) {
             complainantNRIC: complaintNRICVar,
             complainantContact: complaintContactVar,
             complainantEmail: complaintEmailVar,
-            companyToComplain:complaintCompanyVar,
+            companyToComplain: complaintCompanyVar,
+			companyAddress: complaintCompanyAddressVar,
+			companyPostalCode: complaintCompanyPostalCodeVar,
+			companyWebsite: complaintCompanyWebsiteVar,
             productCategory: complaintProdCatVar,
             followerUp: complaintFollowUpVar,
             complainantComment: complaintCommentsVar,     	
@@ -76,7 +101,7 @@ if (Meteor.isClient) {
 			
            var minTask = 0;
            var trackManager = "";		  
-		   var listOfManager = Meteor.users.find({'profile.role':'manager'}).fetch();
+		   var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
 		   console.log(listOfManager);
 		   for(index = 0; index <listOfManager.length; ++index){
 				console.log(listOfManager[index]._id);
@@ -111,6 +136,16 @@ if (Meteor.isClient) {
             template.$(".complaintEmailPrint").html(complaintEmailVar);
             template.$(".complaintCategoryPrint").html(complaintProdCatVar);
             template.$(".complaintCompanyPrint").html(complaintCompanyVar);
+			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Company Address'){
+				template.$(".complaintCompanyAddressDetailsDisplay").removeClass("hide");
+				template.$(".complaintCompanyWebsiteDetailsDisplay").addClass("hide");
+				template.$(".complaintCompanyAddressPrint").html(complaintCompanyAddressVar);
+				template.$(".complaintCompanyPostalCodePrint").html(complaintCompanyPostalCodeVar);
+			}else{
+				template.$(".complaintCompanyAddressDetailsDisplay").addClass("hide");
+				template.$(".complaintCompanyWebsiteDetailsDisplay").removeClass("hide");
+				template.$(".complaintCompanyWebsitePrint").html(complaintCompanyWebsiteVar);
+			}
             template.$(".complaintCommentPrint").html(complaintCommentsVar);
             template.$(".complaintFollowUpPrint").html(complaintFollowUpVar);
             template.$(".complaintManagerCommentPrint").html(complaintManagerCommentsVar);
@@ -123,10 +158,14 @@ if (Meteor.isClient) {
             template.$("[name=addComplaintContact]").val("");
             template.$("[name=addComplaintEmail]").val("");
             template.$(".complaintCategory").prop('selectedIndex',0);
-            template.$("[name=addComplaintCompany]").val("");
+            template.$("[name=addComplaintCompany]").val("");			
+			template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
             template.$("[name=addComplaintComments]").val("");
             template.$("[name=addComplaintFollowUp]").val("");
             template.$("[name=addComplaintManagerComments]").val("");
+			template.$('[name=addComplaintCompanyAddress]').val("");
+            template.$('[name=addComplaintCompanyPostalCode]').val("");
+		    template.$('[name=addComplaintCompanyWebsite]').val(""); 
         },
 
         'click .resetComplaintBtn':function(event, template){            
@@ -136,9 +175,13 @@ if (Meteor.isClient) {
             template.$("[name=addComplaintEmail]").val("");
             template.$(".complaintCategory").prop('selectedIndex',0);
             template.$("[name=addComplaintCompany]").val("");
+			template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
             template.$("[name=addComplaintComments]").val("");
             template.$("[name=addComplaintFollowUp]").val("");
             template.$("[name=addComplaintManagerComments]").val("");
+			template.$('[name=addComplaintCompanyAddress]').val("");
+            template.$('[name=addComplaintCompanyPostalCode]').val("");
+		    template.$('[name=addComplaintCompanyWebsite]').val("");  
             event.preventDefault();
         },
 
@@ -151,6 +194,16 @@ if (Meteor.isClient) {
         'click .backToHomeBtn':function(event, template){            
             event.preventDefault();
             Router.go('dashboard');
+        },
+		
+		'change .complaintCompanyAddressOrWebsite':function(event, template){            
+            if(template.$("[name=addComplaintCompanyLocation]").val() === 'Company Address'){
+				template.$(".complaintCompanyAddressDetails").removeClass("hide");
+				template.$(".complaintCompanyWebsiteDetails").addClass("hide");
+			}else{
+				template.$(".complaintCompanyAddressDetails").addClass("hide");
+				template.$(".complaintCompanyWebsiteDetails").removeClass("hide");
+			}
         }
 
     });	

@@ -1,0 +1,39 @@
+<template name="terminateManager">
+	<div class="container">
+		<div class="panel complaintForm">
+			<div class="panel-body">
+				<form class="form-horizontal col-md-7 col-md-offset-2">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Select Manager:</label>
+						<div class="col-md-9">
+							<select class="form-control managerToTerminate">
+								<option>---Select a manager---</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group info-noTask hide">
+						<label class="col-md-6 control-label"></label>
+						This manager has no task.
+					</div>
+					<table id="taskTable" class="table table-bordered table-hover hide">
+					    <thead>
+					        <tr>
+					            <th>Case ID</th>
+					            <th>Choose a new manager</th>
+					        </tr>
+					    </thead>
+					    <tbody class="tableBody">
+					   	</tbody>
+					</table>
+					<div class="form-group confirmBtn hide">
+						<label class="col-md-7 control-label"></label>
+						<div class="col-md-12">
+							<div class="btn btn-sm btn-success m-r-5 cd-updateBtn">Terminate Manager</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</template>

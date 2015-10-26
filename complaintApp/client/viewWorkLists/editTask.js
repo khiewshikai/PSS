@@ -3,52 +3,65 @@ if (Meteor.isServer) {
 }
 
 if (Meteor.isClient) {
-	
-
 	function getTasksCollectionOfCurrentUser(){
 		return tasksCollection.find({managerID:Meteor.userId()});
 	}
 
 	Template.editTask.helpers({
 		
-		getComplaintsCollection: function() {
-			var tasks = getTasksCollectionOfCurrentUser();
-			var complaints = new Object();
-  	  var complaintIDArray = tasks.map( function(t) { return t["complaintID"]}); //return array of complaintIDs of this user
-  	  complaints = complaintsCollection.find({"complaintID":{"$in":complaintIDArray}});
-  	  return complaints;      
-	  },
+    'isTrue': function(){
+      return true;
+    },
+    getComplaintStatus: function(){
+      var arr = ["open", "3rd-party","closed"];
+      var selected = arr.pop(this.status.toLowerCase());
+      arr.push(selected);
+      return arr;
+    }
 
-  	isManager: function(){
-  		return Meteor.user().profile.role == "normal";
-  	}
   });
 
 	Template.editTask.events({
-  		"submit .editTask": function (event) {
+  	"submit .editTask": function (event, template) {
   	  // Prevent default browser form submit
   	  event.preventDefault();
   	  
   	  // Get value from form element
+      var caseID = parseInt(template.$(".complaintCaseID").val());
   	  var followUp = event.target.followUp.value;
-  	  var managerInstruction = event.target.managerInstruction.value;
+  	  var managerInstruction = event.target.managerInstruction.value.trim();
   	  var complaintStatus = event.target.complaintStatus.value;
 
-      // Insert a task into the collection
-      complaintsCollection.update(
-        { _id: this.complaintOriginalID},
-        {
-          $set: 
-            { 
-              followerUp: followUp,
-              status: complaintStatus,
-              managerInstruction: managerInstruction
-            }
-        }
-      );
+      var originalComplaint = complaintsCollection.findOne({complaintID: caseID});
+      var originalManagerInstruction = originalComplaint.managerInstruction;
+      var originalFollowUp = originalComplaint.followerUp;
+      var originalComplaintStatus = originalComplaint.status;
 
-  	  if(complaintStatus=="closed")
-  	  {
+      //toastr options 
+      toastr.options ={
+          "closeButton": true
+      }      
+
+      if(followUp === originalFollowUp && managerInstruction === originalManagerInstruction && complaintStatus === originalComplaintStatus){
+        toastr.warning("Please make a change first.");          
+      } else{
+        // Insert a task into the collection
+        complaintsCollection.update(
+          { _id: this._id},
+          {
+            $set: 
+              { 
+                followerUp: followUp,
+                status: complaintStatus,
+                managerInstruction: managerInstruction
+              }
+          }
+        );
+        toastr.info("Record with case ID: " + caseID + " updated.");
+        Router.go("/viewWorkLists");
+      }
+      
+  	  if(complaintStatus=="closed") {
   	  	complaintsCollection.update(
   	  		{ _id : this._id },
   	  		{
@@ -59,8 +72,10 @@ if (Meteor.isClient) {
   	  		}
   	  	)        
   	  } 
-  	  // Clear form
-  	  // event.target.text.value = "";
-  	}
+  	},
+
+    "click .cd-backButton":function(e, template){
+        Router.go("/viewWorkLists");
+    }
   });
 }

@@ -1,9 +1,184 @@
-.home-image {
+.banner {
 	width: 100%;
-	height: 200px;
-	background-color: #999a9b;
+	height: 500px;
+	background: url('../css/images/banner.jpg') no-repeat center #eee;
+	background-size: cover;
+	padding: 60px;
+}
+
+.banner .text {
+	/*background-color: #fff;*/
+	font-size: 20px;
+	color: #fff;
+	padding: 5px 10px 0;
+	text-align: center;
+	/*margin-bottom: 10px;*/
+}
+
+.banner .text1 {
+	font-size: 30px;
 }
 
 .btn-div {
 	text-align: center;
+}
+
+.navbar-brand > img {
+	height: 30px;
+	display: inline-block;
+	margin-right: 15px;
+	margin-top: -4px;
+}
+
+.navbar-brand span {
+	color: #4d4e4f;
+	font-weight: 400;
+}
+
+.homeSection {
+	padding: 50px 30px;
+}
+
+.white-bg {
+	background-color: #fff;
+}
+
+.blue-bg {
+	background-color: #f9f9f9;
+}
+
+.darkGrey-bg {
+	background-color: #333435;
+}
+
+.homeSection > .title {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: 24px;
+	font-weight: 400;
+	color: #4d4e4f;
+}
+
+.homeSection > .title > span {
+	color: #3b99d8;
+}
+
+.service {
+	width: 100%;
+	background-color: #fff;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.service-image1 {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/service1.jpg') no-repeat center #eee;
+	background-size: cover;
+}
+
+.service-image2 {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/service2.jpg') no-repeat center #eee;
+	background-size: cover;
+}
+
+.service-image3 {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/service3.jpg') no-repeat center #eee;
+	background-size: cover;
+}
+
+.service .title {
+	font-size: 16px;
+	color: #4d4e4f;
+	padding: 15px;
+	text-align: left;
+}
+
+.service .text {
+	padding: 0 15px;
+	height: 80px;
+	text-align: left;
+}
+
+.service .text2 {
+	padding: 0 15px;
+	text-align: left;
+}
+
+.case-image {
+	width: 100%;
+	height: 200px;
+	background: url('../css/images/case.jpg') no-repeat center #eee;
+	background-size: cover;
+	border: 1px solid #e5e6e7;
+}
+
+.homeFooter {
+	padding: 30px 30px 30px 30px;
+}
+
+.homeFooter p {
+	color: #999a9b;
+	text-align: center;
+	font-size: 12px;
+}
+
+.socialmedia {
+	font-size: 20px;
+	color: #999a9b;
+}
+
+.socialmedia > .icon-group {
+	width: 210px;
+	margin: 0 auto 10px;
+}
+
+.socialmedia .icon {
+	border: 2px solid #999a9b;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	margin: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.pageContainer {
+	padding: 20px 20px;
+}
+
+@media only screen and (min-width: 600px) {
+	.banner {
+		padding-top: 180px;
+	}
+
+	.banner .text {
+		padding: 5px 20px 0;
+		font-size: 24px;
+	}
+
+	.banner .text1 {
+		font-size: 40px;
+	}
+
+	.banner .text {
+		text-align: left;
+	}
+
+	.homeSection {
+		padding: 120px 100px;
+	}
+
+	.homeFooter {
+		padding: 30px 30px 30px 30px;
+	}
+
+	.pageContainer {
+		padding: 20px 75px;
+	}
 }

@@ -8,3 +8,15 @@ Meteor.publish("userData", function() {
 		}
 	});
 });
+
+Meteor.methods({
+	getCompanyAndComplaintsCount: function() {
+		var companyAndComplaintsCount = complaintsCollection.aggregate(
+	       	[
+	        	{ $group: { _id: "$companyToComplain", count: { $sum: 1 } } }
+	     	]
+    	);
+    	// console.log(companyAndComplaintsCount);
+    	return companyAndComplaintsCount;
+	}
+})

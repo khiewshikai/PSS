@@ -14,8 +14,6 @@ if (Meteor.isClient) {
       var tasks = getTasksCollectionOfCurrentUser();
       var complaints = new Object();
       var complaintIDArray = tasks.map( function(t) { return t["complaintID"]}); //return array of complaintIDs of this user
-      // complaints = complaintsCollection.find({complaintID:{$in:complaintIDArray}});
-      // console.log(complaints.fetch());
       return {complaintID:{$in:complaintIDArray}} //give the selector in datatable to select only complaintID that are in the complaintIDArray;      
     },
 

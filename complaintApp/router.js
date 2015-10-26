@@ -13,7 +13,7 @@ var goToDashboard = function(pause) {
   }
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint','compliment','viewComplaint','viewWorkLists','/editTask/:_id']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint', 'complaintForm','compliment', 'complimentForm','viewComplaint','viewWorkLists','/editTask/:_id','viewCompanyComplaint']});
 // Router.onBeforeAction(goToDashboard, {only: ['/dashboard']});
 
 Router.route('/', {
@@ -28,15 +28,33 @@ Router.route('/complaint', {
     layoutTemplate: 'publicLayout'
 });
 
+Router.route('/complaintForm', {
+    name: 'complaintForm',
+    template: 'complaintForm',
+    layoutTemplate: 'publicLayout'
+});
+
 Router.route('/compliment', {
     name: 'compliment',
     template: 'compliment',
     layoutTemplate: 'publicLayout'
 });
 
+Router.route('/complimentForm', {
+    name: 'complimentForm',
+    template: 'complimentForm',
+    layoutTemplate: 'publicLayout'
+});
+
 Router.route('/viewComplaint', {
     name: 'viewComplaint',
     template: 'viewComplaint',
+    layoutTemplate: 'publicLayout'
+});
+
+Router.route('/viewCompanyComplaint', {
+    name: 'viewCompanyComplaint',
+    template: 'viewCompanyComplaint',
     layoutTemplate: 'publicLayout'
 });
 
@@ -83,14 +101,23 @@ Router.route('/editTask/:_complaintID', {
     layoutTemplate: 'dashboardLayout',
     data: function(){
         var complaintOriginalID = this.params._complaintID;
-        console.log(complaintOriginalID);
+        var complaintGivenID = complaintsCollection.findOne({_id:complaintOriginalID}).complaintID;
+        var taskID = tasksCollection.findOne({complaintID:complaintGivenID})._id;
+
+        // console.log(complaintOriginalID);
         complaintsCollection.update(
             {_id: complaintOriginalID},
             {
                 $set:{isViewed: true}
             }
+        ),
+        tasksCollection.update(
+            {_id: taskID},
+            {
+                $set:{isViewed: true}
+            }
         )
-        console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
+        // console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
         return complaintsCollection.findOne({ _id: complaintOriginalID });
     }
 });
@@ -134,5 +161,11 @@ Router.route('/complimentsDashboard', {
 Router.route('/complimentDetails', {
     name: 'complimentDetails',
     template: '/complimentDetails',
+    layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/terminateManager', {
+    name: 'terminateManager',
+    template: '/terminateManager',
     layoutTemplate: 'dashboardLayout'
 });

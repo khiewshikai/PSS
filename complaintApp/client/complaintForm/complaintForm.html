@@ -1,0 +1,234 @@
+<template name="complaintForm">
+	<div class="row">
+
+		<div class="col-md-12">
+			
+			<!-- form -->
+			<div class="panel complaintForm">
+				<div class="panel-body">
+					<form class="form-horizontal col-md-7 col-md-offset-2">
+						<div class="form-group">
+							<label class="col-md-3 control-label">Name</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintName" placeholder="Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">NRIC</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintNRIC" placeholder="NRIC">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Contact Number</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintContact" placeholder="Contact Number">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Email</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintEmail" placeholder="Email">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Product Category</label>
+							<div class="col-md-9">
+								<select class="form-control complaintCategory">
+									<option value="Air-conditioners">Air-conditioners</option>
+									<option value="Airlines">Airlines</option>
+									<option value="Bank">Bank</option>
+									<option value="Beauty">Beauty</option>
+									<option value="Clothing">Clothing</option>
+									<option value="Contractors">Contractors</option>
+									<option value="Educational">Educational</option>
+									<option value="Electrical and Electronics">Electrical and Electronics</option>
+									<option value="Electricians">Electricians</option>
+									<option value="Food and Beverage">Food and Beverage</option>
+									<option value="Furniture">Furniture</option>
+									<option value="Hair">Hair</option>
+									<option value="Handphones">Handphones</option>
+									<option value="Insurance">Insurance</option>
+									<option value="Interior Design">Interior Design</option>
+									<option value="Laundries">Laundries</option>
+									<option value="Maid Agencies">Maid Agencies</option>
+									<option value="Match-making Agencies">Match-making Agencies</option>
+									<option value="Medical">Medical</option>
+									<option value="Motorcars">Motorcars</option>
+									<option value="Motorcycles">Motorcycles</option>
+									<option value="Movers">Movers</option>
+									<option value="Non-electrical Kitchenwares">Non-electrical Kitchenwares</option>
+									<option value="Online Shopping">Online Shopping</option>
+									<option value="Optical">Optical</option>
+									<option value="Pets">Pets</option>
+									<option value="Reading Materials">Reading Materials</option>
+									<option value="Real Estate">Real Estate</option>
+									<option value="Restaurants">Restaurants</option>
+									<option value="Slimming">Slimming</option>
+									<option value="Telecommunications">Telecommunications</option>
+									<option value="Timeshare">Timeshare</option>
+									<option value="Travel">Travel</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Company to Complaint</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintCompany" placeholder="Company Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Company Address or Website</label>
+							<div class="col-md-9">
+								<select class="form-control complaintCompanyAddressOrWebsite">
+									<option value="Company Address" selected>Company Address</option>
+									<option value="Website">Website</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group complaintCompanyAddressDetails">
+							<label class="col-md-3 control-label">Company Address</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complaintCompanyAddress" placeholder="Company Address">
+							</div>
+						</div>
+						<div class="form-group complaintCompanyAddressDetails">
+							<label class="col-md-3 control-label">Company Postal Code</label>
+							<div class="col-md-9">
+								<input type="text"  class="form-control complaintCompanyPostalCode" placeholder="Company Postal Code">
+							</div>
+						</div>
+						<div class="form-group complaintCompanyWebsiteDetails hide">
+							<label class="col-md-3 control-label">Company Website</label>
+							<div class="col-md-9">
+								<input type="text"  class="form-control complaintCompanyWebsite" placeholder="Company Website">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Comment</label>
+							<div class="col-md-9">
+								<textarea class="form-control complaintComment" placeholder="Textarea" rows="5"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label"></label>
+							<div class="col-md-9">
+								<div class="btn btn-sm btn-success m-r-5 submitComplaintBtn">Submit</div>
+								<div class="btn btn-sm btn-default resetComplaintBtn">Reset</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- END form -->
+
+			<!-- result -->
+			<div class="panel complaintSubmitted hide">
+				<div class="panel-body">
+					<div class="col-md-7 col-md-offset-2">
+						<div class="alert m-b-25">
+							<h4 class="block">Success</h4>
+							<p>
+								You have successful submitted a complaint. An email has been sent to you for reference. Thank you.
+							</p>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Complaint ID</label>
+							<div class="col-md-9 complaintIDPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Submit Time</label>
+							<div class="col-md-9 complaintTimePrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Name</label>
+							<div class="col-md-9 complaintNamePrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">NRIC</label>
+							<div class="col-md-9 complaintNRICPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Contact Number</label>
+							<div class="col-md-9 complaintContactPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Email</label>
+							<div class="col-md-9 complaintEmailPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Product Category</label>
+							<div class="col-md-9 complaintCategoryPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Company to Complaint</label>
+							<div class="col-md-9 complaintCompanyPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay complaintCompanyAddressDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Address</label>
+							<div class="col-md-9 complaintCompanyAddressPrint">
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay complaintCompanyAddressDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Postal Code</label>
+							<div class="col-md-9 complaintCompanyPostalCodePrint">
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay complaintCompanyWebsiteDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Website</label>
+							<div class="col-md-9 complaintCompanyWebsitePrint">
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>						
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label">Comment</label>
+							<div class="col-md-9 complaintCommentPrint">
+
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complaintDisplay">
+							<label class="col-md-3 control-label"></label>
+							<div class="btn btn-sm btn-success m-r-5 newComplaintBtn">Add New Complain</div>
+							<div class="btn btn-sm btn-default backToHomeBtn">Back to Home</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END result -->
+
+		</div>
+		<!-- END col-md-12 -->
+	</div>
+	<!-- END row -->
+</template>

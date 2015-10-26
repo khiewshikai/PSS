@@ -74,5 +74,21 @@ Template.complaint.events({
 		template.$(".complaintComment").val("");
 
 		event.preventDefault();
+	},
+
+	'click .newComplaintBtn':function(event, template){            
+		event.preventDefault();            
+		template.$(".complaintSubmitted").addClass("hide");
+		template.$(".complaintForm").removeClass("hide");
+	},
+
+	'click .backToHomeBtn':function(event, template){            
+		event.preventDefault();
+		Router.go('/');
+	},
+
+	'click .onlineBtn':function(event, template){            
+		event.preventDefault();
+		Router.go('/complaintForm');
 	}
 });
