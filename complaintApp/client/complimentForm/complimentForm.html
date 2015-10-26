@@ -35,11 +35,39 @@
 							<label class="col-md-3 control-label">Product Category</label>
 							<div class="col-md-9">
 								<select class="form-control productCategory">
-									<option>Banks</option>
-									<option>Electrical and Electronics</option>
-									<option>Food & Beverages</option>
-									<option>Hotels</option>
-									<option>Motorcars</option>
+									<option value="Air-conditioners">Air-conditioners</option>
+									<option value="Airlines">Airlines</option>
+									<option value="Bank">Bank</option>
+									<option value="Beauty">Beauty</option>
+									<option value="Clothing">Clothing</option>
+									<option value="Contractors">Contractors</option>
+									<option value="Educational">Educational</option>
+									<option value="Electrical and Electronics">Electrical and Electronics</option>
+									<option value="Electricians">Electricians</option>
+									<option value="Food and Beverage">Food and Beverage</option>
+									<option value="Furniture">Furniture</option>
+									<option value="Hair">Hair</option>
+									<option value="Handphones">Handphones</option>
+									<option value="Insurance">Insurance</option>
+									<option value="Interior Design">Interior Design</option>
+									<option value="Laundries">Laundries</option>
+									<option value="Maid Agencies">Maid Agencies</option>
+									<option value="Match-making Agencies">Match-making Agencies</option>
+									<option value="Medical">Medical</option>
+									<option value="Motorcars">Motorcars</option>
+									<option value="Motorcycles">Motorcycles</option>
+									<option value="Movers">Movers</option>
+									<option value="Non-electrical Kitchenwares">Non-electrical Kitchenwares</option>
+									<option value="Online Shopping">Online Shopping</option>
+									<option value="Optical">Optical</option>
+									<option value="Pets">Pets</option>
+									<option value="Reading Materials">Reading Materials</option>
+									<option value="Real Estate">Real Estate</option>
+									<option value="Restaurants">Restaurants</option>
+									<option value="Slimming">Slimming</option>
+									<option value="Telecommunications">Telecommunications</option>
+									<option value="Timeshare">Timeshare</option>
+									<option value="Travel">Travel</option>
 								</select>
 							</div>
 						</div>
@@ -47,6 +75,33 @@
 							<label class="col-md-3 control-label">Company to Compliment</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control companyToCompliment" placeholder="Company Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Company Address or Website</label>
+							<div class="col-md-9">
+								<select class="form-control complimentCompanyAddressOrWebsite">
+									<option value="Company Address" selected>Company Address</option>
+									<option value="Website">Website</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group complimentCompanyAddressDetails">
+							<label class="col-md-3 control-label">Company Address</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control complimentCompanyAddress" placeholder="Company Address">
+							</div>
+						</div>
+						<div class="form-group complimentCompanyAddressDetails">
+							<label class="col-md-3 control-label">Company Postal Code</label>
+							<div class="col-md-9">
+								<input type="text"  class="form-control complimentCompanyPostalCode" placeholder="Company Postal Code">
+							</div>
+						</div>
+						<div class="form-group complimentCompanyWebsiteDetails hide">
+							<label class="col-md-3 control-label">Company Website</label>
+							<div class="col-md-9">
+								<input type="text"  class="form-control complimentCompanyWebsite" placeholder="Company Website">
 							</div>
 						</div>
 						<div class="form-group">
@@ -74,73 +129,93 @@
 						<div class="alert m-b-25">
 							<h4 class="block">Success</h4>
 							<p>
-								You have successful submitted a complaint. An email has been sent to you for reference. Thank you.
+								You have successful submitted a compliment. An email has been sent to you for reference. Thank you.
 							</p>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Complaint ID</label>
 							<div class="col-md-9 complimentIDPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Submit Time</label>
 							<div class="col-md-9 complimentTimePrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Name</label>
 							<div class="col-md-9 complimentNamePrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">NRIC</label>
 							<div class="col-md-9 complimentNRICPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Contact Number</label>
 							<div class="col-md-9 complimentContactPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Email</label>
 							<div class="col-md-9 complimentEmailPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Product Category</label>
 							<div class="col-md-9 complimentCategoryPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Company to Complaint</label>
 							<div class="col-md-9 complimentCompanyPrint">
 
 							</div>
 							<div class="clearfix"></div>
+						</div><div class="complimentDisplay complimentCompanyAddressDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Address</label>
+							<div class="col-md-9 complimentCompanyAddressPrint">
+								
+							</div>
+							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay complimentCompanyAddressDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Postal Code</label>
+							<div class="col-md-9 complimentCompanyPostalCodePrint">
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complimentDisplay complimentCompanyWebsiteDetailsDisplay hide">
+							<label class="col-md-3 control-label">Company Website</label>
+							<div class="col-md-9 complimentCompanyWebsitePrint">
+								
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label">Comment</label>
 							<div class="col-md-9 complimentCommentPrint">
 
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div class="complaintDisplay">
+						<div class="complimentDisplay">
 							<label class="col-md-3 control-label"></label>
 							<div class="btn btn-sm btn-success m-r-5 newComplimentBtn">Add New Compliment</div>
 							<div class="btn btn-sm btn-default backToHomeBtn">Back to Home</div>
