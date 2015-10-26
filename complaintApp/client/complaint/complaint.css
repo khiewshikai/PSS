@@ -45,3 +45,7 @@
 .onlineBtn {
 	cursor: pointer;
 }
+
+.hotlinksPullRight {
+	float: right;
+}
