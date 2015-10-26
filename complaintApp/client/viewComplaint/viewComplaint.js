@@ -5,12 +5,8 @@ Template.viewComplaint.events({
 		var caseID = template.$(".caseId").val();
 		var caseNRIC = template.$(".caseNRIC").val();
 
-		console.log(caseID);
-		console.log(caseNRIC);
-
 		var complaint = complaintsCollection.findOne({complaintID: parseInt(caseID), complainantNRIC: caseNRIC});
-		console.log(complaint);
-
+		
 		if (complaint) {
 			template.one.set(complaint.complaintID);
 			template.two.set(complaint.dateTimeOpen);
