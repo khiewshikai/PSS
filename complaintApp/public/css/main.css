@@ -1,6 +1,6 @@
 body {
     background: #f3f4f5;
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #707478;
     overflow-x: hidden;
@@ -6268,4 +6268,82 @@ body.flat-black {
 .navbar-default .navbar-nav>.active.open>a, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     color: #fff !important;
     background-color: #3b99d8 !important;
+}
+
+.x-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    text-decoration: none;
+}
+
+.x-btn-default {
+    border-color: #999a9b;
+    color: #999a9b;
+}
+
+.x-btn-default:hover,
+.x-btn-default-filled {
+    border-color: #999a9b;
+    background-color: #999a9b;
+    color: #fff;
+}
+
+.x-btn-primary {
+    border-color: #3b99d8;
+    color: #3b99d8;
+}
+
+.x-btn-primary:hover,
+.x-btn-primary-filled {
+    border-color: #3b99d8;
+    background-color: #3b99d8;
+    color: #fff;
+}
+
+.x-btn-success {
+    border-color: #25c5c3;
+    color: #25c5c3;
+}
+
+.x-btn-success:hover,
+.x-btn-success-filled {
+    border-color: #25c5c3;
+    background-color: #25c5c3;
+    color: #fff;
+}
+
+.x-btn-danger {
+    border-color: #e04352;
+    color: #e04352;
+}
+
+.x-btn-danger:hover,
+.x-btn-danger-filled {
+    border-color: #e04352;
+    background-color: #e04352;
+    color: #fff;
+}
+
+.x-btn.disabled {
+    background-color: #cdcecf;
+    color: #fff;
+    border-color: transparent;
+    cursor: not-allowed;
 }
