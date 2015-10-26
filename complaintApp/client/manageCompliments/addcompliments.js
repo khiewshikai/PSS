@@ -10,6 +10,9 @@ if (Meteor.isClient) {
 			var complimentCompanyVar = template.$('[name=addComplimentCompany]').val();
 			var complimentProdCatVar = template.$('[name=addComplimentProdCat]').val();
 			var complimentCommentsVar = template.$('[name=addComplimentComments]').val();
+			var complimentCompanyAddressVar = template.$('[name=addComplimentCompanyAddress]').val();
+            var complimentCompanyPostalCodeVar = template.$('[name=addComplimentCompanyPostalCode]').val();
+		    var complimentCompanyWebsiteVar = template.$('[name=addComplimentCompanyWebsite]').val(); 
 
             var isEmpty = false;
 			
@@ -43,7 +46,25 @@ if (Meteor.isClient) {
             	template.$('[name=addComplimentComments]').attr('placeholder', 'Please fill in the Complimenant Comments');
             	var isEmpty = true;
         	}
-
+			if(template.$("[name=addComplimentCompanyLocation]").val() === 'Company Address'){
+				if (!complimentCompanyAddressVar || complimentCompanyAddressVar === '') {
+					template.$('[name=addComplimentCompanyAddress]').addClass('has-error');
+					template.$('[name=addComplimentCompanyAddress]').attr('placeholder', 'Please fill in the Company Address');
+					var isEmpty = true;        	
+				}
+				if (!complimentCompanyPostalCodeVar || complimentCompanyPostalCodeVar === '') {
+					template.$('[name=addComplimentCompanyAddress]').addClass('has-error');
+					template.$('[name=addComplimentCompanyAddress]').attr('placeholder', 'Please fill in the Company Postal Code');
+					var isEmpty = true;        	
+				}
+			}
+			if(template.$("[name=addComplimentCompanyLocation]").val() === 'Website'){
+				if (!complimentCompanyWebsiteVar || complimentCompanyWebsiteVar === '') {
+					template.$('[name=addComplimentCompanyWebsite]').addClass('has-error');
+					template.$('[name=addComplimentCompanyWebsite]').attr('placeholder', 'Please fill in the Company Website');
+					var isEmpty = true;        	
+				}
+			}
             if (isEmpty) {
                 return;
             };
@@ -58,7 +79,10 @@ if (Meteor.isClient) {
 				complimenantNRIC: complimentNRICVar,
 				complimenantContact: complimentContactVar,
 				complimenantEmail: complimentEmailVar,
-				companyToCompliment:complimentCompanyVar,
+				companyToCompliment: complimentCompanyVar,
+				companyAddress: complimentCompanyAddressVar,
+				companyPostalCode: complimentCompanyPostalCodeVar,
+				companyWebsite: complimentCompanyWebsiteVar,
 				productCategory: complimentProdCatVar,
 				complimenantComment: complimentCommentsVar, 	
 				complimentCreatedBy: currentUser,
@@ -81,6 +105,17 @@ if (Meteor.isClient) {
             template.$(".complimentEmailPrint").html(complimentEmailVar);
             template.$(".complimentCategoryPrint").html(complimentProdCatVar);
             template.$(".complimentCompanyPrint").html(complimentCompanyVar);
+			if(template.$("[name=addComplimentCompanyLocation]").val() === 'Company Address'){
+				template.$(".complimentCompanyAddressDetailsDisplay").removeClass("hide");
+				template.$(".complimentCompanyWebsiteDetailsDisplay").addClass("hide");
+				template.$(".complimentCompanyAddressPrint").html(complimentCompanyAddressVar);
+				template.$(".complimentCompanyPostalCodePrint").html(complimentCompanyPostalCodeVar);
+			}else{
+				template.$(".complimentCompanyAddressDetailsDisplay").addClass("hide");
+				template.$(".complimentCompanyWebsiteDetailsDisplay").removeClass("hide");
+				template.$(".complimentCompanyWebsitePrint").html(complimentCompanyWebsiteVar);
+			}
+			
             template.$(".complimentCommentPrint").html(complimentCommentsVar);
 
             template.$(".complimentForm").addClass("hide");
@@ -91,8 +126,12 @@ if (Meteor.isClient) {
             template.$("[name=addComplimentContact]").val("");
             template.$("[name=addComplimentEmail]").val("");
             template.$(".complimentCategory").prop('selectedIndex',0);
-            template.$("[name=addComplimentCompany]").val("");
+            template.$("[name=addComplimentCompany]").val("");			
+			template.$(".complimentCompanyAddressOrWebsite").prop('selectedIndex',0);
             template.$("[name=addComplimentComments]").val("");
+			template.$('[name=addComplimentCompanyAddress]').val("");
+            template.$('[name=addComplimentCompanyPostalCode]').val("");
+		    template.$('[name=addComplimentCompanyWebsite]').val(""); 
 		},
 
         'click .resetComplimentBtn':function(event, template){            
@@ -102,7 +141,11 @@ if (Meteor.isClient) {
             template.$("[name=addComplimentEmail]").val("");
             template.$(".complimentCategory").prop('selectedIndex',0);
             template.$("[name=addComplimentCompany]").val("");
-            template.$("[name=addComplimentComments]").val("");
+			template.$(".complimentCompanyAddressOrWebsite").prop('selectedIndex',0);
+            template.$("[name=addComplimentComments]").val("");			
+			template.$('[name=addComplimentCompanyAddress]').val("");
+            template.$('[name=addComplimentCompanyPostalCode]').val("");
+		    template.$('[name=addComplimentCompanyWebsite]').val(""); 
             event.preventDefault();
         },
 
@@ -115,6 +158,16 @@ if (Meteor.isClient) {
         'click .backToHomeBtn':function(event, template){            
             event.preventDefault();
             Router.go('dashboard');
+        },
+		
+		'change .complimentCompanyAddressOrWebsite':function(event, template){            
+            if(template.$("[name=addComplimentCompanyLocation]").val() === 'Company Address'){
+				template.$(".complimentCompanyAddressDetails").removeClass("hide");
+				template.$(".complimentCompanyWebsiteDetails").addClass("hide");
+			}else{
+				template.$(".complimentCompanyAddressDetails").addClass("hide");
+				template.$(".complimentCompanyWebsiteDetails").removeClass("hide");
+			}
         }
 	});	
 }
