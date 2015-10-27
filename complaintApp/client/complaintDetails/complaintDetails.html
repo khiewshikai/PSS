@@ -33,12 +33,52 @@
 						<input type="text" class="form-control complaintEmail cd-disabled" value={{complaints.complainantEmail}} disabled>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group cd-cat1">
 					<label class="col-md-3 control-label">Product Category</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control complaintCategory cd-disabled" value={{complaints.productCategory}} disabled>
 					</div>
 				</div>
+				<div class="form-group cd-cat2 hide">
+						<label class="col-md-3 control-label">Product Category</label>
+						<div class="col-md-9">
+							<select name="addComplaintProdCat" class="form-control complaintCategory">
+									<option value="Air-conditioners">Air-conditioners</option>
+									<option value="Airlines">Airlines</option>
+									<option value="Bank">Bank</option>
+									<option value="Beauty">Beauty</option>
+									<option value="Clothing">Clothing</option>
+									<option value="Contractors">Contractors</option>
+									<option value="Educational">Educational</option>
+									<option value="Electrical and Electronics">Electrical and Electronics</option>
+									<option value="Electricians">Electricians</option>
+									<option value="Food and Beverage">Food and Beverage</option>
+									<option value="Furniture">Furniture</option>
+									<option value="Hair">Hair</option>
+									<option value="Handphones">Handphones</option>
+									<option value="Insurance">Insurance</option>
+									<option value="Interior Design">Interior Design</option>
+									<option value="Laundries">Laundries</option>
+									<option value="Maid Agencies">Maid Agencies</option>
+									<option value="Match-making Agencies">Match-making Agencies</option>
+									<option value="Medical">Medical</option>
+									<option value="Motorcars">Motorcars</option>
+									<option value="Motorcycles">Motorcycles</option>
+									<option value="Movers">Movers</option>
+									<option value="Non-electrical Kitchenwares">Non-electrical Kitchenwares</option>
+									<option value="Online Shopping">Online Shopping</option>
+									<option value="Optical">Optical</option>
+									<option value="Pets">Pets</option>
+									<option value="Reading Materials">Reading Materials</option>
+									<option value="Real Estate">Real Estate</option>
+									<option value="Restaurants">Restaurants</option>
+									<option value="Slimming">Slimming</option>
+									<option value="Telecommunications">Telecommunications</option>
+									<option value="Timeshare">Timeshare</option>
+									<option value="Travel">Travel</option>
+							</select>
+						</div>
+					</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">Company to Complaint</label>
 					<div class="col-md-9">
@@ -51,7 +91,7 @@
 						<textarea class="form-control complaintComment" value={{complaints.managerInstruction}} rows="5"></textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group cd-statusGrp">
 					<label class="col-md-3 control-label">Status</label>
 					<div class="col-md-9">
 						<select class="form-control complaintStatus" value={{complaints.status}}>
@@ -63,7 +103,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group complaintManagerGrp">
 					<label class="col-md-3 control-label">Manager in-charge</label>
 					<div class="col-md-9">
 						<select class="form-control complaintManager">
@@ -75,6 +115,7 @@
 					<label class="col-md-3 control-label"></label>
 					<div class="col-md-9">
 						<div class="btn btn-sm btn-success m-r-5 cd-updateBtn">Update</div>
+						<div class="btn btn-sm btn-default cd-saveDraft hide">Save as draft</div>
 						<div class="btn btn-sm btn-default cd-backButton">Back</div>
 					</div>
 				</div>
