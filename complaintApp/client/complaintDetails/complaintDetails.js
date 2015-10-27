@@ -1,8 +1,9 @@
 Template.complaintDetails.rendered = function(){
     var complaintID = parseInt(Session.get("selectedComplaintID"));
     var firstOriginalStatus = complaintsCollection.findOne({complaintID: complaintID}).status
+    var userRole = Meteor.user().profile.role;
     //console.log("STATUS: " + complaintsCollection.findOne({complaintID: complaintID}).status)
-    if(firstOriginalStatus === "Draft"){
+    if(firstOriginalStatus === "Draft" && userRole != "Clerk"){
         $('.complaintStatus').append('<option>Draft</option>')
         $('.cd-saveDraft').removeClass('hide');
         $('.cd-updateBtn').html('Submit');
@@ -17,6 +18,17 @@ Template.complaintDetails.rendered = function(){
         $('.cd-statusGrp').addClass('hide');
         $('.complaintManagerGrp').addClass('hide');
 
+    }
+    
+    if(userRole === "Clerk" || firstOriginalStatus === "Closed"){
+        $('.complaintStatus').prop('disabled', true);
+        $('.complaintManager').prop('disabled', true);
+        $('.complaintComment').prop('disabled', true);
+        $('.complaintStatus').addClass('cd-disabled');
+        $('.complaintManager').addClass('cd-disabled');
+        $('.complaintComment').addClass('cd-disabled');
+
+        $('.cd-updateBtn').addClass('hide');
     }
 
     $(".complaintStatus").val(complaintsCollection.findOne({complaintID: complaintID}).status);
