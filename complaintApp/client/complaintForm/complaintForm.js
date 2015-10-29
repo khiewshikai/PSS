@@ -91,6 +91,28 @@ Template.complaintForm.events({
 			dateTimeOpen: timeSubmitted,
 			dateTimeClose: "N/A"
 		});
+		
+	    var minTask = 0;
+	    var trackManager = "";		  
+	    var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();	    
+		
+	    for(index = 0; index <listOfManager.length; ++index){
+			console.log(listOfManager[index]._id);
+			var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
+			console.log(tempCountTask);
+			trackManager = listOfManager[index]._id;
+			if(tempCountTask <= minTask){
+				trackManager = listOfManager[index]._id;
+				minTask = tempCountTask;
+			}
+	    }
+		
+	    tasksCollection.insert({
+			complaintID: complaintID,
+			managerID: trackManager,
+			creatorID: Meteor.userId(),
+			isViewed: "true"
+		})
 
 		var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
 
