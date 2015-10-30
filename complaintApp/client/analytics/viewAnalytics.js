@@ -7,7 +7,6 @@ if (Meteor.isClient) {
             forcePlaceholderSize: true,
             zIndex: 999999
         }).disableSelection();
-<<<<<<< HEAD
 
         var xFormat = "%Y-%m-%d";
         var tickFormat = "%Y-%m-%d";
@@ -45,8 +44,9 @@ if (Meteor.isClient) {
 		var noOfComplaintPrevDayThree = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-4)), "$lte": new Date(new Date().setDate(new Date().getDate()-3))}}).count();
 		var noOfComplaintPrevDayFour = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-5)), "$lte": new Date(new Date().setDate(new Date().getDate()-4))}}).count();
 		var noOfComplaintPrevDayFive = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-6)), "$lte": new Date(new Date().setDate(new Date().getDate()-5))}}).count();
+        var noOfComplaintPrevDaySix = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()-6))}}).count();
 		
-		var chart1 = c3.generate({
+        var chart1 = c3.generate({
             bindto: '#complaints',
             data: {
               columns: [
@@ -107,7 +107,6 @@ if (Meteor.isClient) {
         var chart3 = c3.generate({
             bindto: '#compliments',
             data: {
-<<<<<<< HEAD
                 x: 'x',
                 xFormat: xFormat,
                 columns: [
@@ -127,12 +126,10 @@ if (Meteor.isClient) {
                         format: tickFormat
                     }
                 }
-=======
               columns: [
                 ['Total Number of Compliments', noOfComplimentsPrevDayFive, noOfComplimentsPrevDayFour, noOfComplimentsPrevDayThree, noOfComplimentsPrevDayTwo, noOfComplimentsPrevOneDay, noOfComplimentsToday]
               ],
               type: 'bar'
->>>>>>> 2acd9c2dc436f67efacacc3a95bf9f5678b2e86c
             },
             grid: {
                 x: {
