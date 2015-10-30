@@ -7,6 +7,7 @@ if (Meteor.isClient) {
             forcePlaceholderSize: true,
             zIndex: 999999
         }).disableSelection();
+<<<<<<< HEAD
 
         var xFormat = "%Y-%m-%d";
         var tickFormat = "%Y-%m-%d";
@@ -34,6 +35,24 @@ if (Meteor.isClient) {
                         format: tickFormat
                     }
                 }
+		
+		//var dateNow = new Date();
+		//new Date(new Date().setDate(new Date().getDate()-5))
+		//complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()-2))}}).count();
+		var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date()}}).count();		
+		var noOfComplaintPrevOneDay = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-2)), "$lte": new Date(new Date().setDate(new Date().getDate()-1))}}).count();
+		var noOfComplaintPrevDayTwo = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-3)), "$lte": new Date(new Date().setDate(new Date().getDate()-2))}}).count();
+		var noOfComplaintPrevDayThree = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-4)), "$lte": new Date(new Date().setDate(new Date().getDate()-3))}}).count();
+		var noOfComplaintPrevDayFour = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-5)), "$lte": new Date(new Date().setDate(new Date().getDate()-4))}}).count();
+		var noOfComplaintPrevDayFive = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-6)), "$lte": new Date(new Date().setDate(new Date().getDate()-5))}}).count();
+		
+		var chart1 = c3.generate({
+            bindto: '#complaints',
+            data: {
+              columns: [
+                ['Total Number of Complaints', noOfComplaintPrevDayFive, noOfComplaintPrevDayFour, noOfComplaintPrevDayThree, noOfComplaintPrevDayTwo, noOfComplaintPrevOneDay, noOfComplaintToday]
+              ],
+              type: 'bar'
             },
             grid: {
                 x: {
@@ -77,10 +96,18 @@ if (Meteor.isClient) {
                 }
             }
         });
-
+		
+		var noOfComplimentsToday  = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date()}}).count();
+		var noOfComplimentsPrevOneDay = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-2)), "$lte": new Date(new Date().setDate(new Date().getDate()-1))}}).count();
+		var noOfComplimentsPrevDayTwo = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-3)), "$lte": new Date(new Date().setDate(new Date().getDate()-2))}}).count();
+		var noOfComplimentsPrevDayThree = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-4)), "$lte": new Date(new Date().setDate(new Date().getDate()-3))}}).count();
+		var noOfComplimentsPrevDayFour = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-5)), "$lte": new Date(new Date().setDate(new Date().getDate()-4))}}).count();
+		var noOfComplimentsPrevDayFive = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-6)), "$lte": new Date(new Date().setDate(new Date().getDate()-5))}}).count();
+				
         var chart3 = c3.generate({
             bindto: '#compliments',
             data: {
+<<<<<<< HEAD
                 x: 'x',
                 xFormat: xFormat,
                 columns: [
@@ -100,6 +127,12 @@ if (Meteor.isClient) {
                         format: tickFormat
                     }
                 }
+=======
+              columns: [
+                ['Total Number of Compliments', noOfComplimentsPrevDayFive, noOfComplimentsPrevDayFour, noOfComplimentsPrevDayThree, noOfComplimentsPrevDayTwo, noOfComplimentsPrevOneDay, noOfComplimentsToday]
+              ],
+              type: 'bar'
+>>>>>>> 2acd9c2dc436f67efacacc3a95bf9f5678b2e86c
             },
             grid: {
                 x: {
@@ -142,7 +175,19 @@ if (Meteor.isClient) {
                     show: true
                 }
             }
-        });
-        
-	});	
+        });     
+	});
+	
+	Template.viewAnalytics.helpers({
+			totalNoOfComplaints: function() {
+				return complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();				
+			}
+	});
+	
+	Template.viewAnalytics.helpers({
+			totalNoOfCompliments: function() {
+				return complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
+			}
+	});
+	
 }
