@@ -1,8 +1,13 @@
 <template name="detailedAnalytics">
+	<script src="saveSvgAsPng.js"></script>
+	
 
 	<div class="row">
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
 			View Detailed Analytics Data
+		</button>
+		<button id="downloadButton" type="button" class="btn btn-success pull-right">
+			Download
 		</button>
 	</div>
 
@@ -11,6 +16,7 @@
 	</div>
 
 	<div id="analytics-space" class="row">
+
 	</div>
 	
 	<!-- Display modal -->
@@ -46,7 +52,7 @@
 					    <div id="date-range" class="form-group">
 					        <label for="inputPassword">Time Period</label>
 					        <div id="advance-daterange" class="btn btn-white date-style">
-                                <span>Click to Choose Date</span>
+                                <span id="date-start-end">Click to Choose Date</span>
                             </div>
 					    </div>
 					    
@@ -99,7 +105,7 @@
 		      	</div>
 		      	<div class="modal-footer">
 		        	<button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-		        	<button type="button" class="btn btn-sm btn-success">View</button>
+		        	<button id="view-button" type="button" class="btn btn-sm btn-success">View</button>
 		      	</div>
 		    </div>
 	    </div>
