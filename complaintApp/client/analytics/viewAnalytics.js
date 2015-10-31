@@ -40,13 +40,6 @@ if (Meteor.isClient) {
             }
 
             return totalComplaints;
-            /*var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date()}}).count();     
-            var noOfComplaintPrevOneDay = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-2)), "$lte": new Date(new Date().setDate(new Date().getDate()-1))}}).count();
-            var noOfComplaintPrevDayTwo = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-3)), "$lte": new Date(new Date().setDate(new Date().getDate()-2))}}).count();
-            var noOfComplaintPrevDayThree = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-4)), "$lte": new Date(new Date().setDate(new Date().getDate()-3))}}).count();
-            var noOfComplaintPrevDayFour = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-5)), "$lte": new Date(new Date().setDate(new Date().getDate()-4))}}).count();
-            var noOfComplaintPrevDayFive = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-6)), "$lte": new Date(new Date().setDate(new Date().getDate()-5))}}).count();
-            var noOfComplaintPrevDaySix = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()-6))}}).count();*/
         }
 
         function getPastWeekCompliments () {
@@ -63,6 +56,44 @@ if (Meteor.isClient) {
             return totalCompliments;
         }
 
+        function getComplaintsPerCategory(){
+            var allComplaints = complaintsCollection.find().fetch()
+            var resultList = {};
+
+            //fetching results into HM
+            allComplaints.forEach(function(complaintObj){
+                var complaintCategory = complaintObj.productCategory;
+                if(complaintCategory in resultList == false){
+                    var count = 1;
+                    resultList[complaintCategory] = {count: count};
+                }else{
+                    var count = resultList[complaintCategory].count +1;
+                    resultList[complaintCategory].count = count;
+                }
+            });
+
+            //converting HM to arr
+            var resultListArr = [];
+            for(result in resultList){
+                var arr = [result, resultList[result].count];
+                resultListArr.push(arr);
+            }
+
+            //sorting from top to bottom
+            resultListArr.sort(function(a,b){
+                return b[1] - a[1];
+            });
+
+            /*var catTitle = ["x"];
+            var NumPerCatData = ['Total Number of Complaints Per Category'];
+            resultListArr.forEach(function(a){
+                catTitle.push(a[0]);
+                NumPerCatData.push(a[1]);
+            });*/
+
+            return resultListArr;
+        }
+
         $(".ui-sortable").sortable({
             placeholder: "sort-highlight",
             connectWith: ".ui-sortable",
@@ -74,24 +105,6 @@ if (Meteor.isClient) {
         var tickFormat = "%Y-%m-%d";
         var xAxisLabel = "Date(Day)";
 
-        /*var chart = c3.generate({
-            bindto: '#complaints',
-            data: {
-                x: 'x',
-                columns: [
-                    ['x', 30, 50, 100, 230, 300, 310],
-                    ['data1', 30, 200, 100, 400, 150, 250],
-                    ['data2', 130, 300, 200, 300, 250, 450]
-                ]
-            }
-        });*/
-		
-		//var dateNow = new Date();
-		//new Date(new Date().setDate(new Date().getDate()-5))
-		//complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()-2))}}).count();
-		
-        /*var complaintsData = [];
-        complaintsData.push()*/
         var chart1 = c3.generate({
             bindto: '#complaints',
             data: {
@@ -124,28 +137,25 @@ if (Meteor.isClient) {
             }
         });
 
-
+        var catResults = getComplaintsPerCategory();
+        var catTitle = ["x"];
+        var numPerCatData = ['Total Number of Complaints Per Category'];
+        catResults.forEach(function(a){
+            catTitle.push(a[0]);
+            numPerCatData.push(a[1]);
+        });
         var chart2 = c3.generate({
             bindto: '#complaints-per-cat',
             data: {
                 x: 'x',
-                xFormat: xFormat,
                 columns: [
-                    getPastWeek(),
-                    ['Total Number of Complaints', 30, 200, 100, 400, 150, 250]
+                    catTitle, numPerCatData
                 ],
                 type: 'bar'
             },
             axis: {
                 x: {
-                    type: 'timeseries',
-                    label: {
-                        text: xAxisLabel,
-                        position: 'outer-right'
-                    },
-                    tick: {
-                        format: tickFormat
-                    }
+                    type: 'category' // this needed to load string x value
                 }
             },
             grid: {
@@ -225,11 +235,19 @@ if (Meteor.isClient) {
         });
 
         $("#testButton").click(function() {
-            console.log("hello");
-            console.log(getPastWeek());
-            var test = noOfComplaintPrevOneDay = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-2)), "$lte": new Date(new Date().setDate(new Date().getDate()-1))}}).count();
-            console.log(getPastWeekCompliments());
-            console.log(getPastWeekComplaints());
+            /*console.log("hello");
+
+            var catResults = getComplaintsPerCategory();
+            var catTitle = ["x"];
+            var numPerCatData = ['Total Number of Complaints Per Category'];
+            catResults.forEach(function(a){
+                catTitle.push(a[0]);
+                numPerCatData.push(a[1]);
+            });
+
+            console.log(catTitle);
+            console.log(numPerCatData);*/
+
         });     
 
     });
