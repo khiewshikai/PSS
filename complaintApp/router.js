@@ -55,7 +55,7 @@ Router.route('/viewComplaint', {
 Router.route('/viewCompanyComplaint', {
     name: 'viewCompanyComplaint',
     template: 'viewCompanyComplaint',
-    layoutTemplate: 'publicLayout'
+    layoutTemplate: 'dashboardLayout'
 });
 
 Router.route('/login', {
