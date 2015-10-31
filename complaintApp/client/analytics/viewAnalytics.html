@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-6">
 			<h1 class="page-header">STATISTICS
-			<small>(Last 7 Days)</small>
+				<small>(Last 7 Days)</small>
 			</h1>
 		</div>
 		<div class="col-md-3 col-sm-3">
@@ -112,7 +112,7 @@
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
 						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove" data-original-title="" title="" aria-describedby="tooltip664982"><i class="fa fa-times"></i></a> -->
 					</div>
-					<h4 class="panel-title">TOP 5 CASE MANAGERS WHO CLOSED MOST CASES</h4>
+					<h4 class="panel-title">TOP CASE MANAGERS WHO CLOSED MOST CASES</h4>
 				</div>
 				<div class="panel-body">
 					<div id="top-case-managers" class="height-sm">
@@ -125,31 +125,13 @@
 								</tr>
 							</thead>
 							<tbody style="text-align:center">
+								{{#each topCaseManagers}}
 								<tr>
-									<td><label class="badge badge-danger">1</label></td>
-									<td>John Smith</td>
-									<td>27</td>
+									<td><label class="badge badge-color-{{getId @index}}">{{getId @index}}</label></td>
+									<td>{{manager}}</td>
+									<td>{{count}}</td>
 								</tr>
-								<tr>
-									<td><label class="badge badge-warning">2</label></td>
-									<td>Marilyn Cheong</td>
-									<td>21</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-success">3</label></td>
-									<td>Leon Markerberg</td>
-									<td>19</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-primary">4</label></td>
-									<td>Jacqueline Jordan</td>
-									<td>17</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-default">5</label></td>
-									<td>Cindy Samantha</td>
-									<td>15</td>
-								</tr>
+								{{/each}}
 							</tbody>
 						</table>
 					</div>
@@ -197,7 +179,7 @@
 						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse" data-original-title="" title=""><i class="fa fa-minus"></i></a>
 						<!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove" data-original-title="" title="" aria-describedby="tooltip664982"><i class="fa fa-times"></i></a> -->
 					</div>
-					<h4 class="panel-title">TOP 5 COMPANIES WITH HIGHEST NO. OF COMPLAINT CASES</h4>
+					<h4 class="panel-title">TOP COMPANIES WITH HIGHEST NO. OF COMPLAINT CASES</h4>
 				</div>
 				<div class="panel-body">
 					<div id="top-companies" class="height-sm">
@@ -210,31 +192,13 @@
 								</tr>
 							</thead>
 							<tbody style="text-align:center">
+								{{#each topCompanies}}
 								<tr>
-									<td><label class="badge badge-danger">1</label></td>
-									<td>ABC Pte Ltd</td>
-									<td>25</td>
+									<td><label class="badge badge-color-{{getId @index}}">{{getId @index}}</label></td>
+									<td>{{company}}</td>
+									<td>{{count}}</td>
 								</tr>
-								<tr>
-									<td><label class="badge badge-warning">2</label></td>
-									<td>CDF Pte Ltd</td>
-									<td>12</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-success">3</label></td>
-									<td>FGH Pte Ltd</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-primary">4</label></td>
-									<td>HIJ Pte Ltd</td>
-									<td>8</td>
-								</tr>
-								<tr>
-									<td><label class="badge badge-default">5</label></td>
-									<td>JKL Pte Ltd</td>
-									<td>5</td>
-								</tr>
+								{{/each}}
 							</tbody>
 						</table>
 					</div>

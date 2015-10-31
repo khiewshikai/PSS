@@ -20,6 +20,7 @@ check@1.0.6
 coffeescript@1.0.10
 ctjp:meteor-bootstrap-switch@3.3.1_1
 ctjp:meteor-bootstrap-switch-assets@3.3.1_1
+dburles:collection-helpers@1.0.4
 ddp@1.2.2
 ddp-client@1.2.1
 ddp-common@1.2.1

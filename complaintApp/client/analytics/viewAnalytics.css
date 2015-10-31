@@ -14,3 +14,23 @@
 .top-space{
 	min-height: 20px;
 }
+
+.badge-color-1 {
+	background: #ff5b57;
+}
+
+.badge-color-2 {
+	background: #f59c1a;
+}
+
+.badge-color-3 {
+	background: #00acac;
+}
+
+.badge-color-4 {
+	background: #348fe2;
+}
+
+.badge-color-5 {
+	background: #b6c2c9;
+}

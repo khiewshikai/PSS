@@ -233,17 +233,88 @@ if (Meteor.isClient) {
         });     
 
     });
-
-    Template.viewAnalytics.helpers({
-        totalNoOfComplaints: function() {
-            return complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();              
-        }
-    });
-    
-    Template.viewAnalytics.helpers({
-        totalNoOfCompliments: function() {
-            return complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
-        }
-    });
 	
 }
+
+Template.viewAnalytics.helpers({
+	totalNoOfComplaints: function() {
+		return complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
+	},
+
+	totalNoOfCompliments: function() {
+		return complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
+	},
+
+	topCompanies: function() {
+		var companiesArray = [];
+		var complaintsCol = complaintsCollection.find().fetch();
+
+		// group by companies
+		var groupedCompanies = _.groupBy(_.pluck(complaintsCol, 'companyToComplain'));
+
+		// sort the array
+		groupedCompanies = _.sortBy(groupedCompanies, function(group){ 
+			return group.length; 
+		});
+		groupedCompanies = groupedCompanies.reverse();
+
+		_.each(_.values(groupedCompanies), function(group) {
+			if (companiesArray.length < 5) {
+				companiesArray.push({
+					company: group[0],
+					count: group.length
+				});
+			}
+		});
+
+		return companiesArray;
+	},
+
+	topCaseManagers: function() {
+		var managerArray = [];
+
+		var taskCol = tasksCollection.find().fetch();
+		var closedTaskArray = [];
+
+		_.each(_.values(taskCol), function(task) {
+			var complaint = complaintsCollection.findOne({
+				complaintID: task.complaintID
+			});
+
+			if (complaint.status == "closed") {
+				closedTaskArray.push(task);
+			}
+		});
+
+		// group by manager
+		var groupedManager = _.groupBy(_.pluck(closedTaskArray, 'managerID'));
+		// sort the array
+		groupedManager = _.sortBy(groupedManager, function(group){ 
+			return group.length; 
+		});
+		groupedManager = groupedManager.reverse();
+
+		var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
+
+		_.each(_.values(groupedManager), function(group) {
+			if (managerArray.length < 5) {
+				var manager = Meteor.users.findOne({
+					_id : group[0]
+				});
+
+				var name = "No name";
+				if (manager) {
+					name = manager.profile.name;
+				}
+
+				managerArray.push({
+					manager: name,
+					count: group.length
+				});
+			}
+		});
+
+		return managerArray;
+	}
+});
+

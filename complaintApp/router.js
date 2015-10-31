@@ -55,7 +55,7 @@ Router.route('/viewComplaint', {
 Router.route('/viewCompanyComplaint', {
     name: 'viewCompanyComplaint',
     template: 'viewCompanyComplaint',
-    layoutTemplate: 'publicLayout'
+    layoutTemplate: 'dashboardLayout'
 });
 
 Router.route('/login', {
@@ -167,5 +167,11 @@ Router.route('/complimentDetails', {
 Router.route('/terminateManager', {
     name: 'terminateManager',
     template: '/terminateManager',
+    layoutTemplate: 'dashboardLayout'
+});
+
+Router.route('/logger', {
+    name: 'logger',
+    template: '/logger',
     layoutTemplate: 'dashboardLayout'
 });

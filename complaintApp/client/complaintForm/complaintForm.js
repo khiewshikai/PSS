@@ -2,6 +2,7 @@ Template.complaintForm.events({
 	'click .submitComplaintBtn':function(event, template){
 		event.preventDefault();
 
+		// get all the form values
 		var complaintName = template.$(".complaintName").val();
 		var complaintNRIC = template.$(".complaintNRIC").val();
 		var complaintContact = template.$(".complaintContact").val();
@@ -17,58 +18,61 @@ Template.complaintForm.events({
 		var complaintId = complaintsCollection.find().count() + 1;
 		var timeSubmitted = new Date();
 		
+		// validate form
 		var isEmpty = false;
 
+		clearComplaintValidate(template);
 		if (!complaintName || complaintName === '') {
-			template.$('.complaintName').addClass('error-desc');
+			template.$('.complaintName').closest(".form-group").addClass('has-error');
 			template.$('.complaintName').attr('placeholder', 'Please fill in the Complainant Name');
 			var isEmpty = true;
 		}
 		if (!complaintNRIC || complaintNRIC === '') {
-			template.$('.complaintNRIC').addClass('has-error');
+			template.$('.complaintNRIC').closest(".form-group").addClass('has-error');
 			template.$('.complaintNRIC').attr('placeholder', 'Please fill in the Complainant NRIC');
 			var isEmpty = true;
 		}
 		if (!complaintContact || complaintContact === '') {
-			template.$('.complaintContact').addClass('has-error');
+			template.$('.complaintContact').closest(".form-group").addClass('has-error');
 			template.$('.complaintContact').attr('placeholder', 'Please fill in the Complainant Contact');
 			var isEmpty = true;
 		}
 		if (!complaintEmail || complaintEmail === '') {
-			template.$('.complaintEmail').addClass('has-error');
+			template.$('.complaintEmail').closest(".form-group").addClass('has-error');
 			template.$('.complaintEmail').attr('placeholder', 'Please fill in the Complainant Email');
 			var isEmpty = true;
 		}
 		if (!complaintCompany || complaintCompany === '') {
-			template.$('.complaintCompany').addClass('has-error');
+			template.$('.complaintCompany').closest(".form-group").addClass('has-error');
 			template.$('.complaintCompany').attr('placeholder', 'Please fill in the Complainant Company');
 			var isEmpty = true;
 		}
 		if (!complaintComment || complaintComment === '') {
-			template.$('.complaintComment').addClass('has-error');
+			template.$('.complaintComment').closest(".form-group").addClass('has-error');
 			template.$('.complaintComment').attr('placeholder', 'Please fill in the Complainant Comments');
 			var isEmpty = true;
 		}
 		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
 			if (!complaintCompanyAddress || complaintCompanyAddress === '') {
-				template.$('.complaintCompanyAddress').addClass('has-error');
+				template.$('.complaintCompanyAddress').closest(".form-group").addClass('has-error');
 				template.$('.complaintCompanyAddress').attr('placeholder', 'Please fill in the Company Address');
 				var isEmpty = true;        	
 			}
 			if (!complaintCompanyPostalCode || complaintCompanyPostalCode === '') {
-				template.$('.complaintCompanyPostalCode').addClass('has-error');
+				template.$('.complaintCompanyPostalCode').closest(".form-group").addClass('has-error');
 				template.$('.complaintCompanyPostalCode').attr('placeholder', 'Please fill in the Company Postal Code');
 				var isEmpty = true;        	
 			}
 		}
 		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Website'){
 			if (!complaintCompanyWebsite || complaintCompanyWebsite === '') {
-				template.$('.complaintCompanyWebsite').addClass('has-error');
+				template.$('.complaintCompanyWebsite').closest(".form-group").addClass('has-error');
 				template.$('.complaintCompanyWebsite').attr('placeholder', 'Please fill in the Company Website');
 				var isEmpty = true;        	
 			}
 		}
 		if (isEmpty) {
+			template.$(".errorForm").removeClass("hide");
 			return;
 		};
 
@@ -92,11 +96,12 @@ Template.complaintForm.events({
 			dateTimeClose: "N/A"
 		});
 		
-	    var minTask = 0;
-	    var trackManager = "";		  
-	    var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();	    
+		// assign manager
+		var minTask = 0;
+		var trackManager = "";		  
+		var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();	    
 		
-	    for(index = 0; index <listOfManager.length; ++index){
+		for(index = 0; index <listOfManager.length; ++index){
 			console.log(listOfManager[index]._id);
 			var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
 			console.log(tempCountTask);
@@ -105,9 +110,9 @@ Template.complaintForm.events({
 				trackManager = listOfManager[index]._id;
 				minTask = tempCountTask;
 			}
-	    }
+		}
 		
-	    tasksCollection.insert({
+		tasksCollection.insert({
 			complaintID: complaintID,
 			managerID: trackManager,
 			creatorID: Meteor.userId(),
@@ -146,17 +151,7 @@ Template.complaintForm.events({
 		}
 
 		// reset form
-		template.$(".complaintName").val("");
-		template.$(".complaintNRIC").val("");
-		template.$(".complaintContact").val("");
-		template.$(".complaintEmail").val("");
-		template.$(".complaintCategory").prop('selectedIndex',0);
-		template.$(".complaintCompany").val("");
-		template.$(".complaintComment").val("");
-		template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
-		template.$(".complaintCompanyAddress").val("");
-		template.$(".complaintCompanyPostalCode").val("");
-		template.$(".complaintCompanyWebsite").val("");
+		resetComplaintForm(template);
 
 		template.$(".complaintForm").addClass("hide");
 		template.$(".complaintSubmitted").removeClass("hide");
@@ -164,17 +159,7 @@ Template.complaintForm.events({
 
 	'click .resetComplaintBtn':function(event, template){
 		
-		template.$(".complaintName").val("");
-		template.$(".complaintNRIC").val("");
-		template.$(".complaintContact").val("");
-		template.$(".complaintEmail").val("");
-		template.$(".complaintCategory").prop('selectedIndex',0);
-		template.$(".complaintCompany").val("");
-		template.$(".complaintComment").val("");		
-		template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
-		template.$(".complaintCompanyAddress").val("");
-		template.$(".complaintCompanyPostalCode").val("");
-		template.$(".complaintCompanyWebsite").val("");
+		resetComplaintForm(template);
 
 		event.preventDefault();
 	},
@@ -189,7 +174,7 @@ Template.complaintForm.events({
 		event.preventDefault();
 		Router.go('/');
 	},
-		
+
 	'change .complaintCompanyAddressOrWebsite':function(event, template){            
 		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
 			template.$(".complaintCompanyAddressDetails").removeClass("hide");
@@ -200,3 +185,34 @@ Template.complaintForm.events({
 		}
 	}
 });
+
+function resetComplaintForm(template) {
+	template.$(".complaintName").val("");
+	template.$(".complaintNRIC").val("");
+	template.$(".complaintContact").val("");
+	template.$(".complaintEmail").val("");
+	template.$(".complaintCategory").prop('selectedIndex',0);
+	template.$(".complaintCompany").val("");
+	template.$(".complaintComment").val("");		
+	template.$(".complaintCompanyAddressOrWebsite").prop('selectedIndex',0);
+	template.$(".complaintCompanyAddress").val("");
+	template.$(".complaintCompanyPostalCode").val("");
+	template.$(".complaintCompanyWebsite").val("");
+	clearComplaintValidate(template);
+}
+
+function clearComplaintValidate(template) {
+	template.$('.complaintName').closest(".form-group").removeClass('has-error');
+	template.$('.complaintNRIC').closest(".form-group").removeClass('has-error');
+	template.$('.complaintContact').closest(".form-group").removeClass('has-error');
+	template.$('.complaintEmail').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCategory').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCompany').closest(".form-group").removeClass('has-error');
+	template.$('.complaintComment').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCompanyAddressOrWebsite').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCompanyAddress').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCompanyPostalCode').closest(".form-group").removeClass('has-error');
+	template.$('.complaintCompanyWebsite').closest(".form-group").removeClass('has-error');
+
+	template.$(".errorForm").addClass("hide");
+}

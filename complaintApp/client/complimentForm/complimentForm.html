@@ -1,4 +1,12 @@
 <template name="complimentForm">
+
+	<div class="pageContainer">
+		<ol class="breadcrumb pull-right">
+			<li><a href="/compliment">Guidelines</a></li>
+			<li class="active">Online form</li>
+		</ol>
+		<h1 class="page-header">Making a Compliment <small>online form</small></h1>
+
 	<div class="row">
 
 		<div class="col-md-12">
@@ -113,8 +121,9 @@
 						<div class="form-group">
 							<label class="col-md-3 control-label"></label>
 							<div class="col-md-9">
-								<div class="btn btn-sm btn-success m-r-5 submitComplimentBtn">Submit</div>
-								<div class="btn btn-sm btn-default resetComplimentBtn">Reset</div>
+								<div class="btn btn-sm btn-primary pull-right submitComplimentBtn">Submit</div>
+								<div class="btn btn-sm btn-default m-r-5 pull-right resetComplimentBtn">Reset</div>
+								<div class="errorForm hide">Please resolve the error(s).</div>
 							</div>
 						</div>
 					</form>
@@ -217,7 +226,7 @@
 						</div>
 						<div class="complimentDisplay">
 							<label class="col-md-3 control-label"></label>
-							<div class="btn btn-sm btn-success m-r-5 newComplimentBtn">Add New Compliment</div>
+							<div class="btn btn-sm btn-primary m-r-5 newComplimentBtn">Add New Compliment</div>
 							<div class="btn btn-sm btn-default backToHomeBtn">Back to Home</div>
 							<div class="clearfix"></div>
 						</div>
@@ -230,4 +239,7 @@
 		<!-- END col-md-12 -->
 	</div>
 	<!-- END row -->
+
+	</div>
+	<!-- END page container -->
 </template>

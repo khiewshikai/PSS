@@ -1,18 +1,19 @@
-if (Meteor.isClient) {
+Template.public.helpers({
+  getPublishedComplaints: function() {
 
-  Template.public.helpers({
-    getPublishedComplaints: function() {
-
-      var companyAndComplaintsCount = complaintsCountCollection.find({isEnabled: true}).fetch();
-      var companiesCountArr = [];
-      if(companyAndComplaintsCount.length > 0){
-        companiesCountArr.push(companyAndComplaintsCount[0]._id);        
+    var companyAndComplaintsCount = complaintsCountCollection.find({isEnabled: true}).fetch();
+    console.log(companyAndComplaintsCount);
+    var companiesCountArr = [];
+    if(companyAndComplaintsCount.length > 0){
+      for(var i = 0; i < companyAndComplaintsCount.length;i++){        
+          companiesCountArr.push(companyAndComplaintsCount[i]._id);
       }
-      return {_id: {$in:companiesCountArr}};
-    }
-  });
+    }   
+    // console.log(companiesCountArr);
+    return {_id: {$in:companiesCountArr}};
+  }
+});
 
-}
 
 Template.public.events({
   'click .goComplaint':function(event, template){            
