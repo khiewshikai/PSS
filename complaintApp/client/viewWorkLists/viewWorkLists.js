@@ -6,7 +6,7 @@ if (Meteor.isClient) {
 
   function getTasksCollectionOfCurrentUser(){
     // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
-    return tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"});
+    return tasksCollection.find({managerID:Meteor.userId()});
   }
 
   Template.viewWorkLists.helpers({    
