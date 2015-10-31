@@ -2,10 +2,14 @@ Template.public.helpers({
   getPublishedComplaints: function() {
 
     var companyAndComplaintsCount = complaintsCountCollection.find({isEnabled: true}).fetch();
+    console.log(companyAndComplaintsCount);
     var companiesCountArr = [];
     if(companyAndComplaintsCount.length > 0){
-      companiesCountArr.push(companyAndComplaintsCount[0]._id);        
-    }
+      for(var i = 0; i < companyAndComplaintsCount.length;i++){        
+          companiesCountArr.push(companyAndComplaintsCount[i]._id);
+      }
+    }   
+    // console.log(companiesCountArr);
     return {_id: {$in:companiesCountArr}};
   }
 });
