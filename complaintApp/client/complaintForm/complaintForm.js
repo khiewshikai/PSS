@@ -72,6 +72,7 @@ Template.complaintForm.events({
 			}
 		}
 		if (isEmpty) {
+			template.$(".errorForm").removeClass("hide");
 			return;
 		};
 
@@ -212,4 +213,6 @@ function clearComplaintValidate(template) {
 	template.$('.complaintCompanyAddress').closest(".form-group").removeClass('has-error');
 	template.$('.complaintCompanyPostalCode').closest(".form-group").removeClass('has-error');
 	template.$('.complaintCompanyWebsite').closest(".form-group").removeClass('has-error');
+
+	template.$(".errorForm").addClass("hide");
 }
