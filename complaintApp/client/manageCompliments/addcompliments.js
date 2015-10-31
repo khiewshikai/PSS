@@ -131,7 +131,13 @@ if (Meteor.isClient) {
             template.$("[name=addComplimentComments]").val("");
 			template.$('[name=addComplimentCompanyAddress]').val("");
             template.$('[name=addComplimentCompanyPostalCode]').val("");
-		    template.$('[name=addComplimentCompanyWebsite]').val(""); 
+		    template.$('[name=addComplimentCompanyWebsite]').val("");
+
+            // log
+            Meteor.call('logger',
+                Meteor.user()._id,
+                'compliment',
+                'added compliment id ' + complimentID);
 		},
 
         'click .resetComplimentBtn':function(event, template){            

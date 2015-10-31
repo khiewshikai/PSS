@@ -80,6 +80,14 @@ Template.terminateManager.events({
 
             })
         }
+
+        // log
+            Meteor.call('logger',
+                Meteor.user()._id,
+                'terminate',
+                'Terminated mananger id ' + currentManagerID);
+
+
         //termnate the manager
         Meteor.users.remove(currentManagerID)
         console.log("User: " + currentManagerID + " Name: " + currentManager + " removed.")

@@ -166,6 +166,12 @@ if (Meteor.isClient) {
 			template.$('[name=addComplaintCompanyAddress]').val("");
             template.$('[name=addComplaintCompanyPostalCode]').val("");
 		    template.$('[name=addComplaintCompanyWebsite]').val(""); 
+
+            // log
+            Meteor.call('logger',
+                Meteor.user()._id,
+                'complaint',
+                'Added new complaint id ' + complaintID);
         },
 
         'click .resetComplaintBtn':function(event, template){            
@@ -306,6 +312,12 @@ if (Meteor.isClient) {
             dateTimeOpen: dateTimeOpen,
             dateTimeClose: "" // current time
             });
+
+           // log
+            Meteor.call('logger',
+                Meteor.user()._id,
+                'complaint',
+                'Saved as draft complaint id ' + complaintID);
             
            // var minTask = 0;
            // var trackManager = "";         

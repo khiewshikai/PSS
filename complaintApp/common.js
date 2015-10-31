@@ -6,14 +6,16 @@ TabularTables.complaintsCollection = new Tabular.Table({
   name: "complaintsCollection",
   collection: complaintsCollection,
   columns: [
-    {data: "complainantName", title: "Name", className: "dt-center"},
-    {data: "complainantNRIC", title: "NRIC", className: "dt-center"},
-    {data: "complaintID", title: "Case ID", className: "dt-center"},
-    {data: "complainantContact", title: "Contact", className: "dt-center"},
-    {data: "complainantEmail", title: "Email", className: "dt-center"},
-    {data: "companyToComplain", title: "Company", className: "dt-center"},
-    {data: "status", title: "Status", className: "dt-center"}
-  ]
+  {data: "complainantName", title: "Name", className: "dt-center"},
+  {data: "complainantNRIC", title: "NRIC", className: "dt-center"},
+  {data: "complaintID", title: "Case ID", className: "dt-center"},
+  {data: "complainantContact", title: "Contact", className: "dt-center"},
+  {data: "complainantEmail", title: "Email", className: "dt-center"},
+  {data: "companyToComplain", title: "Company", className: "dt-center"},
+  {data: "status", title: "Status", className: "dt-center"}
+  ],
+  responsive: true,
+  autoWidth: false
 });
 //END dashboard
 
@@ -22,19 +24,21 @@ TabularTables.complimentsCollection = new Tabular.Table({
 	name: "complimentsCollection",
 	collection: complimentsCollection,
 	columns: [
-		{data: "complimenantName", title: "Name", className: "dt-center"},
-    {data: "complimenantNRIC", title: "NRIC", className: "dt-center"},
-    {data: "complimenantID", title: "Case ID", className: "dt-center"},
-    {data: "complimenantContact", title: "Contact", className: "dt-center"},
-    {data: "complimenantEmail", title: "Email", className: "dt-center"},
-    {data: "companyToCompliment", title: "Company", className: "dt-center"}
-	]
+  {data: "complimenantName", title: "Name", className: "dt-center"},
+  {data: "complimenantNRIC", title: "NRIC", className: "dt-center"},
+  {data: "complimenantID", title: "Case ID", className: "dt-center"},
+  {data: "complimenantContact", title: "Contact", className: "dt-center"},
+  {data: "complimenantEmail", title: "Email", className: "dt-center"},
+  {data: "companyToCompliment", title: "Company", className: "dt-center"}
+  ],
+  responsive: true,
+  autoWidth: false
 });
 
 Meteor.users.allow({
  remove: function(userid){
    return true;
-  }
+ }
 })
 
 
@@ -44,10 +48,12 @@ TabularTables.complaintsCountCollection = new Tabular.Table({
   name: "complaintsCountCollection",
   collection: complaintsCountCollection,
   columns: [
-    {data: "_id", title: "Company", className: "dt-center"},
-    {data: "count", title: "No. of Complaint", className: "dt-center"},
-    {data: "isEnabled", title: "Publish", className: "dt-center"}
+  {data: "_id", title: "Company", className: "dt-center"},
+  {data: "count", title: "No. of Complaint", className: "dt-center"},
+  {data: "isEnabled", title: "Publish", className: "dt-center"}
   ],
+  responsive: true,
+  autoWidth: false,
   order: [[ 1, "desc" ]],
   createdRow: function( row, data, dataIndex ) {
     // set row class based on row data
@@ -61,8 +67,8 @@ TabularTables.complaintsCountCollection = new Tabular.Table({
     }
     
     $('#toggle-one',row).bootstrapToggle({
-        on: 'Yes',
-        off: 'No'
+      on: 'Yes',
+      off: 'No'
     });
     
     $('.toggle',row).click(function(){      
@@ -72,25 +78,25 @@ TabularTables.complaintsCountCollection = new Tabular.Table({
 
       if(gonnaPublish == true){
         complaintsCountCollection.update(
-            {_id: companyName},
-            {
-                $set:{                
-                  isEnabled: true
-                }
-            },
-            {upsert: true}
-        )        
+          {_id: companyName},
+          {
+            $set:{                
+              isEnabled: true
+            }
+          },
+          {upsert: true}
+          )        
       }
       else{
         complaintsCountCollection.update(
-            {_id: companyName},
-            {
-                $set:{                
-                  isEnabled: false
-                }
-            },
-            {upsert: true}
-        )
+          {_id: companyName},
+          {
+            $set:{                
+              isEnabled: false
+            }
+          },
+          {upsert: true}
+          )
       }
     })
   }
@@ -100,9 +106,43 @@ TabularTables.complaintsCountCollectionPublic = new Tabular.Table({
   name: "complaintsCountCollectionPublic",
   collection: complaintsCountCollection,
   columns: [
-    {data: "_id", title: "Company", className: "dt-center"},
-    {data: "count", title: "No. of Complaint", className: "dt-center"}
+  {data: "_id", title: "Company", className: "dt-center"},
+  {data: "count", title: "No. of Complaint", className: "dt-center"}
   ],
-  order: [[ 1, "desc" ]]
+  order: [[ 1, "desc" ]],
+  responsive: true,
+  autoWidth: false
 });
 
+logCollection.helpers({
+  findName: function () {
+    var user = Meteor.users.findOne({_id: this.userId});
+    return user && user.username;
+  }
+});
+
+TabularTables.logCollection = new Tabular.Table({
+  name: "logCollection",
+  collection: logCollection,
+  extraFields: ['userId'],
+  columns: [
+  {data: "findName()", title: "User", className: "dt-center"},
+  {
+    data: "timestamp", 
+    title: "Time", 
+    className: "dt-center",
+    render: function (val, type, doc) {
+      if (val instanceof Date) {
+        return moment(val);
+      } else {
+        return "Never";
+      }
+    }
+  },
+  {data: "category", title: "Category", className: "dt-center"},
+  {data: "text", title: "Text", className: "dt-center"}
+  ],
+  order: [[ 1, "desc" ]],
+  responsive: true,
+  autoWidth: false
+});

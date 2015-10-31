@@ -169,3 +169,9 @@ Router.route('/terminateManager', {
     template: '/terminateManager',
     layoutTemplate: 'dashboardLayout'
 });
+
+Router.route('/logger', {
+    name: 'logger',
+    template: '/logger',
+    layoutTemplate: 'dashboardLayout'
+});

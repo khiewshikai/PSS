@@ -22,15 +22,15 @@ if (Meteor.isClient) {
   });
 
 	Template.editTask.events({
-  	"submit .editTask": function (event, template) {
+   "submit .editTask": function (event, template) {
   	  // Prevent default browser form submit
   	  event.preventDefault();
   	  
   	  // Get value from form element
       var caseID = parseInt(template.$(".complaintCaseID").val());
-  	  var followUp = event.target.followUp.value;
-  	  var managerInstruction = event.target.managerInstruction.value.trim();
-  	  var complaintStatus = event.target.complaintStatus.value;
+      var followUp = event.target.followUp.value;
+      var managerInstruction = event.target.managerInstruction.value.trim();
+      var complaintStatus = event.target.complaintStatus.value;
 
       var originalComplaint = complaintsCollection.findOne({complaintID: caseID});
       var originalManagerInstruction = originalComplaint.managerInstruction;
@@ -39,7 +39,7 @@ if (Meteor.isClient) {
 
       //toastr options 
       toastr.options ={
-          "closeButton": true
+        "closeButton": true
       }      
 
       if(followUp === originalFollowUp && managerInstruction === originalManagerInstruction && complaintStatus === originalComplaintStatus){
@@ -50,32 +50,38 @@ if (Meteor.isClient) {
           { _id: this._id},
           {
             $set: 
-              { 
-                followerUp: followUp,
-                status: complaintStatus,
-                managerInstruction: managerInstruction
-              }
+            { 
+              followerUp: followUp,
+              status: complaintStatus,
+              managerInstruction: managerInstruction
+            }
           }
-        );
+          );
         toastr.info("Record with case ID: " + caseID + " updated.");
         Router.go("/viewWorkLists");
       }
       
-  	  if(complaintStatus=="closed") {
-  	  	complaintsCollection.update(
-  	  		{ _id : this._id },
-  	  		{
-  	  			$set: 
-  	  			{ 
-  	  				dateTimeClose: new Date()
-  	  			}
-  	  		}
-  	  	)        
-  	  } 
-  	},
+      if(complaintStatus=="closed") {
+        complaintsCollection.update(
+         { _id : this._id },
+         {
+          $set: 
+          { 
+           dateTimeClose: new Date()
+         }
+       }
+       )        
+      } 
+
+      // log
+      Meteor.call('logger',
+        Meteor.user()._id,
+        'complaint',
+        'Updated complaint id ' + this._id);
+    },
 
     "click .cd-backButton":function(e, template){
-        Router.go("/viewWorkLists");
+      Router.go("/viewWorkLists");
     }
   });
 }
