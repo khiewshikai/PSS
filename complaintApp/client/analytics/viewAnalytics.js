@@ -208,7 +208,7 @@ if (Meteor.isClient) {
                 xFormat: xFormat,
                 columns: [
                     getPastWeek(),
-                    ['Average Time Taken Per Case', 30, 200, 100, 400, 150, 250]
+                    ['Average Time Taken Per Case', 30, 200, 100, 400, 150, 250, 100]
                 ],
                 type: 'bar'
             },
@@ -234,21 +234,12 @@ if (Meteor.isClient) {
             }
         });
 
-        $("#testButton").click(function() {
-            /*console.log("hello");
+        /*$("#testButton").click(function() {
+            var test = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date()}}).count();
+            console.log(test);
+            console.log(Complaints());
 
-            var catResults = getComplaintsPerCategory();
-            var catTitle = ["x"];
-            var numPerCatData = ['Total Number of Complaints Per Category'];
-            catResults.forEach(function(a){
-                catTitle.push(a[0]);
-                numPerCatData.push(a[1]);
-            });
-
-            console.log(catTitle);
-            console.log(numPerCatData);*/
-
-        });     
+        });   */  
 
     });
 	
