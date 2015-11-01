@@ -9,7 +9,7 @@ if(Meteor.isClient){
 
 	function populateComplaintCountCollection(){
 		var companyAndComplaintsCount = Session.get('companyAndComplaintsCount');
-		// console.log(companyAndComplaintsCount);
+		console.log(companyAndComplaintsCount);
 		companyAndComplaintsCount.forEach(function(element,index){
 			complaintsCountCollection.update(
 			    {_id: element._id},
