@@ -322,7 +322,7 @@ Template.viewAnalytics.helpers({
 
 				var name = "No name";
 				if (manager) {
-					name = manager.profile.name;
+					name = manager.username;
 				}
 
 				managerArray.push({
