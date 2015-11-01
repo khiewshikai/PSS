@@ -101,7 +101,7 @@ Template.complaintForm.events({
 		var trackManager = "";		  
 		var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();	    
 		
-		for(index = 0; index <listOfManager.length; ++index){
+		for(index = 0; index <listOfManager.length; index++){
 			console.log(listOfManager[index]._id);
 			var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
 			console.log(tempCountTask);
