@@ -1,9 +1,9 @@
 Template.complimentDetails.helpers({
     "compliment": function(){
     	var complimentID = parseInt(Session.get("selectedComplimentID"));
-    	//console.log("details: "+complimentID);
+    	console.log("details: "+complimentID);
     	if (complimentID){
-    		return complimentsCollection.findOne({ComplimenantID: complimentID});
+    		return complimentsCollection.findOne({complimenantID: complimentID});
     	}else{
     		Router.go("/complimentsDashboard");
     	}
