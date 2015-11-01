@@ -120,7 +120,7 @@ if (Meteor.isClient) {
 				complaintID: complaintID,
 				managerID: trackManager,
 				creatorID: Meteor.userId(),
-				isViewed: "true"
+				isViewed: false
 			})
 
 			var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
