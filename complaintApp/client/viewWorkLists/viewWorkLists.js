@@ -6,19 +6,34 @@ if (Meteor.isClient) {
 
   function getTasksCollectionOfCurrentUser(){
     // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
-    return tasksCollection.find({managerID:Meteor.userId()});
+    return tasksCollection.find({managerID:Meteor.userId()}).fetch();
   }
 
   Template.viewWorkLists.helpers({    
     getComplaintsCollection: function() {
       var tasks = getTasksCollectionOfCurrentUser();
-      var complaints = new Object();
-      var complaintIDArray = tasks.map( function(t) { return t["complaintID"]}); //return array of complaintIDs of this user
-      return {complaintID:{$in:complaintIDArray}} //give the selector in datatable to select only complaintID that are in the complaintIDArray;      
+      console.log(tasks);
+      // var complaints = new Object();
+      // var complaintIDArray = tasks.map( function(t) { return t["complaintID"]}); //return array of complaintIDs of this user
+
+      var openTaskArray = [];
+
+      _.each(_.values(tasks), function(task) {
+
+        var complaint = complaintsCollection.findOne({
+          complaintID: task.complaintID
+        });
+
+        if (complaint.status == "Open") {
+          openTaskArray.push(task);
+        }
+      });
+      console.log(openTaskArray);
+      return {complaintID:{$in:openTaskArray}} //give the selector in datatable to select only complaintID that are in the complaintIDArray;      
     },
 
     isManager: function(){
-      return Meteor.user().profile.role == "normal";      
+      return Meteor.user().profile.role == "manager";      
     }
   });
 
