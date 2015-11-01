@@ -106,7 +106,7 @@ if (Meteor.isClient) {
 			var trackManager = "";        
 			var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
 			console.log(listOfManager);
-			for(index = 0; index <listOfManager.length; ++index){
+			for(index = 0; index <listOfManager.length; index++){
 				console.log(listOfManager[index]._id);
 				var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
 				console.log(tempCountTask);
@@ -120,7 +120,7 @@ if (Meteor.isClient) {
 				complaintID: complaintID,
 				managerID: trackManager,
 				creatorID: Meteor.userId(),
-				isViewed: "true"
+				isViewed: false
 			})
 
 			var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";

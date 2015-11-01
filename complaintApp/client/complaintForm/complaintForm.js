@@ -44,7 +44,7 @@ Template.complaintForm.events({
 		}
 		if (!complaintCompany || complaintCompany === '') {
 			template.$('.complaintCompany').closest(".form-group").addClass('has-error');
-			template.$('.complaintCompany').attr('placeholder', 'Please fill in the Complainant Company');
+			template.$('.complaintCompany').attr('placeholder', 'Please fill in the Complaint Company');
 			var isEmpty = true;
 		}
 		if (!complaintComment || complaintComment === '') {
@@ -91,7 +91,7 @@ Template.complaintForm.events({
 			followerUp: "N/A",
 			complainantComment: complaintComment,
 			managerInstruction: "Case will be investigated",
-			status: "open",
+			status: "Open",
 			dateTimeOpen: timeSubmitted,
 			dateTimeClose: "N/A"
 		});
@@ -101,7 +101,7 @@ Template.complaintForm.events({
 		var trackManager = "";		  
 		var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();	    
 		
-		for(index = 0; index <listOfManager.length; ++index){
+		for(index = 0; index <listOfManager.length; index++){
 			console.log(listOfManager[index]._id);
 			var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
 			console.log(tempCountTask);
@@ -113,10 +113,10 @@ Template.complaintForm.events({
 		}
 		
 		tasksCollection.insert({
-			complaintID: complaintID,
+			complaintID: complaintId,
 			managerID: trackManager,
 			creatorID: Meteor.userId(),
-			isViewed: "true"
+			isViewed: false
 		})
 
 		var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
