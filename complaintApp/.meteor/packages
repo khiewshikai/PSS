@@ -35,3 +35,4 @@ jiku:bootstrap-toggle
 okgrow:router-autoscroll
 dburles:collection-helpers
 ephemer:reactive-datatables
+jspdf:core
