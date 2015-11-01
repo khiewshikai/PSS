@@ -29,30 +29,33 @@ if (Meteor.isClient) {
         }
 
         function getPastWeekComplaints(){
-            var totalComplaints = ['Total Number of Complaints'];
+            var totalComplaints = ['Total Number of Complaints'];            
 
-            var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date()}}).count();
-            totalComplaints.push(noOfComplaintToday);
-
-            for (i = 1; i <=7; i++) { 
+            for (i = 7; i > 1 ; i--) {
                 var complaints = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
                 totalComplaints.push(complaints);
             }
-
+			
+			var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();			
+            totalComplaints.push(noOfComplaintToday);
+			
+			console.log(totalComplaints);
+			
             return totalComplaints;
         }
 
         function getPastWeekCompliments () {
             var totalCompliments = ['Total Number of Compliments'];
-
-            var noOfComplimentsToday  = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date()}}).count();
-            totalCompliments.push(noOfComplimentsToday);
-
-            for (i = 1; i <=7; i++) { 
+			
+            for (i = 7; i > 1 ; i--) { 
                 var compliments = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
                 totalCompliments.push(compliments);
             }
-
+			
+			var noOfComplimentsToday  = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
+            totalCompliments.push(noOfComplimentsToday);
+			console.log(totalCompliments);
+			
             return totalCompliments;
         }
 
