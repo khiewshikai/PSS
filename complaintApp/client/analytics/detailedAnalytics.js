@@ -1,27 +1,5 @@
 
 Template.detailedAnalytics.onRendered(function(){
-        /*var chart1 = c3.generate({
-            bindto: '#analytics-space',
-            data: {
-              columns: [
-                ['Total Number of Complaints', 30, 200, 100, 400, 150, 250]
-              ],
-              type: 'bar'
-            },
-            grid: {
-                x: {
-                    show: true
-                },
-                y: {
-                    show: true
-                }
-            },
-            padding: {
-                top: 10,
-                right: 20,
-                left: 40,
-            },
-        });*/
 
     var time = $("#time-interval").val();
     var dateStart = "";
@@ -30,16 +8,61 @@ Template.detailedAnalytics.onRendered(function(){
     var xFormat = "";
     var xAxisLabel = "";
 
+    function getFormatDate(date){
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var finalDate = year + "-" + month + "-" + day;
+        return finalDate;
+    }
+
+    function addDays(currentDate, days) {
+       var dat = new Date(currentDate)
+       dat.setDate(dat.getDate() + days);
+       return dat;
+   }
+
+   function getDates(startDate, stopDate) {
+      var dateArray = ['x'];
+      var currentDate = startDate;
+      while (currentDate <= stopDate) {
+        console.log(currentDate);
+        dateArray.push(currentDate)
+        currentDate = addDays(currentDate, 1);
+        console.log(currentDate);
+        currentDate = getFormatDate(currentDate);
+        console.log(currentDate);
+      }
+
+      dateArray.push(stopDate);
+      return dateArray;
+    }
+
+    function randomizedData(title, number, minimum, maximum){
+        var numberArr = [title];
+
+        for (var i = 0; i < number; i++) {
+            var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+            numberArr.push(randomnumber);
+        };
+
+        return numberArr;
+    }
+
     function createGraph(title, dateStart, dateEnd, tickFormat, xFormat, xAxisLabel){
         console.log("createGraph");
+        var min = 100;
+        var max = 400;
+        var dates = getDates(dateStart, dateEnd);
+        var values = randomizedData(title, dates.length-1, min, max);
+
         var graph = c3.generate({
             bindto: '#analytics-space',
             data: {
                 x: 'x',
                 xFormat: xFormat,
                 columns: [
-                ['x', '2012-12-31', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05'],
-                [title, 30, 200, 100, 400, 150, 250]
+                    dates, values
                 ],
                 type: 'bar',
             },
@@ -185,6 +208,8 @@ Template.detailedAnalytics.onRendered(function(){
         }
 
         var title = $("#analytics-option").val();
+
+        console.log(getDates(dateStart, dateEnd));
 
         createGraph(title, dateStart, dateEnd, tickFormat, xFormat, xAxisLabel);
         $("#downloadButton").show();

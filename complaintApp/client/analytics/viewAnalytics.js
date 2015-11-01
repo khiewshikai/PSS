@@ -3,7 +3,7 @@ if (Meteor.isClient) {
 
         function getFormatDate(date){
             var day = date.getDate();
-            var month = date.getMonth();
+            var month = date.getMonth() + 1;
             var year = date.getFullYear();
 
             var finalDate = year + "-" + month + "-" + day;
