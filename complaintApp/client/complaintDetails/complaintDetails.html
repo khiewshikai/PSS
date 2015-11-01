@@ -92,8 +92,34 @@
 						<input type="text" class="form-control complaintCompany cd-disabled" value={{complaints.companyToComplain}} disabled>
 					</div>
 				</div>
+				<!-- New year -->
+				<div class="form-group cd-complaintCompanyAddressDetails">
+					<label class="col-md-3 control-label">Company Address</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control complaintCompanyAddress cd-disabled" value={{complaints.companyAddress}} disabled>
+					</div>
+				</div>
+				<div class="form-group cd-complaintCompanyAddressDetails">
+					<label class="col-md-3 control-label">Company Postal Code</label>
+					<div class="col-md-9">
+						<input type="text"  class="form-control complaintCompanyPostalCode cd-disabled" value={{complaints.companyPostalCode}} disabled>
+					</div>
+				</div>
+				<div class="form-group cd-complaintCompanyWebSite">
+					<label class="col-md-3 control-label">Company Website</label>
+					<div class="col-md-9">
+						<input type="text"  class="form-control complaintCompanyWebsite cd-disabled	" value={{complaints.companyWebsite}} disabled>
+					</div>
+				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Comment</label>
+					<label class="col-md-3 control-label">Complainants Comment</label>
+					<div class="col-md-9">
+						<textarea class="form-control complaintCustComment cd-disabled" value={{complaints.complainantComment}} rows="5" disabled></textarea>
+					</div>
+				</div>
+				<!-- END new -->
+				<div class="form-group">
+					<label class="col-md-3 control-label">Manager Comment</label>
 					<div class="col-md-9">
 						<textarea class="form-control complaintComment" value={{complaints.managerInstruction}} rows="5"></textarea>
 					</div>

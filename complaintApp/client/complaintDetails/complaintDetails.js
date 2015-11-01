@@ -31,6 +31,20 @@ Template.complaintDetails.rendered = function(){
         $('.cd-updateBtn').addClass('hide');
     }
 
+    var companyAddress = complaintsCollection.findOne({complaintID: complaintID}).companyAddress
+    var companyWeb = complaintsCollection.findOne({complaintID: complaintID}).companyWebsite
+    //console.log(companyAddress);
+    //console.log(companyWeb);
+
+    if(companyAddress === undefined){
+        console.log("comAddd");
+        $('.cd-complaintCompanyAddressDetails').addClass('hide')
+    }else if(companyWeb === undefined){
+        console.log("comWeb");
+        $('.cd-complaintCompanyWebSite').addClass('hide')
+    }
+
+
     $(".complaintStatus").val(complaintsCollection.findOne({complaintID: complaintID}).status);
     var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
     //console.log(listOfManager);
@@ -50,6 +64,7 @@ Template.complaintDetails.helpers({
     "complaints": function(){
     	var complaintID = parseInt(Session.get("selectedComplaintID"));
     	//console.log("details: "+complaintID);
+
     	if (complaintID){
     		return complaintsCollection.findOne({complaintID: complaintID});
     	}else{
