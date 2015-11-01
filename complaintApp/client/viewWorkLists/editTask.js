@@ -68,8 +68,8 @@ if (Meteor.isClient) {
           $set: 
           { 
            dateTimeClose: new Date()
-         }
-       }
+          }
+        }
        )        
       } 
 
