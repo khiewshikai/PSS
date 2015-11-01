@@ -23,13 +23,18 @@
 					<li class="{{active 'dashboard'}}"><a href="/dashboard">Complaints List</a></li>
 					<li class="{{active 'complimentsDashboard'}}"><a href="/complimentsDashboard">Compliments List</a></li>
 					<li class="{{active 'viewAnalytics'}}"><a href="/viewAnalytics">Analytics</a></li>
+					{{#if equals userRole 'Administrator'}}
+					<li class="{{active 'logger'}}"><a href="/logger">Logger</a></li>
+					{{/if}}
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userName}} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							{{#if equals userRole 'Administrator'}}
 							<li><a href="/terminateManager">Terminate Manager</a></li>
+							{{/if}}
 							<li><a href="#">Profile</a></li>
 							<li><a href="#">Support</a></li>
 							<li role="separator" class="divider"></li>
