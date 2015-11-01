@@ -16,7 +16,7 @@ Meteor.methods({
 	        	{ $group: { _id: "$companyToComplain", count: { $sum: 1 } } }
 	     	]
     	);
-    	console.log(companyAndComplaintsCount);
+    	// console.log(companyAndComplaintsCount);
     	return companyAndComplaintsCount;
 	}
 })

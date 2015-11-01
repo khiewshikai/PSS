@@ -3,7 +3,7 @@ if(Meteor.isClient){
 	Meteor.call('getCompanyAndComplaintsCount', function(err, data) {
 	  if (err)
 	    console.log(err);
-
+	  console.log(data);
 	  Session.set('companyAndComplaintsCount', data);
 	});
 
