@@ -19,6 +19,37 @@ TabularTables.complaintsCollection = new Tabular.Table({
 });
 //END dashboard
 
+TabularTables = {};
+
+TabularTables.workLists = new Tabular.Table({
+  name: "workLists",
+  collection: complaintsCollection,
+  columns: [
+  {data: "complainantName", title: "Name", className: "dt-center"},
+  {data: "complainantNRIC", title: "NRIC", className: "dt-center"},
+  {data: "complaintID", title: "Case ID", className: "dt-center"},
+  {data: "complainantContact", title: "Contact", className: "dt-center"},
+  {data: "complainantEmail", title: "Email", className: "dt-center"},
+  {data: "companyToComplain", title: "Company", className: "dt-center"},
+  {data: "status", title: "Status", className: "dt-center"}
+  ],
+  responsive: true,
+  autoWidth: false,
+  createdRow: function( row, data, dataIndex ) {
+    var complaintIDToSearch = parseInt($('td:eq(2)',row).text());
+    var taskObjArr = tasksCollection.find({complaintID: complaintIDToSearch}).fetch();
+    // console.log(taskObj);
+
+    taskObjArr.forEach(function(element,index){
+      console.log(element.isViewed);
+      if(element.isViewed == false){
+        $(row).addClass("info");//current row
+      }
+    })    
+  }
+});
+
+
 //Start complimentsDashboard
 TabularTables.complimentsCollection = new Tabular.Table({
 	name: "complimentsCollection",

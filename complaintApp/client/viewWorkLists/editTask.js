@@ -13,9 +13,11 @@ if (Meteor.isClient) {
       return true;
     },
     getComplaintStatus: function(){
-      var arr = ["open", "3rd-party","closed"];
-      var selected = arr.pop(this.status.toLowerCase());
+      var arr = ["Open", "3rd-party","Closed"];
+      // console.log(this.status.text())
+      var selected = arr.pop(this.status);
       arr.push(selected);
+      console.log(arr);
       return arr;
     }
 
