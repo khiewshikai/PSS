@@ -141,7 +141,7 @@ Template.complimentForm.events({
 
 	'click .backToHomeBtn':function(event, template){            
 		event.preventDefault();
-		Router.go('dashboard');
+		Router.go('/');
 	},
 
 	'change .complimentCompanyAddressOrWebsite':function(event, template){            
