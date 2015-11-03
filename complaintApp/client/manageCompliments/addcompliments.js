@@ -104,7 +104,7 @@ if (Meteor.isClient) {
         complimentTimeCreated: dateTimeOpen,
     });
 
-    var emailMsg = "You have successfully submitted a compliment on CASE Complaint Compliment Management System. Below is your compliment details.";
+    var emailMsg = 'Dear ' + complimentNameVar + ", you have successfully submitted a compliment on CASE Complaint Compliment Management System. Below is your compliment details.";
 
     Meteor.call('sendEmail',
         complimentEmailVar,

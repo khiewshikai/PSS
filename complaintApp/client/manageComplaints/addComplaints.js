@@ -135,12 +135,12 @@ if (Meteor.isClient) {
 				isViewed: false
 			})
 
-			var emailMsg = "You have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
+			var emailMsg = 'Dear ' + complaintNameVar + ", you have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
 
 			Meteor.call('sendEmail',
 				complaintEmailVar,
 				'ccms@case.com',
-				'Dear ' + complaintNameVar,
+				'CASE Complaint ID ' + complaintID,
 				emailMsg);
 
 			template.$(".complaintIDPrint").html(complaintID);
