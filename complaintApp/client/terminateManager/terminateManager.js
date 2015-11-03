@@ -75,9 +75,12 @@ Template.terminateManager.events({
                 
                 tasksCollection.update(
                     {_id: taskMongoID },
-                    {$set: {managerID: managerID}} //needs to update worklist of manager
+                    {$set: {managerID: managerID, isViewed: false}} //needs to update worklist of manager
                 );
-
+                Meteor.call('logger',
+                    Meteor.user()._id,
+                    'terminate',
+                    'Change of task manager for caseID: ' + caseID + ' to manager with ID: ' + newManager + '. Old manager: ' + currentManagerID);
             })
         }
 

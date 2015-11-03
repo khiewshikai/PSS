@@ -21,55 +21,67 @@ if (Meteor.isClient) {
 
 			if (!complaintNameVar || complaintNameVar === '') {
 				template.$('[name=addComplaintName]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintName]').attr('placeholder', 'Please fill in the Complainant Name');
+				template.$('[name=addComplaintName]').next().html('Please fill in the Complainant Name');
 				var isEmpty = true;
 			}
 			if (!complaintNRICVar || complaintNRICVar === '') {
 				template.$('[name=addComplaintNRIC]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintNRIC]').attr('placeholder', 'Please fill in the Complainant NRIC');
+				template.$('[name=addComplaintNRIC]').next().html('Please fill in the Complainant NRIC');
+				var isEmpty = true;
+			}
+			var reg = /^\d+$/;
+			if (!reg.test(complaintContactVar)) {
+				template.$('[name=addComplaintContact]').closest(".form-group").addClass('has-error');
+				template.$('[name=addComplaintContact]').next().html('Please enter a valid number');
 				var isEmpty = true;
 			}
 			if (!complaintContactVar || complaintContactVar === '') {
 				template.$('[name=addComplaintContact]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintContact]').attr('placeholder', 'Please fill in the Complainant Contact');
+				template.$('[name=addComplaintContact]').next().html('Please fill in the Complainant Contact');
+				var isEmpty = true;
+			}
+			var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+			if (!re.test(complaintEmailVar)) {
+				template.$('[name=addComplaintEmail]').closest(".form-group").addClass('has-error');
+				template.$('[name=addComplaintEmail]').next().html('Please fill in a valid Email');
 				var isEmpty = true;
 			}
 			if (!complaintEmailVar || complaintEmailVar === '') {
 				template.$('[name=addComplaintEmail]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintEmail]').attr('placeholder', 'Please fill in the Complainant Email');
+				template.$('[name=addComplaintEmail]').next().html('Please fill in the Complainant Email');
 				var isEmpty = true;
 			}
 			if (!complaintCompanyVar || complaintCompanyVar === '') {
 				template.$('[name=addComplaintCompany]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintCompany]').attr('placeholder', 'Please fill in the Complainant Company');
+				template.$('[name=addComplaintCompany]').next().html('Please fill in the Complainant Company');
 				var isEmpty = true;
 			}
 			if (!complaintCommentsVar || complaintCommentsVar === '') {
 				template.$('[name=addComplaintComments]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintComments]').attr('placeholder', 'Please fill in the Complainant Comments');
+				template.$('[name=addComplaintComments]').next().html('Please fill in the Complainant Comments');
 				var isEmpty = true;
 			}
 			if (!complaintFollowUpVar || complaintFollowUpVar === '') {
 				template.$('[name=addComplaintFollowUp]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintFollowUp]').attr('placeholder', 'Please fill in the Follow Up');
+				template.$('[name=addComplaintFollowUp]').next().html('Please fill in the Follow Up');
 				var isEmpty = true;          
 			}
 			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Company Address'){
 				if (!complaintCompanyAddressVar || complaintCompanyAddressVar === '') {
 					template.$('[name=addComplaintCompanyAddress]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyAddress]').attr('placeholder', 'Please fill in the Company Address');
+					template.$('[name=addComplaintCompanyAddress]').next().html('Please fill in the Company Address');
 					var isEmpty = true;          
 				}
 				if (!complaintCompanyPostalCodeVar || complaintCompanyPostalCodeVar === '') {
 					template.$('[name=addComplaintCompanyPostalCode]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyPostalCode]').attr('placeholder', 'Please fill in the Company Postal Code');
+					template.$('[name=addComplaintCompanyPostalCode]').next().html('Please fill in the Company Postal Code');
 					var isEmpty = true;          
 				}
 			}
 			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Website'){
 				if (!complaintCompanyWebsiteVar || complaintCompanyWebsiteVar === '') {
 					template.$('[name=addComplaintCompanyWebsite]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyWebsite]').attr('placeholder', 'Please fill in the Company Website');
+					template.$('[name=addComplaintCompanyWebsite]').next().html('Please fill in the Company Website');
 					var isEmpty = true;          
 				}
 			}
@@ -213,55 +225,55 @@ if (Meteor.isClient) {
 
 			if (!complaintNameVar || complaintNameVar === '') {
 				template.$('[name=addComplaintName]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintName]').attr('placeholder', 'Please fill in the Complainant Name');
+				template.$('[name=addComplaintName]').next().html('Please fill in the Complainant Name');
 				isEmpty ++;
 			}
 			if (!complaintNRICVar || complaintNRICVar === '') {
 				template.$('[name=addComplaintNRIC]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintNRIC]').attr('placeholder', 'Please fill in the Complainant NRIC');
+				template.$('[name=addComplaintNRIC]').next().html('Please fill in the Complainant NRIC');
 				isEmpty ++;
 			}
 			if (!complaintContactVar || complaintContactVar === '') {
 				template.$('[name=addComplaintContact]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintContact]').attr('placeholder', 'Please fill in the Complainant Contact');
+				template.$('[name=addComplaintContact]').next().html('Please fill in the Complainant Contact');
 				isEmpty ++;
 			}
 			if (!complaintEmailVar || complaintEmailVar === '') {
 				template.$('[name=addComplaintEmail]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintEmail]').attr('placeholder', 'Please fill in the Complainant Email');
+				template.$('[name=addComplaintEmail]').next().html('Please fill in the Complainant Email');
 				isEmpty ++;
 			}
 			if (!complaintCompanyVar || complaintCompanyVar === '') {
 				template.$('[name=addComplaintCompany]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintCompany]').attr('placeholder', 'Please fill in the Complainant Company');
+				template.$('[name=addComplaintCompany]').next().html('Please fill in the Complainant Company');
 				isEmpty ++;
 			}
 			if (!complaintCommentsVar || complaintCommentsVar === '') {
 				template.$('[name=addComplaintComments]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintComments]').attr('placeholder', 'Please fill in the Complainant Comments');
+				template.$('[name=addComplaintComments]').next().html('Please fill in the Complainant Comments');
 				isEmpty ++;
 			}
 			if (!complaintFollowUpVar || complaintFollowUpVar === '') {
 				template.$('[name=addComplaintFollowUp]').closest(".form-group").addClass('has-error');
-				template.$('[name=addComplaintFollowUp]').attr('placeholder', 'Please fill in the Follow Up');
+				template.$('[name=addComplaintFollowUp]').next().html('Please fill in the Follow Up');
 				isEmpty ++;         
 			}
 			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Company Address'){
 				if (!complaintCompanyAddressVar || complaintCompanyAddressVar === '') {
 					template.$('[name=addComplaintCompanyAddress]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyAddress]').attr('placeholder', 'Please fill in the Company Address');
+					template.$('[name=addComplaintCompanyAddress]').next().html('Please fill in the Company Address');
 					isEmpty ++;         
 				}
 				if (!complaintCompanyPostalCodeVar || complaintCompanyPostalCodeVar === '') {
 					template.$('[name=addComplaintCompanyPostalCode]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyPostalCode]').attr('placeholder', 'Please fill in the Company Postal Code');
+					template.$('[name=addComplaintCompanyPostalCode]').next().html('Please fill in the Company Postal Code');
 					isEmpty ++;         
 				}
 			}
 			if(template.$("[name=addComplaintCompanyLocation]").val() === 'Website'){
 				if (!complaintCompanyWebsiteVar || complaintCompanyWebsiteVar === '') {
 					template.$('[name=addComplaintCompanyWebsite]').closest(".form-group").addClass('has-error');
-					template.$('[name=addComplaintCompanyWebsite]').attr('placeholder', 'Please fill in the Company Website');
+					template.$('[name=addComplaintCompanyWebsite]').next().html('Please fill in the Company Website');
 					isEmpty ++;        
 				}
 			}
@@ -405,7 +417,21 @@ function clearComplaintValidate(template) {
 	template.$("[name=addComplaintManagerComments]").closest(".form-group").removeClass('has-error');
 	template.$('[name=addComplaintCompanyAddress]').closest(".form-group").removeClass('has-error');
 	template.$('[name=addComplaintCompanyPostalCode]').closest(".form-group").removeClass('has-error');
-	template.$('[name=addComplaintCompanyWebsite]').closest(".form-group").removeClass('has-error'); 
+	template.$('[name=addComplaintCompanyWebsite]').closest(".form-group").removeClass('has-error');
+
+	template.$("[name=addComplaintName]").next().html("");
+	template.$("[name=addComplaintNRIC]").next().html("");
+	template.$("[name=addComplaintContact]").next().html("");
+	template.$("[name=addComplaintEmail]").next().html("");
+	template.$(".complaintCategory").next().html("");
+	template.$("[name=addComplaintCompany]").next().html("");
+	template.$(".complaintCompanyAddressOrWebsite").next().html("");
+	template.$("[name=addComplaintComments]").next().html("");
+	template.$("[name=addComplaintFollowUp]").next().html("");
+	template.$("[name=addComplaintManagerComments]").next().html("");
+	template.$('[name=addComplaintCompanyAddress]').next().html("");
+	template.$('[name=addComplaintCompanyPostalCode]').next().html("");
+	template.$('[name=addComplaintCompanyWebsite]').next().html(""); 
 
 	template.$(".errorForm").addClass("hide");
 }

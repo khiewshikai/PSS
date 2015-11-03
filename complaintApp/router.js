@@ -1,8 +1,8 @@
 var mustBeSignedIn = function(pause) {
   if (!(Meteor.user() || Meteor.loggingIn())) {
     Router.go('login');
-  }
-  this.next();
+}
+this.next();
 };
 
 var goToDashboard = function(pause) {
@@ -10,10 +10,10 @@ var goToDashboard = function(pause) {
     console.log("WHATTT");
     Router.go('dashboard');
     this.next();
-  }
+}
 };
 
-Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint', 'complaintForm','compliment', 'complimentForm','viewComplaint','viewWorkLists','/editTask/:_id','viewCompanyComplaint']});
+Router.onBeforeAction(mustBeSignedIn, {except: ['login','register','public','complaint', 'complaintForm','compliment', 'complimentForm','viewComplaint']});
 // Router.onBeforeAction(goToDashboard, {only: ['/dashboard']});
 
 Router.route('/', {
@@ -92,7 +92,13 @@ Router.route('/managecomplaints', {
 Router.route('/viewWorkLists', {
     name: 'viewWorkLists',
     template: 'viewWorkLists',
-    layoutTemplate: 'dashboardLayout'
+    layoutTemplate: 'dashboardLayout',
+    before: function() {
+        if (Meteor.user().profile.role != "Manager") {
+            Router.go('dashboard');
+        } 
+        this.next();
+    }
 });
 
 Router.route('/editTask/:_complaintID', {
@@ -110,13 +116,13 @@ Router.route('/editTask/:_complaintID', {
             {
                 $set:{isViewed: true}
             }
-        ),
+            ),
         tasksCollection.update(
             {_id: taskID},
             {
                 $set:{isViewed: true}
             }
-        )
+            )
         // console.log(complaintsCollection.findOne({ _id: complaintOriginalID }));
         return complaintsCollection.findOne({ _id: complaintOriginalID });
     }
@@ -125,13 +131,25 @@ Router.route('/editTask/:_complaintID', {
 Router.route('/addcomplaints', {
     name: 'addComplaints',
     template: 'addComplaints',
-	layoutTemplate: 'dashboardLayout'
+    layoutTemplate: 'dashboardLayout',
+    before: function() {
+        if (Meteor.user().profile.role != "Admin staff") {
+            Router.go('dashboard');
+        } 
+        this.next();
+    }
 });
 
 Router.route('/addCompliments', {
     name: 'addCompliments',
     template: 'addCompliments',
-    layoutTemplate: 'dashboardLayout'
+    layoutTemplate: 'dashboardLayout',
+    before: function() {
+        if (Meteor.user().profile.role != "Admin staff") {
+            Router.go('dashboard');
+        } 
+        this.next();
+    }
 });
 
 Router.route('/viewAnalytics', {
@@ -167,11 +185,23 @@ Router.route('/complimentDetails', {
 Router.route('/terminateManager', {
     name: 'terminateManager',
     template: '/terminateManager',
-    layoutTemplate: 'dashboardLayout'
+    layoutTemplate: 'dashboardLayout',
+    before: function() {
+        if (Meteor.user().profile.role != "Administrator") {
+            Router.go('dashboard');
+        } 
+        this.next();
+    }
 });
 
 Router.route('/logger', {
     name: 'logger',
     template: '/logger',
-    layoutTemplate: 'dashboardLayout'
+    layoutTemplate: 'dashboardLayout',
+    before: function() {
+        if (Meteor.user().profile.role != "Administrator") {
+            Router.go('dashboard');
+        } 
+        this.next();
+    }
 });

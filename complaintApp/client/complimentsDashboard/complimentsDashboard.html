@@ -1,7 +1,13 @@
 <template name="complimentsDashboard">
 	{{#if equals userRole 'Clerk'}}
 	<div class="row m-b-10">
-		<button id="complimentsDownloadButton" class="btn btn-sm btn-primary">Download</button>		
+		<button id="complimentsDownloadButton" class="btn btn-sm btn-primary pull-right">Download</button>		
+		<div class="clearfix"></div>
+	</div>
+	{{/if}}
+
+	{{#if equals userRole 'Admin staff'}}
+	<div class="row m-b-10">
 		<div class="btn btn-sm btn-primary pull-right newComplimentBtn">Add New Compliment</div>
 		<div class="clearfix"></div>
 	</div>

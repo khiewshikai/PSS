@@ -14,10 +14,10 @@ Template.dashboardLayout.helpers({
 
     getNewTaskSize: function(){
         // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
-        return tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz", isViewed:false}).fetch().length;
+        return tasksCollection.find({managerID:Meteor.userId(), isViewed:false}).fetch().length;
     },
 
     isNewTaskAvailable: function(){
-    	return tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz", isViewed:false}).fetch().length > 0;
+    	return tasksCollection.find({managerID:Meteor.userId(), isViewed:false}).fetch().length > 0;
     }   
 });

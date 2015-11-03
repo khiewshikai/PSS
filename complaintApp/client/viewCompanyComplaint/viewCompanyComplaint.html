@@ -1,12 +1,7 @@
 <template name="viewCompanyComplaint">
   <div class="container">
-    <header>
-      <h1 class="page-header">
-        Companies' Complaint Count
-      </h1>
-    </header>
     <div class="container">
-      {{> tabular table=TabularTables.complaintsCountCollection class="table table-striped table-bordered table-hover" id="complaintsCountTable"}}      
+      {{> tabular table=TabularTables.complaintsCountCollection selector=getCompanyComplaintsCount class="table table-striped table-bordered table-hover" id="complaintsCountTable"}}      
     </div>
   </div>
 </template>

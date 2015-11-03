@@ -24,50 +24,62 @@ Template.complaintForm.events({
 		clearComplaintValidate(template);
 		if (!complaintName || complaintName === '') {
 			template.$('.complaintName').closest(".form-group").addClass('has-error');
-			template.$('.complaintName').attr('placeholder', 'Please fill in the Complainant Name');
+			template.$('.complaintName').next().html('Please fill in the Complainant Name');
 			var isEmpty = true;
 		}
 		if (!complaintNRIC || complaintNRIC === '') {
 			template.$('.complaintNRIC').closest(".form-group").addClass('has-error');
-			template.$('.complaintNRIC').attr('placeholder', 'Please fill in the Complainant NRIC');
+			template.$('.complaintNRIC').next().html('Please fill in the Complainant NRIC');
+			var isEmpty = true;
+		}
+		var reg = /^\d+$/;
+		if (!reg.test(complaintContact)) {
+			template.$('.complaintContact').closest(".form-group").addClass('has-error');
+			template.$('.complaintContact').next().html('Please enter a valid number');
 			var isEmpty = true;
 		}
 		if (!complaintContact || complaintContact === '') {
 			template.$('.complaintContact').closest(".form-group").addClass('has-error');
-			template.$('.complaintContact').attr('placeholder', 'Please fill in the Complainant Contact');
+			template.$('.complaintContact').next().html('Please fill in the Complainant Contact');
+			var isEmpty = true;
+		}
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		if (!re.test(complaintEmail)) {
+			template.$('.complaintEmail').closest(".form-group").addClass('has-error');
+			template.$('.complaintEmail').next().html('Please fill in a valid Email');
 			var isEmpty = true;
 		}
 		if (!complaintEmail || complaintEmail === '') {
 			template.$('.complaintEmail').closest(".form-group").addClass('has-error');
-			template.$('.complaintEmail').attr('placeholder', 'Please fill in the Complainant Email');
+			template.$('.complaintEmail').next().html('Please fill in the Complainant Email');
 			var isEmpty = true;
 		}
 		if (!complaintCompany || complaintCompany === '') {
 			template.$('.complaintCompany').closest(".form-group").addClass('has-error');
-			template.$('.complaintCompany').attr('placeholder', 'Please fill in the Complaint Company');
+			template.$('.complaintCompany').next().html('Please fill in the Complaint Company');
 			var isEmpty = true;
 		}
 		if (!complaintComment || complaintComment === '') {
 			template.$('.complaintComment').closest(".form-group").addClass('has-error');
-			template.$('.complaintComment').attr('placeholder', 'Please fill in the Complainant Comments');
+			template.$('.complaintComment').next().html('Please fill in the Complainant Comments');
 			var isEmpty = true;
 		}
 		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Company Address'){
 			if (!complaintCompanyAddress || complaintCompanyAddress === '') {
 				template.$('.complaintCompanyAddress').closest(".form-group").addClass('has-error');
-				template.$('.complaintCompanyAddress').attr('placeholder', 'Please fill in the Company Address');
+				template.$('.complaintCompanyAddress').next().html('Please fill in the Company Address');
 				var isEmpty = true;        	
 			}
 			if (!complaintCompanyPostalCode || complaintCompanyPostalCode === '') {
 				template.$('.complaintCompanyPostalCode').closest(".form-group").addClass('has-error');
-				template.$('.complaintCompanyPostalCode').attr('placeholder', 'Please fill in the Company Postal Code');
+				template.$('.complaintCompanyPostalCode').next().html('Please fill in the Company Postal Code');
 				var isEmpty = true;        	
 			}
 		}
 		if(template.$(".complaintCompanyAddressOrWebsite :selected").text() === 'Website'){
 			if (!complaintCompanyWebsite || complaintCompanyWebsite === '') {
 				template.$('.complaintCompanyWebsite').closest(".form-group").addClass('has-error');
-				template.$('.complaintCompanyWebsite').attr('placeholder', 'Please fill in the Company Website');
+				template.$('.complaintCompanyWebsite').next().html('Please fill in the Company Website');
 				var isEmpty = true;        	
 			}
 		}
@@ -213,6 +225,18 @@ function clearComplaintValidate(template) {
 	template.$('.complaintCompanyAddress').closest(".form-group").removeClass('has-error');
 	template.$('.complaintCompanyPostalCode').closest(".form-group").removeClass('has-error');
 	template.$('.complaintCompanyWebsite').closest(".form-group").removeClass('has-error');
+
+	template.$('.complaintName').next().html("");
+	template.$('.complaintNRIC').next().html("");
+	template.$('.complaintContact').next().html("");
+	template.$('.complaintEmail').next().html("");
+	template.$('.complaintCategory').next().html("");
+	template.$('.complaintCompany').next().html("");
+	template.$('.complaintComment').next().html("");
+	template.$('.complaintCompanyAddressOrWebsite').next().html("");
+	template.$('.complaintCompanyAddress').next().html("");
+	template.$('.complaintCompanyPostalCode').next().html("");
+	template.$('.complaintCompanyWebsite').next().html("");
 
 	template.$(".errorForm").addClass("hide");
 }
