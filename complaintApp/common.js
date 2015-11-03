@@ -41,7 +41,7 @@ TabularTables.workLists = new Tabular.Table({
     // console.log(taskObj);
 
     taskObjArr.forEach(function(element,index){
-      console.log(element.isViewed);
+      // console.log(element.isViewed);
       if(element.isViewed == false){
         $(row).addClass("info");//current row
       }
