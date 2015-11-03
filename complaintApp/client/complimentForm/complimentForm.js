@@ -23,50 +23,62 @@ Template.complimentForm.events({
 
 		if (!complimentNameVar || complimentNameVar === '') {
 			template.$('.complimenantName').closest(".form-group").addClass('has-error');
-			template.$('.complimenantName').attr('placeholder', 'Please fill in the Complainant Name');
+			template.$('.complimenantName').next().html('Please fill in the Complainant Name');
 			var isEmpty = true;
 		}
 		if (!complimentNRICVar || complimentNRICVar === '') {
 			template.$('.complimenantNRIC').closest(".form-group").addClass('has-error');
-			template.$('.complimenantNRIC').attr('placeholder', 'Please fill in the Complainant NRIC');
+			template.$('.complimenantNRIC').next().html('Please fill in the Complainant NRIC');
+			var isEmpty = true;
+		}
+		var reg = /^\d+$/;
+		if (!reg.test(complimentContactVar)) {
+			template.$('.complimenantContact').closest(".form-group").addClass('has-error');
+			template.$('.complimenantContact').next().html('Please enter a valid number');
 			var isEmpty = true;
 		}
 		if (!complimentContactVar || complimentContactVar === '') {
 			template.$('.complimenantContact').closest(".form-group").addClass('has-error');
-			template.$('.complimenantContact').attr('placeholder', 'Please fill in the Complainant Contact');
+			template.$('.complimenantContact').next().html('Please fill in the Complainant Contact');
+			var isEmpty = true;
+		}
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		if (!re.test(complimentEmailVar)) {
+			template.$('.complimenantEmail').closest(".form-group").addClass('has-error');
+			template.$('.complimenantEmail').next().html('Please fill in a valid Email');
 			var isEmpty = true;
 		}
 		if (!complimentEmailVar || complimentEmailVar === '') {
 			template.$('.complimenantEmail').closest(".form-group").addClass('has-error');
-			template.$('.complimenantEmail').attr('placeholder', 'Please fill in the Complainant Email');
+			template.$('.complimenantEmail').next().html('Please fill in the Complainant Email');
 			var isEmpty = true;
 		}
 		if (!complimentCompanyVar || complimentCompanyVar === '') {
 			template.$('.companyToCompliment').closest(".form-group").addClass('has-error');
-			template.$('.companyToCompliment').attr('placeholder', 'Please fill in the Complainant Company');
+			template.$('.companyToCompliment').next().html('Please fill in the Complainant Company');
 			var isEmpty = true;
 		}
 		if (!complimentCommentsVar || complimentCommentsVar === '') {
 			template.$('.complimenantComment').closest(".form-group").addClass('has-error');
-			template.$('.complimenantComment').attr('placeholder', 'Please fill in the Complainant Comments');
+			template.$('.complimenantComment').next().html('Please fill in the Complainant Comments');
 			var isEmpty = true;
 		}
 		if(template.$(".complimentCompanyAddressOrWebsite :selected").text() === 'Company Address'){
 			if (!complimentCompanyAddress || complimentCompanyAddress === '') {
 				template.$('.complimentCompanyAddress').closest(".form-group").addClass('has-error');
-				template.$('.complimentCompanyAddress').attr('placeholder', 'Please fill in the Company Address');
+				template.$('.complimentCompanyAddress').next().html('Please fill in the Company Address');
 				var isEmpty = true;        	
 			}
 			if (!complimentCompanyPostalCode || complimentCompanyPostalCode === '') {
 				template.$('.complimentCompanyPostalCode').closest(".form-group").addClass('has-error');
-				template.$('.complimentCompanyPostalCode').attr('placeholder', 'Please fill in the Company Postal Code');
+				template.$('.complimentCompanyPostalCode').next().html('Please fill in the Company Postal Code');
 				var isEmpty = true;        	
 			}
 		}
 		if(template.$(".complimentCompanyAddressOrWebsite :selected").text() === 'Website'){
 			if (!complimentCompanyWebsite || complimentCompanyWebsite === '') {
 				template.$('.complimentCompanyWebsite').closest(".form-group").addClass('has-error');
-				template.$('.complimentCompanyWebsite').attr('placeholder', 'Please fill in the Company Website');
+				template.$('.complimentCompanyWebsite').next().html('Please fill in the Company Website');
 				var isEmpty = true;        	
 			}
 		}
@@ -182,6 +194,18 @@ function clearComplimentValidate(template) {
 	template.$('.complimentCompanyAddress').closest(".form-group").removeClass('has-error');
 	template.$('.complimentCompanyPostalCode').closest(".form-group").removeClass('has-error');
 	template.$('.complimentCompanyWebsite').closest(".form-group").removeClass('has-error');
+
+	template.$('.complimenantName').next().html("");
+	template.$('.complimenantNRIC').next().html("");
+	template.$('.complimenantContact').next().html("");
+	template.$('.complimenantEmail').next().html("");
+	template.$('.productCategory').next().html("");
+	template.$('.companyToCompliment').next().html("");
+	template.$('.complimenantComment').next().html("");
+	template.$('.complimentCompanyAddressOrWebsite').next().html("");
+	template.$('.complimentCompanyAddress').next().html("");
+	template.$('.complimentCompanyPostalCode').next().html("");
+	template.$('.complimentCompanyWebsite').next().html("");
 
 	template.$(".errorForm").addClass("hide");
 }
