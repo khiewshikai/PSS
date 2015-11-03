@@ -25,12 +25,13 @@ if (Meteor.isClient) {
         var complaint = complaintsCollection.findOne({
           complaintID: task.complaintID
         });
-
+        console.log(complaint);
         if (complaint.status == "Open") {
+          console.log(openTaskArray)
           openTaskArray.push(complaint.complaintID);
         }
       });
-      // console.log(openTaskArray);
+      console.log(openTaskArray);
       return {complaintID:{$in:openTaskArray}} //give the selector in datatable to select only complaintID that are in the complaintIDArray;      
     },
 
