@@ -127,20 +127,20 @@
 				<div class="form-group cd-statusGrp">
 					<label class="col-md-3 control-label">Status</label>
 					<div class="col-md-9">
-						<select class="form-control complaintStatus" value={{complaints.status}}>
-							<option>Open</option>
-							<option>Processing</option>
+						<select class="form-control complaintStatus cd-disabled" disabled value={{complaints.status}}>
+							<option class="cd-disabled" value={{complaints.status}}>{{complaints.status}}</option>
+<!-- 							<option>Processing</option>
 							<option>Closed</option>
 							<option>KIV</option>
 							<option>Routed to action party</option>
-							<option>Closed(no action needed)</option>
+							<option>Closed(no action needed)</option> -->
 						</select>
 					</div>
 				</div>
 				<div class="form-group complaintManagerGrp">
 					<label class="col-md-3 control-label">Manager in-charge</label>
 					<div class="col-md-9">
-						<select class="form-control complaintManager">
+						<select class="form-control complaintManager cd-disabled" disabled>
 							
 						</select>
 					</div>

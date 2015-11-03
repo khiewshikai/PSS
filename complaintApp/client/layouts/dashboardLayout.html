@@ -17,8 +17,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					{{#if equals userRole 'Manager'}}
-					<li class="{{active 'viewWorkLists'}}"><a href="/viewWorkLists">Worklist {{#if isNewTaskAvailable}} ({{getNewTaskSize}}) {{/if}}</a></li>
-					<li class="{{active 'viewCompanyComplaint'}}"><a href="/viewCompanyComplaint">Complaints Count</a></li>
+					<li class="{{active 'viewWorkLists'}}"><a href="/viewWorkLists">Worklist {{#if isNewTaskAvailable}} ({{getNewTaskSize}}) {{/if}}</a></li>					
 					{{/if}}
 					<li class="{{active 'dashboard'}}"><a href="/dashboard">Complaints List</a></li>
 					<li class="{{active 'complimentsDashboard'}}"><a href="/complimentsDashboard">Compliments List</a></li>
@@ -34,6 +33,8 @@
 						<ul class="dropdown-menu">
 							{{#if equals userRole 'Administrator'}}
 							<li><a href="/terminateManager">Terminate Manager</a></li>
+							<li class="{{active 'viewCompanyComplaint'}}"><a href="/viewCompanyComplaint">Publish Complaints</a>
+							</li>
 							{{/if}}
 							<li><a href="#">Profile</a></li>
 							<li><a href="#">Support</a></li>

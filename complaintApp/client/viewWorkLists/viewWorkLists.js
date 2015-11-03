@@ -14,7 +14,7 @@ if (Meteor.isClient) {
   Template.viewWorkLists.helpers({    
     getComplaintsCollection: function() {
       var tasks = getTasksCollectionOfCurrentUser();
-      console.log(tasks);
+      // console.log(tasks);
       // var complaints = new Object();
       // var complaintIDArray = tasks.map( function(t) { return t["complaintID"]}); //return array of complaintIDs of this user
 
@@ -30,7 +30,7 @@ if (Meteor.isClient) {
           openTaskArray.push(complaint.complaintID);
         }
       });
-      console.log(openTaskArray);
+      // console.log(openTaskArray);
       return {complaintID:{$in:openTaskArray}} //give the selector in datatable to select only complaintID that are in the complaintIDArray;      
     },
 
