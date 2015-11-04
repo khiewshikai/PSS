@@ -36,3 +36,5 @@ okgrow:router-autoscroll
 dburles:collection-helpers
 ephemer:reactive-datatables
 jspdf:core
+meteorhacks:unblock
+reywood:publish-composite

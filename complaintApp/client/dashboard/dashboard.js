@@ -8,7 +8,12 @@
 Template.dashboard.helpers({
 	userRole: function() {
 		return Meteor.user().profile.role;
-	}
+	},
+    getManager: function(id){
+        var caseMondoID = complaintsCollection.findOne({complaintID: id})._id;
+        var managerMongoID = tasksCollection.findOne({_id: caseMondoID}).managerID;
+        return Meteor.users.findOne({_id: managerName}).profile.name;
+    }
 });
 
 Template.dashboard.events({

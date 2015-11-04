@@ -12,11 +12,16 @@ TabularTables.complaintsCollection = new Tabular.Table({
   {data: "complainantContact", title: "Contact", className: "dt-center"},
   {data: "complainantEmail", title: "Email", className: "dt-center"},
   {data: "companyToComplain", title: "Company", className: "dt-center"},
-  {data: "status", title: "Status", className: "dt-center"}
+  {data: "status", title: "Status", className: "dt-center"},
+  {data: "time()", title: "Complain Time", className: "dt-center"},
+  {data: 'getManager()', title: "Manager", className: "dt-center"}
   ],
+  order: [[ 2, "desc" ]],
   responsive: true,
   autoWidth: false
 });
+
+
 //END dashboard
 
 TabularTables = {};
@@ -31,7 +36,8 @@ TabularTables.workLists = new Tabular.Table({
   {data: "complainantContact", title: "Contact", className: "dt-center"},
   {data: "complainantEmail", title: "Email", className: "dt-center"},
   {data: "companyToComplain", title: "Company", className: "dt-center"},
-  {data: "status", title: "Status", className: "dt-center"}
+  {data: "status", title: "Status", className: "dt-center"},
+  {data: "time()", title: "Complain Time", className: "dt-center"},
   ],
   responsive: true,
   autoWidth: false,
@@ -176,4 +182,27 @@ TabularTables.logCollection = new Tabular.Table({
   order: [[ 1, "desc" ]],
   responsive: true,
   autoWidth: false
+});
+//complaintsCollection tabular table helpers
+complaintsCollection.helpers({
+  getManager: function () {
+    console.log(this._id);
+    var caseID = complaintsCollection.findOne({_id: this._id}).complaintID
+    var managerID = tasksCollection.findOne({complaintID:caseID}).managerID
+    console.log(caseID);
+    console.log(managerID);
+    var managerName = Meteor.users.findOne({_id: managerID}).username;
+    //var complaintID = complaintsCollection.findOne({_id: this._id})
+    console.log(caseID);
+    console.log(managerID);
+    console.log(managerName);
+    return managerName;
+  },
+
+  time: function(){
+    console.log(this)
+    var timeStr = String(complaintsCollection.findOne({_id:this._id}).dateTimeOpen)
+    console.log(timeStr)
+    return timeStr.substring(0,24);
+  }
 });
