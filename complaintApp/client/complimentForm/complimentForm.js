@@ -107,7 +107,7 @@ Template.complimentForm.events({
 
 		Meteor.call('sendEmail',
 			complimentEmailVar,
-			'ccms@case.com',
+			'caseccms.heorku.com',
 			'CASE Compliment ID ' + complimentId,
 			emailMsg);
 

@@ -141,7 +141,7 @@ Template.complaintForm.events({
 
 		Meteor.call('sendEmail',
 			complaintEmail,
-			'ccms@case.com',
+			'caseccms.heorku.com',
 			'CASE Complaint ID ' + complaintId,
 			emailMsg);
 

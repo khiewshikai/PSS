@@ -146,7 +146,7 @@ if (Meteor.isClient) {
 
 			Meteor.call('sendEmail',
 				complaintEmailVar,
-				'ccms@case.com',
+				'caseccms.heorku.com',
 				'CASE Complaint ID ' + complaintID,
 				emailMsg);
 

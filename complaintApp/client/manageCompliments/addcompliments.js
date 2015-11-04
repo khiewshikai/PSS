@@ -108,7 +108,7 @@ if (Meteor.isClient) {
 
     Meteor.call('sendEmail',
         complimentEmailVar,
-        'ccms@case.com',
+        'caseccms.heorku.com',
         'Dear ' + complimentNameVar,
         emailMsg);
 
