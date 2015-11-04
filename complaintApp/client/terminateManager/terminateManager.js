@@ -72,11 +72,21 @@ Template.terminateManager.events({
                  console.log(newManager)
                 var managerID = Meteor.users.findOne({username: newManager })._id;
                 var taskMongoID = tasksCollection.findOne({complaintID: caseID})._id;
-                
-                tasksCollection.update(
+                var caseStatus = complaintsCollection.find({_id:caseID}).status;
+
+                if(caseStatus === "Closed"){
+                    tasksCollection.update(
+                    {_id: taskMongoID },
+                    {$set: {managerID: managerID}} //needs to update worklist of manager
+                );
+                }else{
+                    tasksCollection.update(
                     {_id: taskMongoID },
                     {$set: {managerID: managerID, isViewed: false}} //needs to update worklist of manager
                 );
+                }
+                
+                
                 Meteor.call('logger',
                     Meteor.user()._id,
                     'terminate',
