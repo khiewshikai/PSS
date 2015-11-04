@@ -20,50 +20,62 @@ if (Meteor.isClient) {
 
             if (!complimentNameVar || complimentNameVar === '') {
             	template.$('[name=addComplimentName]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentName]').attr('placeholder', 'Please fill in the Complimenant Name');
+            	template.$('[name=addComplimentName]').next().html('Please fill in the Complimenant Name');
             	var isEmpty = true;
             }
             if (!complimentNRICVar || complimentNRICVar === '') {
             	template.$('[name=addComplimentNRIC]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentNRIC]').attr('placeholder', 'Please fill in the Complimenant NRIC');
+            	template.$('[name=addComplimentNRIC]').next().html('Please fill in the Complimenant NRIC');
             	var isEmpty = true;
+            }
+            var reg = /^\d+$/;
+            if (!reg.test(complimentContactVar)) {
+                template.$('[name=addComplimentContact]').closest(".form-group").addClass('has-error');
+                template.$('[name=addComplimentContact]').next().html('Please enter a valid number');
+                var isEmpty = true;
             }
             if (!complimentContactVar || complimentContactVar === '') {
             	template.$('[name=addComplimentContact]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentContact]').attr('placeholder', 'Please fill in the Complimenant Contact');
+            	template.$('[name=addComplimentContact]').next().html('Please fill in the Complimenant Contact');
             	var isEmpty = true;
+            }
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            if (!re.test(complimentEmailVar)) {
+                template.$('[name=addComplimentEmail]').closest(".form-group").addClass('has-error');
+                template.$('[name=addComplimentEmail]').next().html('Please fill in a valid Email');
+                var isEmpty = true;
             }
             if (!complimentEmailVar || complimentEmailVar === '') {
             	template.$('[name=addComplimentEmail]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentEmail]').attr('placeholder', 'Please fill in the Complimenant Email');
+            	template.$('[name=addComplimentEmail]').next().html('Please fill in the Complimenant Email');
             	var isEmpty = true;
             }
             if (!complimentCompanyVar || complimentCompanyVar === '') {
             	template.$('[name=addComplimentCompany]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentCompany]').attr('placeholder', 'Please fill in the Complimenant Company');
+            	template.$('[name=addComplimentCompany]').next().html('Please fill in the Complimenant Company');
             	var isEmpty = true;
             }
             if (!complimentCommentsVar || complimentCommentsVar === '') {
             	template.$('[name=addComplimentComments]').closest(".form-group").addClass('has-error');
-            	template.$('[name=addComplimentComments]').attr('placeholder', 'Please fill in the Complimenant Comments');
+            	template.$('[name=addComplimentComments]').next().html('Please fill in the Complimenant Comments');
             	var isEmpty = true;
             }
             if(template.$("[name=addComplimentCompanyLocation]").val() === 'Company Address'){
                 if (!complimentCompanyAddressVar || complimentCompanyAddressVar === '') {
                    template.$('[name=addComplimentCompanyAddress]').closest(".form-group").addClass('has-error');
-                   template.$('[name=addComplimentCompanyAddress]').attr('placeholder', 'Please fill in the Company Address');
+                   template.$('[name=addComplimentCompanyAddress]').next().html('Please fill in the Company Address');
                    var isEmpty = true;        	
                }
                if (!complimentCompanyPostalCodeVar || complimentCompanyPostalCodeVar === '') {
                    template.$('[name=addComplimentCompanyPostalCode]').closest(".form-group").addClass('has-error');
-                   template.$('[name=addComplimentCompanyPostalCode]').attr('placeholder', 'Please fill in the Company Postal Code');
+                   template.$('[name=addComplimentCompanyPostalCode]').next().html('Please fill in the Company Postal Code');
                    var isEmpty = true;        	
                }
            }
            if(template.$("[name=addComplimentCompanyLocation]").val() === 'Website'){
             if (!complimentCompanyWebsiteVar || complimentCompanyWebsiteVar === '') {
                template.$('[name=addComplimentCompanyWebsite]').closest(".form-group").addClass('has-error');
-               template.$('[name=addComplimentCompanyWebsite]').attr('placeholder', 'Please fill in the Company Website');
+               template.$('[name=addComplimentCompanyWebsite]').next().html('Please fill in the Company Website');
                var isEmpty = true;        	
            }
        }
@@ -92,11 +104,11 @@ if (Meteor.isClient) {
         complimentTimeCreated: dateTimeOpen,
     });
 
-    var emailMsg = "You have successfully submitted a compliment on CASE Complaint Compliment Management System. Below is your compliment details.";
+    var emailMsg = 'Dear ' + complimentNameVar + ", you have successfully submitted a compliment on CASE Complaint Compliment Management System. Below is your compliment details.";
 
     Meteor.call('sendEmail',
         complimentEmailVar,
-        'ccms@case.com',
+        'caseccms.heorku.com',
         'Dear ' + complimentNameVar,
         emailMsg);
 
@@ -198,6 +210,18 @@ function clearComplimentValidate(template) {
     template.$('[name=addComplimentCompanyAddress]').closest(".form-group").removeClass('has-error');
     template.$('[name=addComplimentCompanyPostalCode]').closest(".form-group").removeClass('has-error');
     template.$('[name=addComplimentCompanyWebsite]').closest(".form-group").removeClass('has-error'); 
+
+    template.$("[name=addComplimentName]").next().html("");
+    template.$("[name=addComplimentNRIC]").next().html("");
+    template.$("[name=addComplimentContact]").next().html("");
+    template.$("[name=addComplimentEmail]").next().html("");
+    template.$(".complimentCategory").next().html("");
+    template.$("[name=addComplimentCompany]").next().html("");
+    template.$(".complimentCompanyAddressOrWebsite").next().html("");
+    template.$("[name=addComplimentComments]").next().html("");         
+    template.$('[name=addComplimentCompanyAddress]').next().html("");
+    template.$('[name=addComplimentCompanyPostalCode]').next().html("");
+    template.$('[name=addComplimentCompanyWebsite]').next().html(""); 
 
     template.$(".errorForm").addClass("hide");
 }

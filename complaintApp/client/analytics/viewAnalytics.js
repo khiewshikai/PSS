@@ -4,6 +4,13 @@ if (Meteor.isClient) {
         function getFormatDate(date){
             var day = date.getDate();
             var month = date.getMonth() + 1;
+            if(day < 10){
+                day = "0" + day;
+            }
+
+            if(month < 10){
+                month = "0" + month;
+            }
             var year = date.getFullYear();
 
             var finalDate = year + "-" + month + "-" + day;
@@ -31,7 +38,7 @@ if (Meteor.isClient) {
         function getPastWeekComplaints(){
             var totalComplaints = ['Total Number of Complaints'];            
 
-            for (i = 7; i > 1 ; i--) {
+            for (i = 6; i >= 1 ; i--) {
                 var complaints = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
                 totalComplaints.push(complaints);
             }
@@ -47,7 +54,7 @@ if (Meteor.isClient) {
         function getPastWeekCompliments () {
             var totalCompliments = ['Total Number of Compliments'];
 			
-            for (i = 7; i > 1 ; i--) { 
+            for (i = 6; i >= 1 ; i--) { 
                 var compliments = complimentsCollection.find({"complimentTimeCreated":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
                 totalCompliments.push(compliments);
             }

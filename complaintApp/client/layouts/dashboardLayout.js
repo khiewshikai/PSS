@@ -14,7 +14,15 @@ Template.dashboardLayout.helpers({
 
     getNewTaskSize: function(){
         // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
-        return tasksCollection.find({managerID:Meteor.userId(), isViewed:false}).fetch().length;
+        var tasks = tasksCollection.find({managerID:Meteor.userId(), isViewed:false}).fetch();//get new tasks that are not viewed yet
+        var complaints = new Array();
+        tasks.forEach(function(element,index){
+            complaint = complaintsCollection.findOne({complaintID: element.complaintID, status:{$ne:"Closed"}}); //get complaints that are not closed yet
+            if(complaint){//if complaint object is not undefined
+                complaints.push(complaint);
+            }
+        })        
+        return complaints.length;
     },
 
     isNewTaskAvailable: function(){

@@ -6,7 +6,7 @@ if (Meteor.isClient) {
 
   function getTasksCollectionOfCurrentUser(){
     // console.log(tasksCollection.find({managerID:"gtyF55h3CpqZCeFKz"}).fetch());
-    console.log(tasksCollection.find({managerID:Meteor.userId()}).fetch());
+    // console.log(tasksCollection.find({managerID:Meteor.userId()}).fetch());
     
     return tasksCollection.find({managerID:Meteor.userId()}).fetch();
   }
@@ -25,8 +25,9 @@ if (Meteor.isClient) {
         var complaint = complaintsCollection.findOne({
           complaintID: task.complaintID
         });
-
-        if (complaint.status == "Open") {
+        // console.log(complaint);
+        if (complaint.status != "Closed") {
+          // console.log(openTaskArray)
           openTaskArray.push(complaint.complaintID);
         }
       });

@@ -13,11 +13,11 @@ if (Meteor.isClient) {
       return true;
     },
     getComplaintStatus: function(){
-      var arr = ["Open", "3rd-party","Closed"];
+      var arr = ["Open", "Processing", "3rd-party","Closed"];
       // console.log(this.status.text())
       var selected = arr.pop(this.status);
       arr.push(selected);
-      console.log(arr);
+      // console.log(arr);
       return arr;
     }
 
@@ -63,7 +63,7 @@ if (Meteor.isClient) {
         Router.go("/viewWorkLists");
       }
       
-      if(complaintStatus=="closed") {
+      if(complaintStatus=="Closed") {
         complaintsCollection.update(
          { _id : this._id },
          {
