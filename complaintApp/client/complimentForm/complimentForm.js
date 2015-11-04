@@ -103,12 +103,20 @@ Template.complimentForm.events({
 			complimentTimeCreated: timeSubmitted,
 		});
 
-		var emailMsg = 'Dear ' + complimentNameVar + ", thank you for submitting your compliment on CASE Complaint Compliment Management System. Below is your compliment details:";
-
+		var emailMsg = 'Dear ' + complimentNameVar + ",";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "Thank you for submitting your compliment on CASE Complaint Compliment Management System. Your compliment ID is " + complimentId + ".";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "Thank you,";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "CASE CCMS Team";
+		
 		Meteor.call('sendEmail',
 			complimentEmailVar,
 			'caseccms.heorku.com',
-			'CASE Compliment ID ' + complimentId,
+			'CASE CCMS Compliment Confirmation',
 			emailMsg);
 
 		// add to print

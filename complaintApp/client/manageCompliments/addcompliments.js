@@ -104,13 +104,21 @@ if (Meteor.isClient) {
         complimentTimeCreated: dateTimeOpen,
     });
 
-    var emailMsg = 'Dear ' + complimentNameVar + ", you have successfully submitted a compliment on CASE Complaint Compliment Management System. Below is your compliment details.";
-
-    Meteor.call('sendEmail',
-        complimentEmailVar,
-        'caseccms.heorku.com',
-        'Dear ' + complimentNameVar,
-        emailMsg);
+    var emailMsg = 'Dear ' + complimentNameVar + ",";
+        emailMsg = emailMsg + "\n";
+        emailMsg = emailMsg + "\n";
+        emailMsg = emailMsg + "Thank you for submitting your compliment on CASE Complaint Compliment Management System. Your compliment ID is " + complimentID + ".";
+        emailMsg = emailMsg + "\n";
+        emailMsg = emailMsg + "\n";
+        emailMsg = emailMsg + "Thank you,";
+        emailMsg = emailMsg + "\n";
+        emailMsg = emailMsg + "CASE CCMS Team";
+        
+        Meteor.call('sendEmail',
+            complimentNameVar,
+            'caseccms.heorku.com',
+            'CASE CCMS Compliment Confirmation',
+            emailMsg);
 
     template.$(".complimentIDPrint").html(complimentID);
     template.$(".complimentTimePrint").html(dateTimeOpen);

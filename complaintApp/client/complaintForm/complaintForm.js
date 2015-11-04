@@ -137,12 +137,26 @@ Template.complaintForm.events({
 			isViewed: false
 		})
 
-		var emailMsg = 'Dear ' + complaintName + ", you have successfully submitted a complaint on CASE Complaint Compliment Management System. Below is your complaint details:";
+		var emailMsg = 'Dear ' + complaintName + ",";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "You have successfully submitted a complaint on CASE Complaint Compliment Management System.";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "Your complain id number is " + complaintId + ".";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "Please keep this email for your reference and you can visit http://caseccms.herokuapp.com/viewComplaint to check the status.";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "Thank you,";
+		emailMsg = emailMsg + "\n";
+		emailMsg = emailMsg + "CASE CCMS Team";
 
 		Meteor.call('sendEmail',
 			complaintEmail,
 			'caseccms.heorku.com',
-			'CASE Complaint ID ' + complaintId,
+			'CASE CCMS Complaint Confirmation',
 			emailMsg);
 
 
