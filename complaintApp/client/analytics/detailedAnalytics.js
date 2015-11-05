@@ -57,13 +57,34 @@ Template.detailedAnalytics.onRendered(function(){
         return numberArr;
     }
 
+    function getPastWeekComplaints(){
+        var totalComplaints = ['Total Number of Complaints'];            
+
+        for (i = 6; i >= 1 ; i--) {
+            var complaints = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
+            totalComplaints.push(complaints);
+        }
+        
+        var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();           
+        totalComplaints.push(noOfComplaintToday);
+        
+        console.log(totalComplaints);
+        
+        return totalComplaints;
+    }
+
     function createGraph(title, dateStart, dateEnd, tickFormat, xFormat, xAxisLabel){
         console.log("createGraph");
         var min = 100;
         var max = 400;
         var dates = getDates(dateStart, dateEnd);
-        var values = randomizedData(title, dates.length-1, min, max);
-
+        var values = "";
+        if (title === "Number of Complaints"){
+            values = getPastWeekComplaints();
+        } else {
+            values = randomizedData(title, dates.length-1, min, max);
+        }
+         
         var graph = c3.generate({
             bindto: '#analytics-space',
             data: {
