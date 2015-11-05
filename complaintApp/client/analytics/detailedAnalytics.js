@@ -72,6 +72,44 @@ Template.detailedAnalytics.onRendered(function(){
         
         return totalComplaints;
     }
+	
+	function getComplaintsPerCategory(){
+		var allComplaints = complaintsCollection.find().fetch()
+		var resultList = {};
+
+		//fetching results into HM
+		allComplaints.forEach(function(complaintObj){
+			var complaintCategory = complaintObj.productCategory;
+			if(complaintCategory in resultList == false){
+				var count = 1;
+				resultList[complaintCategory] = {count: count};
+			}else{
+				var count = resultList[complaintCategory].count +1;
+				resultList[complaintCategory].count = count;
+			}
+		});
+
+		//converting HM to arr
+		var resultListArr = [];
+		for(result in resultList){
+			var arr = [result, resultList[result].count];
+			resultListArr.push(arr);
+		}
+
+		//sorting from top to bottom
+		resultListArr.sort(function(a,b){
+			return b[1] - a[1];
+		});
+
+		/*var catTitle = ["x"];
+		var NumPerCatData = ['Total Number of Complaints Per Category'];
+		resultListArr.forEach(function(a){
+			catTitle.push(a[0]);
+			NumPerCatData.push(a[1]);
+		});*/
+
+		return resultListArr;
+	}
 
     function createGraph(title, dateStart, dateEnd, tickFormat, xFormat, xAxisLabel){
         console.log("createGraph");
@@ -79,9 +117,23 @@ Template.detailedAnalytics.onRendered(function(){
         var max = 400;
         var dates = getDates(dateStart, dateEnd);
         var values = "";
+		var type = "timeseries";
+		
         if (title === "Number of Complaints"){
             values = getPastWeekComplaints();
-        } else {
+        } else if (title === "Number of Complaints per Category"){
+			var catResults = getComplaintsPerCategory();
+			var catTitle = ["x"];
+			var numPerCatData = ['Total Number of Complaints Per Category'];
+			catResults.forEach(function(a){
+				catTitle.push(a[0]);
+				numPerCatData.push(a[1]);
+			});
+			dates = catTitle;
+			values = numPerCatData;
+			type = "category";
+			xAxisLabel = "Category"
+		} else {
             values = randomizedData(title, dates.length-1, min, max);
         }
          
@@ -97,7 +149,7 @@ Template.detailedAnalytics.onRendered(function(){
             },
             axis: {
                 x: {
-                    type: 'timeseries',
+                    type: type,
                     label: {
                         text: xAxisLabel,
                         position: 'outer-right'

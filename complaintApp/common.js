@@ -188,7 +188,12 @@ complaintsCollection.helpers({
   getManager: function () {
     console.log(this._id);
     var caseID = complaintsCollection.findOne({_id: this._id}).complaintID
+	if(tasksCollection.findOne({complaintID:caseID}) === undefined){
+		console.log("TWESSSSSSSSSSSSSSS")
+		return "";
+	}
     var managerID = tasksCollection.findOne({complaintID:caseID}).managerID
+	
     console.log(caseID);
     console.log(managerID);
     var managerName = Meteor.users.findOne({_id: managerID}).username;

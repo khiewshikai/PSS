@@ -1,5 +1,29 @@
 if (Meteor.isClient) {
     Template.viewAnalytics.onRendered(function(){
+		
+		function getManagersTaskCount(){
+			//setTimeout(function(){
+				var result =[];
+				var managerNameArray = ['x'];
+				var managerTask = ["No. of tasks"];
+				
+				var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
+				console.log(listOfManager)
+				for(index = 0; index < listOfManager.length; index++){
+					var managerObj = listOfManager[index].username;
+					var managerMongoID = listOfManager[index]._id;
+					managerNameArray.push(managerObj);	
+					var taskCount = tasksCollection.find({managerID: managerMongoID}).count();
+					managerTask.push(taskCount)
+					console.log("rrrrrrrrrrrrr")
+				}
+				result.push(managerNameArray);
+				result.push(managerTask);
+				console.log(result);
+				return result;
+			//},100)
+			
+		}
 
         function getFormatDate(date){
             var day = date.getDate();
@@ -39,11 +63,11 @@ if (Meteor.isClient) {
             var totalComplaints = ['Total Number of Complaints'];            
 
             for (i = 6; i >= 1 ; i--) {
-                var complaints = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
+                var complaints = complaintsCollection.find({"status":{"$ne":"Void"}, "dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-(i+1))), "$lte": new Date(new Date().setDate(new Date().getDate()-i))}}).count();
                 totalComplaints.push(complaints);
             }
             
-            var noOfComplaintToday  = complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();           
+            var noOfComplaintToday  = complaintsCollection.find({"status":{"$ne":"Void"}, "dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-1)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();           
             totalComplaints.push(noOfComplaintToday);
             
             console.log(totalComplaints);
@@ -165,7 +189,11 @@ if (Meteor.isClient) {
             },
             axis: {
                 x: {
-                    type: 'category' // this needed to load string x value
+                    type: 'category',
+					label: {
+                        text: "Category",
+                        position: 'outer-right'
+                    }
                 }
             },
             grid: {
@@ -210,27 +238,28 @@ if (Meteor.isClient) {
                 }
             }
         });
-
+		
+		var resultManagerListCount = getManagersTaskCount();
+		console.log("test "+resultManagerListCount[0]);
+		console.log("test "+resultManagerListCount[1]);
+		
         var chart4 = c3.generate({
             bindto: '#avg-complaint-time',
             data: {
                 x: 'x',
                 xFormat: xFormat,
                 columns: [
-                    getPastWeek(),
-                    ['Average Time Taken Per Case', 2, 1, 4, 3, 6, 2, 5]
+                    resultManagerListCount[0],
+                    resultManagerListCount[1]
                 ],
                 type: 'bar'
             },
             axis: {
                 x: {
-                    type: 'timeseries',
-                    label: {
-                        text: xAxisLabel,
+                    type: 'category',
+					label: {
+                        text: "Managers",
                         position: 'outer-right'
-                    },
-                    tick: {
-                        format: tickFormat
                     }
                 }
             },
@@ -257,7 +286,7 @@ if (Meteor.isClient) {
 
 Template.viewAnalytics.helpers({
     totalNoOfComplaints: function() {
-        return complaintsCollection.find({"dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
+        return complaintsCollection.find({"status":{"$ne":"Void"}, "dateTimeOpen":{"$gte": new Date(new Date().setDate(new Date().getDate()-7)), "$lte": new Date(new Date().setDate(new Date().getDate()))}}).count();
     },
 
     totalNoOfCompliments: function() {

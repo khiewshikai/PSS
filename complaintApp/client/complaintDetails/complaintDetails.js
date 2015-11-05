@@ -3,7 +3,7 @@ Template.complaintDetails.rendered = function(){
     var firstOriginalStatus = complaintsCollection.findOne({complaintID: complaintID}).status
     var userRole = Meteor.user().profile.role;
     //console.log("STATUS: " + complaintsCollection.findOne({complaintID: complaintID}).status)
-    if(firstOriginalStatus === "Draft" && userRole != "Clerk"){
+    if(firstOriginalStatus === "Draft" && userRole === "Admin staff"){
         $('.complaintStatus').append('<option>Draft</option>')
         $('.cd-saveDraft').removeClass('hide');
         $('.cd-updateBtn').html('Submit');
@@ -13,10 +13,16 @@ Template.complaintDetails.rendered = function(){
         $('.complaintEmail').prop('disabled', false);
         $('.complaintCategory').prop('disabled', false);
         $('.complaintCompany').prop('disabled', false);
+		$('.complaintCompanyAddress').prop('disabled', false);
+		$('.complaintCompanyPostalCode').prop('disabled', false);
+		$('.complaintCompanyWebsite').prop('disabled', false);
+		$('.complaintCustComment').prop('disabled', false);
+		
         $('.cd-cat2').removeClass('hide'); 
         $('.cd-cat1').addClass('hide');
         $('.cd-statusGrp').addClass('hide');
         $('.complaintManagerGrp').addClass('hide');
+		console.log("EnTERRRRRRRRRRRR")
 
     }
     
@@ -148,20 +154,27 @@ Template.complaintDetails.events({
             );
 
             //assign task
-            var minTask = 0;
-            var trackManager = "";         
-            var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
-            console.log(listOfManager);
-            for(index = 0; index <listOfManager.length; ++index){
-                console.log(listOfManager[index]._id);
-                var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
-                console.log(tempCountTask);
-                trackManager = listOfManager[index]._id;
-                if(tempCountTask <= minTask){
-                    trackManager = listOfManager[index]._id;
-                    minTask = tempCountTask;
-                }
-            }
+            var countTaskManager = [];
+			var listOfManager = Meteor.users.find({'profile.role':'Manager'}).fetch();
+			
+			for(index = 0; index < listOfManager.length; index++){
+				console.log(listOfManager[index]._id);
+				var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
+				countTaskManager.push(tempCountTask);
+			}
+			
+			console.log(countTaskManager);
+			var minNum = Math.min.apply(Math, countTaskManager);
+			console.log(minNum);
+			
+			for(index = 0; index < listOfManager.length; index++){
+				var tempCountTask = tasksCollection.find({"managerID":listOfManager[index]._id}).count();
+				if(tempCountTask == minNum){
+					trackManager = listOfManager[index]._id;
+					break;
+				}
+			}
+			
             tasksCollection.insert({
                 complaintID: complaintID,
                 managerID: trackManager,
