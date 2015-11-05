@@ -79,7 +79,7 @@ if (Meteor.isClient) {
       Meteor.call('logger',
         Meteor.user()._id,
         'complaint',
-        'Updated complaint id ' + this._id);
+        'Updated complaint id ' + this.complaintID);
     },
 
     "click .cd-backButton":function(e, template){
